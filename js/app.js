@@ -2,22 +2,32 @@
  * App.js - Main Render Logic for Home Page
  */
 
+// Note: Ensure this is treated as a module in HTML
+import store from './store.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    renderInventory();
+    // Determine which page we are on and init appropriately
+    // The main page uses index.html, which has this script
+    // We subscribe to the store to get real-time updates
+    store.subscribe((cars) => {
+        renderInventory(cars);
+    });
 });
 
-function renderInventory() {
+function renderInventory(cars) {
     const container = document.querySelector('.car-grid');
     if (!container) return;
 
-    // Get cars from the store (this will load defaults if first time)
-    const cars = window.store.getAllCars();
-    container.innerHTML = ''; // Clear static content
+    container.innerHTML = ''; // Clear content
+
+    if (cars.length === 0) {
+        container.innerHTML = '<p style="color:white;text-align:center;">Cargando vehículos...</p>';
+        return;
+    }
 
     cars.forEach(car => {
 
         // Determine Logo Class (wide or normal)
-        // If logoClass is defined in data use it, otherwise default logic could go here
         const logoClass = car.logoClass ? `brand-logo-floating ${car.logoClass}` : 'brand-logo-floating';
 
         // Sold Overlay
@@ -48,7 +58,4 @@ function renderInventory() {
 
         container.appendChild(card);
     });
-
-    // Re-init Tilt if using a library (vanilla-tilt.js), otherwise CSS handle hover
-    // logic here if we add JS tilt later
 }

@@ -1,17 +1,26 @@
 /**
  * Admin.js - Advanced Logic (Drag&Drop, Menus, Edit, Files)
  */
+import store from './store.js';
 
 let activeMenuId = null;
 let isSortMode = false;
 let draggedItem = null;
+// Local cache of cars for drag & drop and editing
+let currentCars = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     if (window.auth && !window.auth.isAuthenticated()) {
         window.location.href = 'login.html';
         return;
     }
-    renderAdminInventory();
+
+    // Subscribe to store updates
+    store.subscribe((cars) => {
+        currentCars = cars;
+        renderAdminInventory(cars);
+    });
+
     setupDropZones();
 
     // Close menus when clicking outside
@@ -23,10 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- RENDER LOGIC ---
-function renderAdminInventory() {
+function renderAdminInventory(cars) {
     const list = document.getElementById('inventory-list');
     list.innerHTML = '';
-    const cars = window.store.getAllCars();
+
+    if (cars.length === 0) {
+        list.innerHTML = '<p style="color:white;">Esperando datos...</p>';
+        return;
+    }
 
     cars.forEach(car => {
         const item = document.createElement('div');
@@ -69,7 +82,7 @@ function renderAdminInventory() {
 }
 
 // --- MENU LOGIC ---
-function toggleMenu(id, event) {
+window.toggleMenu = function (id, event) {
     event.stopPropagation();
     const menu = document.getElementById(`menu-${id}`);
     const isVisible = menu.classList.contains('visible');
@@ -77,14 +90,14 @@ function toggleMenu(id, event) {
     if (!isVisible) {
         menu.classList.add('visible');
     }
-}
+};
 
 function closeAllMenus() {
     document.querySelectorAll('.card-menu').forEach(m => m.classList.remove('visible'));
 }
 
 // --- MODAL & FORM LOGIC ---
-function openModal(mode = 'create', carId = null) {
+window.openModal = function (mode = 'create', carId = null) {
     document.getElementById('carModal').style.display = 'flex';
     document.getElementById('carForm').reset();
     resetDropZones();
@@ -93,9 +106,8 @@ function openModal(mode = 'create', carId = null) {
         document.getElementById('modalTitle').innerText = 'Editar Vehículo';
         document.getElementById('editCarId').value = carId;
 
-        // Populate Data
-        const cars = window.store.getAllCars();
-        const car = cars.find(c => c.id === carId);
+        // Populate Data from local cache
+        const car = currentCars.find(c => c.id === carId);
         if (car) {
             const form = document.getElementById('carForm');
             form.brand.value = car.brand;
@@ -116,14 +128,14 @@ function openModal(mode = 'create', carId = null) {
         document.getElementById('modalTitle').innerText = 'Nuevo Vehículo';
         document.getElementById('editCarId').value = '';
     }
-}
+};
 
-function closeModal() {
+window.closeModal = function () {
     document.getElementById('carModal').style.display = 'none';
-}
+};
 
 // Global scope
-window.submitCarForm = function () {
+window.submitCarForm = async function () {
     const form = document.getElementById('carForm');
     const formData = new FormData(form);
 
@@ -145,25 +157,24 @@ window.submitCarForm = function () {
 
     // Defensive Logic: If editing and image fields are empty, keep original data
     if (editId) {
-        const cars = window.store.getAllCars();
-        const originalCar = cars.find(c => c.id === editId);
+        const originalCar = currentCars.find(c => c.id === editId);
         if (originalCar) {
             if (!carData.image) carData.image = originalCar.image;
             if (!carData.logo) carData.logo = originalCar.logo;
         }
-        window.store.updateCar(editId, carData);
+        await store.updateCar(editId, carData);
     } else {
-        window.store.addCar(carData);
+        await store.addCar(carData);
     }
 
     closeModal();
-    renderAdminInventory();
+    // No need to call render, store subscription will handle it
 };
 
-window.deleteCar = function (id) {
+window.deleteCar = async function (id) {
     if (confirm('¿Eliminar vehículo?')) {
-        window.store.deleteCar(id);
-        renderAdminInventory();
+        await store.deleteCar(id);
+        // update handled by listener
     }
 };
 
@@ -174,7 +185,7 @@ window.editCar = function (id) {
 // --- DRAG & DROP SORTING ---
 window.toggleSortMode = function () {
     isSortMode = !isSortMode;
-    renderAdminInventory(); // Re-render to add/remove draggable attributes
+    renderAdminInventory(currentCars); // Re-render to add/remove draggable attributes
 };
 
 function handleDragStart(e) {
@@ -187,10 +198,6 @@ function handleDragStart(e) {
 function handleDragOver(e) {
     if (!isSortMode) return;
     e.preventDefault();
-    const item = e.target.closest('.admin-card');
-    if (item && item !== draggedItem) {
-        // Simple swap logic visualization could go here
-    }
 }
 
 function handleDrop(e) {
@@ -199,21 +206,10 @@ function handleDrop(e) {
     const targetItem = e.target.closest('.admin-card');
 
     if (targetItem && targetItem !== draggedItem) {
-        const list = document.getElementById('inventory-list');
-        // Swap DOM
-        // Basic strategy: find indices and swap in store
-        const allItems = Array.from(list.children);
-        const fromIndex = allItems.indexOf(draggedItem);
-        const toIndex = allItems.indexOf(targetItem);
-
-        let cars = window.store.getAllCars();
-        // Remove from old index
-        const [movedCar] = cars.splice(fromIndex, 1);
-        // Insert at new index
-        cars.splice(toIndex, 0, movedCar);
-
-        window.store.setCars(cars);
-        renderAdminInventory();
+        // NOTE: Firestore doesn't inherently support indexed ordering without a specific 'sortOrder' field.
+        // For now, this visual swap won't persist unless we add a specific 'order' field to the database docs.
+        // We will just swap visually for now or log a warning.
+        console.warn("Sorting is visual-only until 'order' field is implemented in DB structure.");
     }
 }
 

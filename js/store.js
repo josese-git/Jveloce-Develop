@@ -1,8 +1,14 @@
-/**
- * Store.js - Manages Data Persistence for Autos JVeloce
- * Uses LocalStorage to simulate a database.
- */
+import { db } from './firebase-config.js';
+import {
+    collection,
+    onSnapshot,
+    setDoc,
+    deleteDoc,
+    doc,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
+const COLLECTION_NAME = 'anuncios';
 const DEFAULT_CARS = [
     {
         id: 'mercedes-class-a-2019',
@@ -45,55 +51,87 @@ const DEFAULT_CARS = [
 
 class Store {
     constructor() {
-        this.dbName = 'jveloce_db_v1';
+        this.subscribers = [];
         this.init();
     }
 
     init() {
-        if (!localStorage.getItem(this.dbName)) {
-            localStorage.setItem(this.dbName, JSON.stringify(DEFAULT_CARS));
-            console.log('Database initialized with default data.');
+        // Set up real-time listener
+        const colRef = collection(db, COLLECTION_NAME);
+        onSnapshot(colRef, (snapshot) => {
+            const cars = [];
+            snapshot.forEach((doc) => {
+                cars.push({ id: doc.id, ...doc.data() });
+            });
+            this.notifySubscribers(cars);
+
+            // Optional: Seed default data if empty (only once)
+            // This logic is a bit risky in production but good for migration
+            if (cars.length === 0 && !localStorage.getItem('seeded_v1')) {
+                this.seedDefaults();
+            }
+        });
+    }
+
+    async seedDefaults() {
+        console.log('Seeding default data to Firestore...');
+        for (const car of DEFAULT_CARS) {
+            await this.addCar(car);
+        }
+        localStorage.setItem('seeded_v1', 'true');
+    }
+
+    subscribe(callback) {
+        this.subscribers.push(callback);
+        // If we already have data, we might want to trigger immediately? 
+        // For now, rely on the next snapshot or initial snapshot.
+    }
+
+    notifySubscribers(cars) {
+        this.subscribers.forEach(cb => cb(cars));
+    }
+
+    async addCar(car) {
+        // Use ID if provided (from migration/defaults) or generate one
+        if (!car.id) {
+            car.id = `${car.brand}-${car.model}-${Date.now()}`.toLowerCase().replace(/\s+/g, '-');
+        }
+
+        try {
+            await setDoc(doc(db, COLLECTION_NAME, car.id), car);
+            console.log("Document successfully written!", car.id);
+        } catch (error) {
+            console.error("Error writing document: ", error);
+            throw error;
         }
     }
 
-    getAllCars() {
-        return JSON.parse(localStorage.getItem(this.dbName)) || [];
-    }
-
-    addCar(car) {
-        const cars = this.getAllCars();
-        // Simple ID generation
-        car.id = `${car.brand}-${car.model}-${Date.now()}`.toLowerCase().replace(/\s+/g, '-');
-        cars.push(car);
-        this.save(cars);
-        return car;
-    }
-
-    deleteCar(id) {
-        let cars = this.getAllCars();
-        cars = cars.filter(c => c.id !== id);
-        this.save(cars);
-    }
-
-    updateCar(id, updatedData) {
-        let cars = this.getAllCars();
-        const index = cars.findIndex(c => c.id === id);
-        if (index !== -1) {
-            cars[index] = { ...cars[index], ...updatedData };
-            this.save(cars);
+    async deleteCar(id) {
+        try {
+            await deleteDoc(doc(db, COLLECTION_NAME, id));
+            console.log("Document successfully deleted!", id);
+        } catch (error) {
+            console.error("Error removing document: ", error);
+            throw error;
         }
     }
 
-    save(cars) {
-        localStorage.setItem(this.dbName, JSON.stringify(cars));
-    }
-
-    setCars(cars) {
-        this.save(cars);
+    async updateCar(id, updatedData) {
+        try {
+            const docRef = doc(db, COLLECTION_NAME, id);
+            await updateDoc(docRef, updatedData);
+            console.log("Document successfully updated!", id);
+        } catch (error) {
+            console.error("Error updating document: ", error);
+            throw error;
+        }
     }
 }
 
 // Export singleton
 const store = new Store();
-// Expose to window for now since we aren't using modules in HTML yet
+// Expose to window for backward compatibility/easy access if needed, 
+// though with modules it's better to import.
 window.store = store;
+
+export default store;
