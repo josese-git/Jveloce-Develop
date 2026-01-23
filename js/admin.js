@@ -344,10 +344,10 @@ window.editorSave = function () {
     const canvas = cropper.getCroppedCanvas({
         maxWidth: 1200, // Limit resolution to save storage
         maxHeight: 1200,
-        fillColor: '#fff',
+        fillColor: 'transparent',
     });
 
-    const base64 = canvas.toDataURL('image/jpeg', 0.85); // JPEG 85% quality
+    const base64 = canvas.toDataURL('image/png'); // PNG to preserve transparency
 
     if (activeEditorType === 'gallery') {
         addGalleryImage(base64);
