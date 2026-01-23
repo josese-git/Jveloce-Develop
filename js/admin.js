@@ -499,6 +499,8 @@ window.openEditorFromPreview = function (type) {
     const editorModal = document.getElementById('editorModal');
     const editorImage = document.getElementById('editorImage');
 
+    // IMPORTANT: Enable CORS for Firebase images to avoid tainted canvas
+    editorImage.crossOrigin = "anonymous";
     editorImage.src = currentSrc;
     editorModal.style.display = 'flex';
 
@@ -507,9 +509,10 @@ window.openEditorFromPreview = function (type) {
     try {
         cropper = new Cropper(editorImage, {
             viewMode: 2,
-            autoCropArea: 0.9,
+            autoCropArea: 0.1,
             responsive: true,
             background: false,
+            checkCrossOrigin: true, // Force check
         });
     } catch (err) {
         console.error("Cropper init failed:", err);
