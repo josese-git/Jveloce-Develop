@@ -41,4 +41,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // 4. Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('toggle');
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Auto-close menu when a link is clicked AND update active state
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function () {
+                // Remove active class from all links
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+
+                // Add active class to the clicked link
+                this.classList.add('active');
+
+                // Close the menu
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('toggle');
+                document.body.classList.remove('menu-open'); // Remove blur
+            });
+        });
+    }
 });
