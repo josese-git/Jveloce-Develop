@@ -38,7 +38,11 @@ function renderInventory(cars) {
         const baseH = isWide ? 100 : 80;
 
         const scale = car.logoSize ? (parseFloat(car.logoSize) / 100) : 1;
-        const style = `width: ${baseW * scale}px; height: ${baseH * scale}px;`;
+        let style = `width: ${baseW * scale}px; height: ${baseH * scale}px;`;
+
+        if (car.logoMargin !== undefined && car.logoMargin !== "" && car.logoMargin !== null) {
+            style += ` margin-bottom: ${car.logoMargin}px;`;
+        }
 
         // Sold Overlay
         const soldOverlay = car.sold ? '<img src="assets/vendido.png" class="sold-overlay-img" alt="Vendido">' : '';

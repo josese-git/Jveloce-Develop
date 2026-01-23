@@ -457,10 +457,17 @@
                             <input type="text" class="form-input" placeholder="URL Logo..."
                                 onchange="updatePreviewFromUrl(this.value, 'logoPreview', 'finalLogoSrc')">
                         </div>
-                        <div style="margin-top:10px;">
-                            <label style="color:#888; font-size:0.8rem;">Tamaño Logo (%)</label>
-                            <input type="number" name="logoSize" class="form-input" value="100" min="50" max="300"
-                                style="margin-top:5px;">
+                        <div style="margin-top:10px; display:flex; gap:10px;">
+                            <div style="flex:1;">
+                                <label style="color:#888; font-size:0.8rem;">Tamaño Logo (%)</label>
+                                <input type="number" name="logoSize" class="form-input" value="100" min="50" max="300"
+                                    style="margin-top:5px;">
+                            </div>
+                            <div style="flex:1;">
+                                <label style="color:#888; font-size:0.8rem;">Margen Inf. (px)</label>
+                                <input type="number" name="logoMargin" class="form-input" placeholder="Auto"
+                                    style="margin-top:5px;">
+                            </div>
                         </div>
                     </div>
 
