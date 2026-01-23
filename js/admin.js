@@ -146,16 +146,31 @@ window.closeModal = function () {
 // Helper to convert Base64 to Blob
 function dataURItoBlob(dataURI) {
     // Check if it's already a URL (http/https), if so return null (no upload needed)
-    if (!dataURI || dataURI.startsWith('http')) return null;
+    if (!dataURI || typeof dataURI !== 'string') return null;
+    if (dataURI.startsWith('http') || dataURI.startsWith('gs://') || dataURI.startsWith('/')) return null;
 
-    const byteString = atob(dataURI.split(',')[1]);
-    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
+    // Strict check for Data URI format
+    if (!dataURI.startsWith('data:')) {
+        console.warn("dataURItoBlob: String is not a Data URI nor valid URL:", dataURI.substring(0, 50));
+        return null; // Treat as text/URL
     }
-    return new Blob([ab], { type: mimeString });
+
+    try {
+        const split = dataURI.split(',');
+        if (split.length < 2) return null;
+
+        const byteString = atob(split[1]);
+        const mimeString = split[0].split(':')[1].split(';')[0];
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ab], { type: mimeString });
+    } catch (e) {
+        console.error("Error converting Data URI to Blob:", e);
+        return null;
+    }
 }
 
 // Helper to upload file to Storage
@@ -508,7 +523,7 @@ window.openEditorFromPreview = function (type) {
         try {
             cropper = new Cropper(editorImage, {
                 viewMode: 2,
-                autoCropArea: 0.9,
+                autoCropArea: 1,
                 responsive: true,
                 background: false,
                 checkCrossOrigin: true,
