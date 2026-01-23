@@ -136,45 +136,62 @@ window.closeModal = function () {
 
 // Global scope
 window.submitCarForm = async function () {
-    const form = document.getElementById('carForm');
-    const formData = new FormData(form);
+    const btn = document.querySelector('button[onclick="submitCarForm()"]');
+    const originalText = btn.innerText;
+    btn.innerText = "Guardando...";
+    btn.disabled = true;
 
-    const carData = {
-        brand: formData.get('brand'),
-        model: formData.get('model'),
-        year: formData.get('year'),
-        fuel: formData.get('fuel'),
-        transmission: formData.get('transmission'),
-        price: formData.get('price'),
-        km: formData.get('km'),
-        image: document.getElementById('finalImageSrc').value,
-        logo: document.getElementById('finalLogoSrc').value,
-        description: formData.get('description'),
-        sold: formData.get('sold') === 'true'
-    };
+    try {
+        const form = document.getElementById('carForm');
+        const formData = new FormData(form);
 
-    const editId = document.getElementById('editCarId').value;
+        const carData = {
+            brand: formData.get('brand'),
+            model: formData.get('model'),
+            year: formData.get('year'),
+            fuel: formData.get('fuel'),
+            transmission: formData.get('transmission'),
+            price: formData.get('price'),
+            km: formData.get('km'),
+            image: document.getElementById('finalImageSrc').value,
+            logo: document.getElementById('finalLogoSrc').value,
+            description: formData.get('description'),
+            sold: formData.get('sold') === 'true'
+        };
 
-    // Defensive Logic: If editing and image fields are empty, keep original data
-    if (editId) {
-        const originalCar = currentCars.find(c => c.id === editId);
-        if (originalCar) {
-            if (!carData.image) carData.image = originalCar.image;
-            if (!carData.logo) carData.logo = originalCar.logo;
+        const editId = document.getElementById('editCarId').value;
+
+        // Defensive Logic: If editing and image fields are empty, keep original data
+        if (editId) {
+            const originalCar = currentCars.find(c => c.id === editId);
+            if (originalCar) {
+                if (!carData.image) carData.image = originalCar.image;
+                if (!carData.logo) carData.logo = originalCar.logo;
+            }
+            await store.updateCar(editId, carData);
+        } else {
+            await store.addCar(carData);
         }
-        await store.updateCar(editId, carData);
-    } else {
-        await store.addCar(carData);
-    }
 
-    closeModal();
-    // No need to call render, store subscription will handle it
+        closeModal();
+        // No need to call render, store subscription will handle it
+    } catch (error) {
+        console.error("Error saving car:", error);
+        alert("Error al guardar: " + error.message + "\n\nVerifica los permisos de Firebase (Firestore Rules).");
+    } finally {
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
 };
 
 window.deleteCar = async function (id) {
     if (confirm('¿Eliminar vehículo?')) {
-        await store.deleteCar(id);
-        // update handled by listener
+        try {
+            await store.deleteCar(id);
+        } catch (error) {
+            console.error("Error deleting car:", error);
+            alert("Error al eliminar: " + error.message);
+        }
     }
 };
 
