@@ -44,7 +44,7 @@ function renderInventory(cars) {
             </div>
 
             <div class="card-details">
-                <img src="${car.logo}" alt="${car.brand}" class="${logoClass}">
+                <img src="${car.logo}" alt="${car.brand}" class="${logoClass}" style="width: ${car.logoSize ? 80 * (car.logoSize / 100) : 80}px; height: ${car.logoSize ? 80 * (car.logoSize / 100) : 80}px;">
                 <h3 class="car-model">${car.brand} ${car.model}</h3>
                 <div class="car-specs">
                     <span>${car.year}</span>
