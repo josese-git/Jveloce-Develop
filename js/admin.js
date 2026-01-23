@@ -2,6 +2,7 @@
  * Admin.js - Advanced Logic (Drag&Drop, Menus, Edit, Files)
  */
 import store from './store.js';
+import { storage, ref, uploadBytes, getDownloadURL } from './firebase-config.js';
 
 let activeMenuId = null;
 let isSortMode = false;
@@ -142,53 +143,120 @@ window.closeModal = function () {
     document.getElementById('carModal').style.display = 'none';
 };
 
+// Helper to convert Base64 to Blob
+function dataURItoBlob(dataURI) {
+    // Check if it's already a URL (http/https), if so return null (no upload needed)
+    if (!dataURI || dataURI.startsWith('http')) return null;
+
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+}
+
+// Helper to upload file to Storage
+async function uploadImageToStorage(blob, brand, model, type, index = 0) {
+    if (!blob) return null;
+    const timestamp = Date.now();
+    // Folder structure: anuncios/Kia/Sportage/timestamp_type.png
+    // Sanitize brand/model
+    const safeBrand = brand.replace(/\s+/g, '_');
+    const safeModel = model.replace(/\s+/g, '_');
+
+    // Construct Path
+    // Type can be 'main', 'logo', 'gallery_0', 'gallery_1'...
+    const filename = `${timestamp}_${type}.png`;
+    const storageRef = ref(storage, `anuncios/${safeBrand}/${safeModel}/${filename}`);
+
+    await uploadBytes(storageRef, blob);
+    return await getDownloadURL(storageRef);
+}
+
 // Global scope
 window.submitCarForm = async function () {
     const btn = document.querySelector('button[onclick="submitCarForm()"]');
     const originalText = btn.innerText;
-    btn.innerText = "Guardando...";
+    btn.innerText = "Subiendo imágenes...";
     btn.disabled = true;
 
     try {
         const form = document.getElementById('carForm');
         const formData = new FormData(form);
 
+        // Validation
+        const brand = formData.get('brand');
+        const model = formData.get('model');
+        if (!brand || !model) throw new Error("Marca y Modelo son obligatorios para subir imágenes.");
+
+        // Get Current Base64 Values
+        const mainImageBase64 = document.getElementById('finalImageSrc').value;
+        const logoImageBase64 = document.getElementById('finalLogoSrc').value;
+
+        // Process Uploads
+        let mainImageUrl = mainImageBase64;
+        let logoImageUrl = logoImageBase64;
+
+        // 1. Upload Main Image
+        const mainBlob = dataURItoBlob(mainImageBase64);
+        if (mainBlob) {
+            mainImageUrl = await uploadImageToStorage(mainBlob, brand, model, 'main');
+        }
+
+        // 2. Upload Logo
+        const logoBlob = dataURItoBlob(logoImageBase64);
+        if (logoBlob) {
+            logoImageUrl = await uploadImageToStorage(logoBlob, brand, model, 'logo');
+        }
+
+        // 3. Upload Gallery
+        // galleryFiles is an array of Base64 strings. We need to upload changed ones.
+        // To keep it simple, if it's base64, upload it. If it's URL, keep it.
+        const newGalleryUrls = [];
+        for (let i = 0; i < galleryFiles.length; i++) {
+            const fileBase64 = galleryFiles[i];
+            const fileBlob = dataURItoBlob(fileBase64);
+            if (fileBlob) {
+                const url = await uploadImageToStorage(fileBlob, brand, model, `gallery_${i}`);
+                newGalleryUrls.push(url);
+            } else {
+                newGalleryUrls.push(fileBase64); // Assume it's already a URL
+            }
+        }
+
         const carData = {
-            brand: formData.get('brand'),
-            model: formData.get('model'),
+            brand: brand,
+            model: model,
             year: formData.get('year'),
             fuel: formData.get('fuel'),
             transmission: formData.get('transmission'),
             price: formData.get('price'),
             km: formData.get('km'),
-            image: document.getElementById('finalImageSrc').value,
-            logo: document.getElementById('finalLogoSrc').value,
-            logoSize: formData.get('logoSize') || 100, // Default 100
-            logoMargin: formData.get('logoMargin'), // Optional
+            image: mainImageUrl, // Saved as URL
+            logo: logoImageUrl,  // Saved as URL
+            logoSize: formData.get('logoSize') || 100,
+            logoMargin: formData.get('logoMargin'),
             description: formData.get('description'),
             sold: formData.get('sold') === 'true',
-            gallery: galleryFiles // Include gallery array
+            gallery: newGalleryUrls
         };
 
         const editId = document.getElementById('editCarId').value;
 
-        // Defensive Logic: If editing and image fields are empty, keep original data
+        // Logic for edit mode... (keeping existing, but images are now URLs)
         if (editId) {
-            const originalCar = currentCars.find(c => c.id === editId);
-            if (originalCar) {
-                if (!carData.image) carData.image = originalCar.image;
-                if (!carData.logo) carData.logo = originalCar.logo;
-            }
             await store.updateCar(editId, carData);
         } else {
             await store.addCar(carData);
         }
 
         closeModal();
-        // No need to call render, store subscription will handle it
     } catch (error) {
         console.error("Error saving car:", error);
-        alert("Error al guardar: " + error.message + "\n\nVerifica los permisos de Firebase (Firestore Rules).");
+        alert("Error al guardar: " + error.message);
     } finally {
         btn.innerText = originalText;
         btn.disabled = false;
@@ -301,9 +369,18 @@ function setupDropZones() {
 }
 
 function handleEditorOpen(file, type) {
+    // ENFORCE BRAND/MODEL Check
+    const brand = document.getElementById('carForm').brand.value;
+    const model = document.getElementById('carForm').model.value;
+
+    if (!brand || !model) {
+        alert("⚠️ Por favor, introduce la Marca y el Modelo antes de subir imágenes.");
+        return;
+    }
+
     if (!file || !file.type.startsWith('image/')) return;
 
-    activeEditorType = type;
+    // ... rest of function
     const reader = new FileReader();
     reader.onload = (e) => {
         const url = e.target.result;
