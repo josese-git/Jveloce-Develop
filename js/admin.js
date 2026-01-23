@@ -380,7 +380,7 @@ function handleEditorOpen(file, type) {
 
     if (!file || !file.type.startsWith('image/')) return;
 
-    // ... rest of function
+    activeEditorType = type;
     const reader = new FileReader();
     reader.onload = (e) => {
         const url = e.target.result;
@@ -397,7 +397,6 @@ function handleEditorOpen(file, type) {
         // Init Cropper
         cropper = new Cropper(editorImage, {
             viewMode: 2, // Restrict crop to image bounds
-            autoCropArea: 0.9,
             responsive: true,
             background: false, // Dark background from CSS
         });
