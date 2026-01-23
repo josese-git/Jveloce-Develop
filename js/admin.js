@@ -534,8 +534,9 @@ window.openEditorFromPreview = function (type) {
     };
 
     editorImage.onerror = () => {
-        alert("⚠️ Error de Seguridad (CORS): Firebase ha bloqueado la carga de la imagen para edición.\n\nNECESITAS CONFIGURAR CORS EN FIREBASE.\n\nHe creado un archivo 'cors.json' en tu carpeta. Sigue las instrucciones que te daré a continuación.");
-        closeEditor();
+        console.warn("Posible error de CORS o carga de imagen. Si la imagen no carga, verifica la consola.");
+        // We do not alert anymore as it might be a false positive if the user says it works.
+        // closeEditor(); // Do not auto-close, let user decide
     };
 
     editorImage.src = currentSrc;
