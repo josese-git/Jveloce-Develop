@@ -39,39 +39,7 @@ body {
 }
 
 /* --- Background & Atmosphere --- */
-.space-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
-}
-
-.smoke-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-image: url('https://raw.githubusercontent.com/yjl99/fog/master/fog1.png');
-    /* Placeholder textyre or generative */
-    opacity: 0.1;
-    animation: drift 60s linear infinite;
-    pointer-events: none;
-}
-
-@keyframes drift {
-    from {
-        background-position: 0 0;
-    }
-
-    to {
-        background-position: 1000px 0;
-    }
-}
+/* Rendered via Canvas (js/background-animation.js) */
 
 .cursor-glow {
     position: fixed;
