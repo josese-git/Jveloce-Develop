@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JVeloce | Acceso Restringido</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific overrides for Login Page to make it look "Secret" */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .login-input:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            background: var(--gold-primary);
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .error-msg {
+            color: var(--red-neon);
+            margin-bottom: 15px;
+            height: 20px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="space-background"></div>
+    <div class="smoke-layer"></div>
+
+    <div class="login-container">
+        <h2 class="login-title">ACCESO RESTRINGIDO</h2>
+
+        <div class="error-msg" id="errorMsg">Credenciales Incorrectas</div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="username" class="login-input" placeholder="USUARIO" required autocomplete="off">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" class="login-input" placeholder="CONTRASEÑA" required>
+            </div>
+            <button type="submit" class="login-btn">ACCEDER <span style="margin-left:5px">➔</span></button>
+        </form>
+
+        <a href="index.html" class="back-link">Volver al Inicio</a>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault(); // Stop reload
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const errorElement = document.getElementById('errorMsg');
+
+            if (auth.login(user, pass)) {
+                // Success
+                window.location.href = 'admin.html';
+            } else {
+                // Fail
+                errorElement.style.opacity = '1';
+                // Shake effect logic here potentially
+            }
+        });
+    </script>
+</body>
+
+</html>

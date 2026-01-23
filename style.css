@@ -1,0 +1,525 @@
+/* 
+   Autos JVeloce - iOS 26 / Liquid Glass Theme 
+   Futuristic UI/UX Design
+*/
+
+:root {
+    /* Color Palette */
+    --bg-deep-black: #050505;
+    --gold-primary: #D4AF37;
+    --gold-gradient: linear-gradient(135deg, #FGD700 0%, #D4AF37 50%, #B8860B 100%);
+    --gold-text-gradient: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    --silver-accent: #E0E0E0;
+    --red-neon: #FF3333;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(20, 20, 20, 0.4);
+    --glass-highlight: rgba(255, 255, 255, 0.05);
+
+    /* Effects */
+    --blur-strength: 30px;
+    --glow-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+
+    /* Typography */
+    --font-main: 'Rajdhani', sans-serif;
+    --font-display: 'Orbitron', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-deep-black);
+    color: var(--silver-accent);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* --- Background & Atmosphere --- */
+.space-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
+}
+
+.smoke-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('https://raw.githubusercontent.com/yjl99/fog/master/fog1.png');
+    /* Placeholder textyre or generative */
+    opacity: 0.1;
+    animation: drift 60s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes drift {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 1000px 0;
+    }
+}
+
+.cursor-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    mix-blend-mode: screen;
+    opacity: 0.6;
+}
+
+/* --- Glassmorphism Utilities --- */
+.glass-nav,
+.glass-panel,
+.glass-footer,
+.glass-btn {
+    backdrop-filter: blur(var(--blur-strength));
+    -webkit-backdrop-filter: blur(var(--blur-strength));
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* --- Navigation --- */
+.glass-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 80px;
+    border-radius: 40px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.nav-logo {
+    height: 50px;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--silver-accent);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--gold-primary);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+    text-align: center;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 5px;
+    color: #fff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.text-gold {
+    background: var(--gold-text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 20px rgba(184, 134, 11, 0.3));
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+    color: white;
+    opacity: 0.8;
+    margin-bottom: 60px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-3d-element {
+    perspective: 1000px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.floating-car-container {
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-emblem {
+    width: 400px;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+    transition: transform 0.1s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotateX(5deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotateX(0deg);
+    }
+}
+
+/* --- Inventory Grid --- */
+.inventory-section {
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 80px;
+    color: white;
+}
+
+.text-stroke {
+    -webkit-text-stroke: 1px var(--gold-primary);
+    color: transparent;
+    font-weight: 100;
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.car-card {
+    /* define border-radius but remove visible background/border to make car "float" */
+    border-radius: 24px;
+    padding: 10px;
+    /* Reduced padding to allow image to be bigger */
+    position: relative;
+    overflow: visible;
+    /* Allow image to pop out if needed */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* Overriding glass-panel for a cleaner look as requested */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.car-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    /* No box shadow on the card itself, maybe just the car later */
+}
+
+.card-image-wrapper {
+    height: 300px;
+    /* Increased height space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    margin-top: -20px;
+}
+
+.car-image {
+    width: 110%;
+    /* Reduced from 130% to prevent overlap */
+    max-width: none;
+    /* Allow overflow */
+    object-fit: contain;
+    transition: transform 0.4s ease;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+    /* Enhanced drop shadow for "car border" feel */
+}
+
+.car-card:hover .car-image {
+    transform: scale(1.15);
+    /* Slightly reduced hover scale */
+}
+
+/* Floating Brand Logo */
+/* Floating Brand Logo */
+.brand-logo-floating {
+    display: block;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: -40px auto 10px auto;
+    filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.2));
+    transition: transform 0.3s;
+    position: relative;
+    z-index: 10;
+}
+
+/* Wide variant for horizontal logos (like new Kia) */
+.brand-logo-floating.wide {
+    width: 200px;
+    /* Adjusted slightly from 240px to fit better */
+    height: 100px;
+    margin: -50px auto -20px auto;
+    /* Pull UP to sit on border, reclaiming label space */
+}
+
+.car-card:hover .brand-logo-floating {
+    transform: scale(1.1);
+}
+
+.car-specs {
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: var(--gold-primary);
+    /* Gold accent for specs */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Label / Rótulo Styling - Modern Glass Pill */
+.card-details {
+    position: relative;
+    z-index: 2;
+    /* Modern Glass Effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 20px 30px 15px 30px;
+    border-radius: 60px;
+    /* Strong Pill Shape */
+    margin-top: -35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+}
+
+.car-card:hover .card-details {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--gold-primary);
+    /* Gold border on hover */
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.car-model {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: #fff;
+    /* White text for contrast on glass */
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Sold State */
+.sold .sold-overlay-glass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.sold-badge-img {
+    width: 80%;
+    transform: rotate(-10deg);
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    animation: pulse-gold 3s infinite ease-in-out;
+}
+
+@keyframes pulse-gold {
+
+    0%,
+    100% {
+        transform: rotate(-10deg) scale(1);
+        filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    }
+
+    50% {
+        transform: rotate(-10deg) scale(1.05);
+        filter: drop-shadow(0 0 25px rgba(212, 175, 55, 1));
+    }
+}
+
+/* --- Footer --- */
+.glass-footer {
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-logo img {
+    height: 60px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.social-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.social-btn:hover {
+    background: var(--gold-primary);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    color: black;
+    transform: translateY(-5px);
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .glass-nav {
+        bottom: 20px;
+        top: auto;
+        height: 70px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .nav-links li:not(.search-icon) {
+        display: none;
+        /* Simplification for mobile */
+    }
+}
+
+/* Sold State Effect */
+.card-image-wrapper {
+    position: relative;
+    /* Anchor for absolute overlay */
+}
+
+.car-card.sold .car-image {
+    /* Use !important to override tilt or other inline styles if necessary */
+    filter: sepia(1) saturate(1.5) hue-rotate(10deg) brightness(0.7) contrast(1.2) !important;
+    transition: filter 0.5s ease, transform 0.4s ease;
+}
+
+.sold-overlay-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    width: 90%;
+    max-width: 350px;
+    /* Prevent it from being colossal on big screens */
+    z-index: 20;
+    pointer-events: none;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.9));
+    animation: stamp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes stamp {
+    0% {
+        transform: translate(-50%, -50%) scale(2) rotate(0deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(-15deg);
+        opacity: 1;
+    }
+}

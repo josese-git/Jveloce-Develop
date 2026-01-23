@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JVeloce | Panel de Control</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+            overflow: hidden;
+            background: #050505;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: rgba(10, 10, 10, 0.9);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .admin-logo {
+            width: 150px;
+            margin-bottom: 50px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .menu-item {
+            color: #888;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            padding: 15px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .menu-item.active,
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        .logout-btn {
+            margin-top: auto;
+            color: #ff4444;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px;
+            overflow-y: auto;
+            height: 100vh;
+            position: relative;
+        }
+
+        .inventory-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            padding-bottom: 100px;
+        }
+
+        /* Card Styling */
+        .admin-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .admin-card.dragging {
+            opacity: 0.5;
+            border: 2px dashed #555;
+        }
+
+        .admin-card.sortable {
+            cursor: grab;
+        }
+
+        .admin-card img {
+            width: 80px;
+            height: 50px;
+            object-fit: contain;
+            background: #000;
+            border-radius: 6px;
+        }
+
+        .admin-card-info {
+            flex: 1;
+        }
+
+        .admin-card-info h4 {
+            color: #fff;
+            margin: 0 0 5px 0;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .admin-card-info p {
+            color: #666;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-top: 5px;
+            background: #222;
+            color: #888;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .status-badge.sold {
+            background: rgba(255, 50, 50, 0.2);
+            color: #ff5555;
+        }
+
+        /* Menu Button & Dropdown */
+        .menu-trigger {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #666;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .menu-trigger:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        .card-menu {
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            width: 140px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: none;
+            /* Hidden by default */
+            z-index: 50;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .card-menu.visible {
+            display: flex;
+        }
+
+        .card-menu-item {
+            padding: 10px 15px;
+            color: #ccc;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .card-menu-item:hover {
+            background: #252525;
+            color: #fff;
+        }
+
+        .card-menu-item.delete {
+            color: #ff5555;
+        }
+
+        /* Advanced Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #111;
+            border: 1px solid #333;
+            width: 900px;
+            max-width: 95%;
+            height: 85vh;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: #fff;
+            font-family: 'Orbitron';
+            margin: 0;
+        }
+
+        .modal-body {
+            padding: 30px;
+            overflow-y: auto;
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* Form Styling */
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: var(--gold-primary);
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .two-col {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-group label {
+            display: block;
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .form-input,
+        select,
+        textarea {
+            width: 100%;
+            background: #080808;
+            border: 1px solid #333;
+            padding: 12px;
+            color: #fff;
+            border-radius: 6px;
+            font-family: 'Rajdhani';
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            border-color: var(--gold-primary);
+            outline: none;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        /* Drag & Drop Zone */
+        .drop-zone {
+            border: 2px dashed #333;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+            background: #080808;
+        }
+
+        .drop-zone:hover,
+        .drop-zone.dragover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .drop-zone p {
+            color: #666;
+            font-size: 0.8rem;
+            margin: 10px 0 0 0;
+        }
+
+        .drop-zone-preview {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .drop-zone-preview.active {
+            display: block;
+        }
+
+        .drop-input {
+            display: none;
+        }
+
+        .modal-footer {
+            padding: 20px 30px;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+            font-family: 'Orbitron';
+            transition: 0.2s;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: #666;
+            border: 1px solid #333;
+        }
+
+        .btn-cancel:hover {
+            border-color: #eee;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <script src="js/auth.js"></script>
+    <script>auth.requireAuth();</script>
+
+    <div class="sidebar">
+        <img src="assets/logo sin fondo.png" alt="Admin" class="admin-logo">
+        <a href="#" class="menu-item active">➜ Inventario</a>
+        <a href="#" class="menu-item">➜ Estadísticas (WIP)</a>
+        <a href="#" class="menu-item">➜ Configuración</a>
+        <a href="#" onclick="auth.logout()" class="logout-btn menu-item">✕ Salir</a>
+    </div>
+
+    <div class="main-content">
+        <div style="display:flex; justify-content:space-between; margin-bottom:30px;">
+            <h1 style="font-family:'Orbitron'; color:white;">Gestión de Inventario</h1>
+            <div style="display:flex; gap:10px;">
+                <button class="btn btn-cancel" onclick="toggleSortMode()">⇵ Ordenar</button>
+                <button class="btn btn-primary" onclick="openModal()">+ Nuevo Vehículo</button>
+            </div>
+        </div>
+
+        <div id="inventory-list" class="inventory-list">
+            <!-- Cards rendered here by js/admin.js -->
+        </div>
+    </div>
+
+    <!-- Advanced Modal -->
+    <div class="modal" id="carModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nuevo Vehículo</h2>
+                <span style="color:#666; cursor:pointer; font-size:1.5rem;" onclick="closeModal()">×</span>
+            </div>
+
+            <form id="carForm" class="modal-body">
+                <input type="hidden" name="id" id="editCarId">
+
+                <!-- Left Column: Media -->
+                <div>
+                    <div class="form-section">
+                        <h4 class="section-title">MULTIMEDIA PRINCIPAL</h4>
+                        <div class="drop-zone" onclick="document.getElementById('mainImageInput').click()"
+                            id="mainDropZone">
+                            <img src="" class="drop-zone-preview" id="mainPreview">
+                            <i style="font-size:2rem; color:#444;">📷</i>
+                            <p>Arrastra imagen o click aquí</p>
+                            <input type="file" id="mainImageInput" class="drop-input" accept="image/*">
+                            <!-- Hidden input for URL fallback or base64 storage -->
+                            <input type="hidden" name="image" id="finalImageSrc">
+                        </div>
+                        <div style="margin-top:10px;">
+                            <input type="text" class="form-input" placeholder="O pega URL de imagen..."
+                                onchange="updatePreviewFromUrl(this.value, 'mainPreview', 'finalImageSrc')">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4 class="section-title">LOGO DE MARCA</h4>
+                        <div class="drop-zone" onclick="document.getElementById('logoInput').click()" id="logoDropZone"
+                            style="padding:10px;">
+                            <img src="" class="drop-zone-preview" id="logoPreview" style="height:60px;">
+                            <p>Logo Marca</p>
+                            <input type="file" id="logoInput" class="drop-input" accept="image/*">
+                            <input type="hidden" name="logo" id="finalLogoSrc">
+                        </div>
+                        <div style="margin-top:5px;">
+                            <input type="text" class="form-input" placeholder="URL Logo..."
+                                onchange="updatePreviewFromUrl(this.value, 'logoPreview', 'finalLogoSrc')">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4 class="section-title">GALERÍA (FUTURO)</h4>
+                        <div class="drop-zone" style="background:#0a0a0a; border-style:solid;">
+                            <p style="color:#444;">Galería de imágenes deshabilitada en prototipo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Details -->
+                <div>
+                    <div class="form-section">
+                        <h4 class="section-title">DATOS DEL VEHÍCULO</h4>
+                        <div class="form-grid two-col">
+                            <div class="form-group">
+                                <label>Marca</label>
+                                <input type="text" name="brand" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Modelo</label>
+                                <input type="text" name="model" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-grid two-col">
+                            <div class="form-group">
+                                <label>Año</label>
+                                <input type="number" name="year" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Precio</label>
+                                <input type="text" name="price" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Kilometraje</label>
+                            <input type="text" name="km" class="form-input" placeholder="Ej: 120.000 km">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4 class="section-title">ESPECIFICACIONES</h4>
+                        <div class="form-grid two-col">
+                            <div class="form-group">
+                                <label>Combustible</label>
+                                <select name="fuel" class="form-input">
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Gasolina">Gasolina</option>
+                                    <option value="Híbrido">Híbrido</option>
+                                    <option value="Eléctrico">Eléctrico</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Transmisión</label>
+                                <select name="transmission" class="form-input">
+                                    <option value="Auto">Automático</option>
+                                    <option value="Manual">Manual</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description & Status -->
+                    <div class="form-section">
+                        <h4 class="section-title">DETALLES</h4>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea name="description" class="form-input"
+                                placeholder="Detalles, equipamiento, estado..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <select name="sold" class="form-input" style="border-color:#555;">
+                                <option value="false">En Venta</option>
+                                <option value="true" style="color:#ff5555;">Vendido</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" onclick="closeModal()">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="submitCarForm()">Guardar Vehículo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Logic -->
+    <script src="js/store.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
