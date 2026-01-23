@@ -400,9 +400,13 @@ function renderGallery() {
 }
 
 // Open editor from existing preview (Edit button)
+// Open editor from existing preview (Edit button)
 window.openEditorFromPreview = function (type) {
+    console.log("openEditorFromPreview called with:", type);
     const hiddenInputId = type === 'main' ? 'finalImageSrc' : 'finalLogoSrc';
     const currentSrc = document.getElementById(hiddenInputId).value;
+
+    console.log("Current Source:", currentSrc ? currentSrc.substring(0, 50) + "..." : "EMPTY");
 
     if (!currentSrc) {
         alert("No hay imagen seleccionada para editar.");
@@ -420,12 +424,16 @@ window.openEditorFromPreview = function (type) {
 
     if (cropper) cropper.destroy();
 
-    cropper = new Cropper(editorImage, {
-        viewMode: 2,
-        autoCropArea: 0.9,
-        responsive: true,
-        background: false,
-    });
+    try {
+        cropper = new Cropper(editorImage, {
+            viewMode: 2,
+            autoCropArea: 0.9,
+            responsive: true,
+            background: false,
+        });
+    } catch (err) {
+        console.error("Cropper init failed:", err);
+    }
 };
 
 function resetDropZones() {
