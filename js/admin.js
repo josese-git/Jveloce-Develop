@@ -501,22 +501,33 @@ window.openEditorFromPreview = function (type) {
 
     // IMPORTANT: Enable CORS for Firebase images to avoid tainted canvas
     editorImage.crossOrigin = "anonymous";
+
+    editorImage.onload = () => {
+        // Image loaded successfully, init cropper
+        if (cropper) cropper.destroy();
+        try {
+            cropper = new Cropper(editorImage, {
+                viewMode: 2,
+                autoCropArea: 0.9,
+                responsive: true,
+                background: false,
+                checkCrossOrigin: true,
+            });
+        } catch (err) {
+            console.error("Cropper init failed:", err);
+        }
+    };
+
+    editorImage.onerror = () => {
+        alert("⚠️ Error de Seguridad (CORS): Firebase ha bloqueado la carga de la imagen para edición.\n\nNECESITAS CONFIGURAR CORS EN FIREBASE.\n\nHe creado un archivo 'cors.json' en tu carpeta. Sigue las instrucciones que te daré a continuación.");
+        closeEditor();
+    };
+
     editorImage.src = currentSrc;
     editorModal.style.display = 'flex';
 
-    if (cropper) cropper.destroy();
+    // Remove synchronous Cropper init, wait for onload
 
-    try {
-        cropper = new Cropper(editorImage, {
-            viewMode: 2,
-            autoCropArea: 0.1,
-            responsive: true,
-            background: false,
-            checkCrossOrigin: true, // Force check
-        });
-    } catch (err) {
-        console.error("Cropper init failed:", err);
-    }
 };
 
 function resetDropZones() {
