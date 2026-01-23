@@ -434,7 +434,9 @@
                             <!-- Hidden input for URL fallback or base64 storage -->
                             <input type="hidden" name="image" id="finalImageSrc">
                         </div>
-                        <div style="margin-top:10px;">
+                        <div style="margin-top:10px; display:flex; gap:10px;">
+                            <button type="button" class="btn btn-cancel" style="padding:5px 10px; font-size:0.8rem;"
+                                onclick="openEditorFromPreview('main')">✂ Editar</button>
                             <input type="text" class="form-input" placeholder="O pega URL de imagen..."
                                 onchange="updatePreviewFromUrl(this.value, 'mainPreview', 'finalImageSrc')">
                         </div>
@@ -449,7 +451,9 @@
                             <input type="file" id="logoInput" class="drop-input" accept="image/*">
                             <input type="hidden" name="logo" id="finalLogoSrc">
                         </div>
-                        <div style="margin-top:5px;">
+                        <div style="margin-top:5px; display:flex; gap:10px;">
+                            <button type="button" class="btn btn-cancel" style="padding:5px 10px; font-size:0.8rem;"
+                                onclick="openEditorFromPreview('logo')">✂ Editar</button>
                             <input type="text" class="form-input" placeholder="URL Logo..."
                                 onchange="updatePreviewFromUrl(this.value, 'logoPreview', 'finalLogoSrc')">
                         </div>

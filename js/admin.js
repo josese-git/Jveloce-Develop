@@ -377,25 +377,50 @@ window.removeGalleryImage = function (index) {
 };
 
 function renderGallery() {
-    const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = '';
+    // Open editor from existing preview (Edit button)
+    window.openEditorFromPreview = function (type) {
+        const hiddenInputId = type === 'main' ? 'finalImageSrc' : 'finalLogoSrc';
+        const currentSrc = document.getElementById(hiddenInputId).value;
 
-    galleryFiles.forEach((src, index) => {
-        const thumb = document.createElement('div');
-        thumb.style.position = 'relative';
-        thumb.style.aspectRatio = '16/9';
-        thumb.style.borderRadius = '4px';
-        thumb.style.overflow = 'hidden';
-        thumb.style.border = '1px solid #333';
+        if (!currentSrc) {
+            alert("No hay imagen seleccionada para editar.");
+            return;
+        }
 
-        thumb.innerHTML = `
-            <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
-            <div onclick="removeGalleryImage(${index})" 
-                 style="position:absolute; top:2px; right:2px; background:rgba(0,0,0,0.7); 
-                 color:#ff5555; width:20px; height:20px; display:flex; align-items:center; 
-                 justify-content:center; cursor:pointer; font-size:12px; border-radius:50%;">×</div>
-        `;
-        grid.appendChild(thumb);
-    });
-}
+        // Re-use logic: convert src to blob or just use url if it works
+        // Cropper works with URLs so:
+        activeEditorType = type;
+        const editorModal = document.getElementById('editorModal');
+        const editorImage = document.getElementById('editorImage');
+
+        editorImage.src = currentSrc;
+        editorModal.style.display = 'flex';
+
+        if (cropper) cropper.destroy();
+
+        cropper = new Cropper(editorImage, {
+            viewMode: 2,
+            autoCropArea: 0.9,
+            responsive: true,
+            background: false,
+        });
+    };
+
+    function resetDropZones() {
+        document.querySelectorAll('.drop-zone-preview').forEach(el => {
+            el.src = '';
+            el.classList.remove('active');
+        });
+        document.querySelectorAll('.drop-zone').forEach(el => el.classList.remove('dragover'));
+        document.getElementById('galleryGrid').innerHTML = '';
+    }
+
+    // Create global wrapper for the inline onchange event in HTML
+    window.updatePreviewFromUrl = function (url, previewId, hiddenInputId) {
+        if (!url) return;
+        document.getElementById(hiddenInputId).value = url;
+        const p = document.getElementById(previewId);
+        p.src = url;
+        p.classList.add('active');
+    };
 
