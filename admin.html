@@ -456,9 +456,18 @@
                     </div>
 
                     <div class="form-section">
-                        <h4 class="section-title">GALERÍA (FUTURO)</h4>
-                        <div class="drop-zone" style="background:#0a0a0a; border-style:solid;">
-                            <p style="color:#444;">Galería de imágenes deshabilitada en prototipo</p>
+                        <h4 class="section-title">GALERÍA</h4>
+                        <div class="drop-zone" onclick="document.getElementById('galleryInput').click()"
+                            id="galleryDropZone">
+                            <i style="font-size:1.5rem; color:#444;">📚</i>
+                            <p>Añadir fotos a galería</p>
+                            <input type="file" id="galleryInput" class="drop-input" accept="image/*" multiple>
+                        </div>
+
+                        <!-- Thumbnail Grid -->
+                        <div id="galleryGrid"
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; margin-top: 15px;">
+                            <!-- Thumbnails injected here -->
                         </div>
                     </div>
                 </div>
@@ -541,7 +550,31 @@
         </div>
     </div>
 
+    <!-- Editor Modal -->
+    <div class="modal" id="editorModal" style="z-index: 300;">
+        <div class="modal-content" style="width: 800px; height: 90vh;">
+            <div class="modal-header">
+                <h2>Editar Imagen</h2>
+                <span style="color:#666; cursor:pointer; font-size:1.5rem;" onclick="closeEditor()">×</span>
+            </div>
+            <div class="modal-body" style="display: flex; flex-direction: column; padding: 0; background: #000;">
+                <div style="flex: 1; overflow: hidden; position: relative;">
+                    <img id="editorImage" src="" style="max-width: 100%; display: block;">
+                </div>
+                <div
+                    style="padding: 20px; border-top: 1px solid #333; display: flex; gap: 20px; justify-content: center; background: #111;">
+                    <button type="button" class="btn btn-cancel" onclick="editorFlipX()">↔ Voltear</button>
+                    <!-- <button type="button" class="btn btn-cancel" onclick="editorRotate()">↻ Rotar</button> -->
+                    <button type="button" class="btn btn-primary" onclick="editorSave()">✓ Guardar Recorte</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Data Logic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+
     <script type="module" src="js/admin.js"></script>
 </body>
 

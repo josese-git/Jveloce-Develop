@@ -123,10 +123,16 @@ window.openModal = function (mode = 'create', carId = null) {
             // Populate Images (Hidden Inputs + Previews)
             if (car.image) updatePreviewFromUrl(car.image, 'mainPreview', 'finalImageSrc');
             if (car.logo) updatePreviewFromUrl(car.logo, 'logoPreview', 'finalLogoSrc');
+
+            // Populate Gallery
+            galleryFiles = car.gallery || [];
+            renderGallery();
         }
     } else {
         document.getElementById('modalTitle').innerText = 'Nuevo Vehículo';
         document.getElementById('editCarId').value = '';
+        galleryFiles = [];
+        renderGallery();
     }
 };
 
@@ -156,7 +162,8 @@ window.submitCarForm = async function () {
             image: document.getElementById('finalImageSrc').value,
             logo: document.getElementById('finalLogoSrc').value,
             description: formData.get('description'),
-            sold: formData.get('sold') === 'true'
+            sold: formData.get('sold') === 'true',
+            gallery: galleryFiles // Include gallery array
         };
 
         const editId = document.getElementById('editCarId').value;
@@ -256,11 +263,18 @@ function handleDragEnd() {
 }
 
 
-// --- FILE HANDLING (Base64) ---
+// --- FILE HANDLING & EDITOR ---
+let cropper = null;
+let activeEditorType = null; // 'main' | 'logo' | 'gallery'
+// We use a local array `galleryFiles` (Base64 strings)
+let galleryFiles = [];
+
 function setupDropZones() {
-    ['main', 'logo'].forEach(type => {
+    ['main', 'logo', 'gallery'].forEach(type => {
         const zone = document.getElementById(`${type}DropZone`);
-        const input = document.getElementById(`${type}ImageInput`);
+        const input = document.getElementById(`${type}ImageInput`) || document.getElementById(`${type}Input`);
+
+        if (!zone || !input) return;
 
         zone.addEventListener('dragover', (e) => {
             e.preventDefault();
@@ -272,47 +286,116 @@ function setupDropZones() {
         zone.addEventListener('drop', (e) => {
             e.preventDefault();
             zone.classList.remove('dragover');
-            handleFile(e.dataTransfer.files[0], type);
+            const files = e.dataTransfer.files;
+            if (files.length > 0) handleEditorOpen(files[0], type);
         });
 
         input.addEventListener('change', (e) => {
-            handleFile(e.target.files[0], type);
+            if (e.target.files.length > 0) handleEditorOpen(e.target.files[0], type);
         });
     });
 }
 
-function handleFile(file, type) {
+function handleEditorOpen(file, type) {
     if (!file || !file.type.startsWith('image/')) return;
 
+    activeEditorType = type;
     const reader = new FileReader();
     reader.onload = (e) => {
-        const base64 = e.target.result;
-        // Update hidden input
-        const hiddenInput = type === 'main' ? 'finalImageSrc' : 'finalLogoSrc';
-        document.getElementById(hiddenInput).value = base64;
+        const url = e.target.result;
+        // Open Editor Modal
+        const editorModal = document.getElementById('editorModal');
+        const editorImage = document.getElementById('editorImage');
 
-        // Update Preview
-        const previewId = type === 'main' ? 'mainPreview' : 'logoPreview';
-        const previewEl = document.getElementById(previewId);
-        previewEl.src = base64;
-        previewEl.classList.add('active');
+        editorImage.src = url;
+        editorModal.style.display = 'flex';
+
+        // Destroy prev instance if exists
+        if (cropper) cropper.destroy();
+
+        // Init Cropper
+        cropper = new Cropper(editorImage, {
+            viewMode: 2, // Restrict crop to image bounds
+            autoCropArea: 0.9,
+            responsive: true,
+            background: false, // Dark background from CSS
+        });
     };
     reader.readAsDataURL(file);
 }
 
-function resetDropZones() {
-    document.querySelectorAll('.drop-zone-preview').forEach(el => {
-        el.src = '';
-        el.classList.remove('active');
+window.closeEditor = function () {
+    document.getElementById('editorModal').style.display = 'none';
+    if (cropper) cropper.destroy();
+    cropper = null;
+    document.getElementById('editorImage').src = '';
+};
+
+window.editorFlipX = function () {
+    if (!cropper) return;
+    const data = cropper.getData();
+    cropper.scaleX(data.scaleX === -1 ? 1 : -1);
+};
+
+window.editorSave = function () {
+    if (!cropper) return;
+
+    // Get cropped canvas
+    const canvas = cropper.getCroppedCanvas({
+        maxWidth: 1200, // Limit resolution to save storage
+        maxHeight: 1200,
+        fillColor: '#fff',
     });
-    document.querySelectorAll('.drop-zone').forEach(el => el.classList.remove('dragover'));
+
+    const base64 = canvas.toDataURL('image/jpeg', 0.85); // JPEG 85% quality
+
+    if (activeEditorType === 'gallery') {
+        addGalleryImage(base64);
+    } else {
+        // Main or Logo
+        const hiddenInputId = activeEditorType === 'main' ? 'finalImageSrc' : 'finalLogoSrc';
+        const previewId = activeEditorType === 'main' ? 'mainPreview' : 'logoPreview';
+
+        document.getElementById(hiddenInputId).value = base64;
+        const p = document.getElementById(previewId);
+        p.src = base64;
+        p.classList.add('active');
+    }
+
+    closeEditor();
+};
+
+// --- GALLERY LOGIC ---
+function addGalleryImage(base64) {
+    galleryFiles.push(base64);
+    renderGallery();
 }
 
-// Create global wrapper for the inline onchange event in HTML
-window.updatePreviewFromUrl = function (url, previewId, hiddenInputId) {
-    if (!url) return;
-    document.getElementById(hiddenInputId).value = url;
-    const p = document.getElementById(previewId);
-    p.src = url;
-    p.classList.add('active');
+window.removeGalleryImage = function (index) {
+    galleryFiles.splice(index, 1);
+    renderGallery();
 };
+
+function renderGallery() {
+    const grid = document.getElementById('galleryGrid');
+    grid.innerHTML = '';
+
+    galleryFiles.forEach((src, index) => {
+        const thumb = document.createElement('div');
+        thumb.style.position = 'relative';
+        thumb.style.aspectRatio = '16/9';
+        thumb.style.borderRadius = '4px';
+        thumb.style.overflow = 'hidden';
+        thumb.style.border = '1px solid #333';
+
+        thumb.innerHTML = `
+            <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
+            <div onclick="removeGalleryImage(${index})" 
+                 style="position:absolute; top:2px; right:2px; background:rgba(0,0,0,0.7); 
+                 color:#ff5555; width:20px; height:20px; display:flex; align-items:center; 
+                 justify-content:center; cursor:pointer; font-size:12px; border-radius:50%;">×</div>
+        `;
+        grid.appendChild(thumb);
+    });
+}
+
