@@ -120,6 +120,7 @@ window.openModal = function (mode = 'create', carId = null) {
             form.description.value = car.description || '';
             form.sold.value = car.sold.toString();
             form.logoSize.value = car.logoSize || 100;
+            form.logoMargin.value = car.logoMargin || '';
 
             // Populate Images (Hidden Inputs + Previews)
             if (car.image) updatePreviewFromUrl(car.image, 'mainPreview', 'finalImageSrc');
@@ -163,6 +164,7 @@ window.submitCarForm = async function () {
             image: document.getElementById('finalImageSrc').value,
             logo: document.getElementById('finalLogoSrc').value,
             logoSize: formData.get('logoSize') || 100, // Default 100
+            logoMargin: formData.get('logoMargin'), // Optional
             description: formData.get('description'),
             sold: formData.get('sold') === 'true',
             gallery: galleryFiles // Include gallery array
