@@ -342,9 +342,9 @@ window.editorSave = function () {
 
     // Get cropped canvas
     const canvas = cropper.getCroppedCanvas({
-        maxWidth: 1200, // Limit resolution to save storage
+        maxWidth: 1200,
         maxHeight: 1200,
-        fillColor: 'transparent',
+        // fillColor property removed to default to transparent (empty)
     });
 
     const base64 = canvas.toDataURL('image/png'); // PNG to preserve transparency
