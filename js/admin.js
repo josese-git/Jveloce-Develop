@@ -215,6 +215,7 @@ function handleDragStart(e) {
 function handleDragOver(e) {
     if (!isSortMode) return;
     e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
 }
 
 function handleDrop(e) {
@@ -223,24 +224,28 @@ function handleDrop(e) {
     const targetItem = e.target.closest('.admin-card');
 
     if (targetItem && targetItem !== draggedItem) {
-        const list = document.getElementById('inventory-list');
-        const allItems = Array.from(list.children);
+        const draggedId = draggedItem.dataset.id;
+        const targetId = targetItem.dataset.id;
 
-        const fromIndex = allItems.indexOf(draggedItem);
-        const toIndex = allItems.indexOf(targetItem);
+        const fromIndex = currentCars.findIndex(c => c.id === draggedId);
+        const toIndex = currentCars.findIndex(c => c.id === targetId);
+
+        if (fromIndex === -1 || toIndex === -1) {
+            console.error("Indices not found for", draggedId, targetId);
+            return;
+        }
 
         // Modify local cache order
         const [movedCar] = currentCars.splice(fromIndex, 1);
         currentCars.splice(toIndex, 0, movedCar);
 
-        // Optimistic UI Update (optional, or just wait for store update)
+        // Optimistic UI Update
         renderAdminInventory(currentCars);
 
         // Persist to Firestore
-        // We catch errors and revert if needed, but for now just alert on error
         store.reorderCars(currentCars).catch(err => {
+            console.error(err);
             alert('Error al guardar el nuevo orden: ' + err.message);
-            // Reload from store to revert UI (since listener will trigger anyway, loop might be risky if we don't manage it)
         });
     }
 }
