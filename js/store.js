@@ -5,7 +5,10 @@ import {
     setDoc,
     deleteDoc,
     doc,
-    updateDoc
+    updateDoc,
+    query,
+    orderBy,
+    writeBatch
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
 const COLLECTION_NAME = 'anuncios';
@@ -20,7 +23,8 @@ const DEFAULT_CARS = [
         image: 'assets/mercedes_a_class.png',
         logo: 'assets/logo_mercedes.png',
         sold: false,
-        price: '28.500€'
+        price: '28.500€',
+        order: 0
     },
     {
         id: 'peugeot-3008-2016',
@@ -32,7 +36,8 @@ const DEFAULT_CARS = [
         image: 'assets/peugeot_3008.png',
         logo: 'assets/logo_peugeot.png',
         sold: false,
-        price: '18.900€'
+        price: '18.900€',
+        order: 1
     },
     {
         id: 'kia-sportage-2020',
@@ -45,7 +50,8 @@ const DEFAULT_CARS = [
         logo: 'assets/logo_kia_white.png',
         logoClass: 'wide', // Special handling for wide logos
         sold: false,
-        price: '24.200€'
+        price: '24.200€',
+        order: 2
     }
 ];
 
@@ -56,9 +62,11 @@ class Store {
     }
 
     init() {
-        // Set up real-time listener
+        // Set up real-time listener with correct sorting
         const colRef = collection(db, COLLECTION_NAME);
-        onSnapshot(colRef, (snapshot) => {
+        const q = query(colRef, orderBy('order', 'asc'));
+
+        onSnapshot(q, (snapshot) => {
             const cars = [];
             snapshot.forEach((doc) => {
                 cars.push({ id: doc.id, ...doc.data() });
@@ -83,8 +91,6 @@ class Store {
 
     subscribe(callback) {
         this.subscribers.push(callback);
-        // If we already have data, we might want to trigger immediately? 
-        // For now, rely on the next snapshot or initial snapshot.
     }
 
     notifySubscribers(cars) {
@@ -95,6 +101,11 @@ class Store {
         // Use ID if provided (from migration/defaults) or generate one
         if (!car.id) {
             car.id = `${car.brand}-${car.model}-${Date.now()}`.toLowerCase().replace(/\s+/g, '-');
+        }
+
+        // Assign a default order if not present (sort of naive, but works for basic app)
+        if (typeof car.order !== 'number') {
+            car.order = Date.now();
         }
 
         try {
@@ -123,6 +134,26 @@ class Store {
             console.log("Document successfully updated!", id);
         } catch (error) {
             console.error("Error updating document: ", error);
+            throw error;
+        }
+    }
+
+    async reorderCars(cars) {
+        // 'cars' is the array in the desired order
+        const batch = writeBatch(db);
+
+        cars.forEach((car, index) => {
+            const docRef = doc(db, COLLECTION_NAME, car.id);
+            // Only update if order changed to save writes? 
+            // For simplicity, just update all order fields.
+            batch.update(docRef, { order: index });
+        });
+
+        try {
+            await batch.commit();
+            console.log("Batch reorder committed");
+        } catch (error) {
+            console.error("Error reordering:", error);
             throw error;
         }
     }

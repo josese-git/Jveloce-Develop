@@ -223,10 +223,25 @@ function handleDrop(e) {
     const targetItem = e.target.closest('.admin-card');
 
     if (targetItem && targetItem !== draggedItem) {
-        // NOTE: Firestore doesn't inherently support indexed ordering without a specific 'sortOrder' field.
-        // For now, this visual swap won't persist unless we add a specific 'order' field to the database docs.
-        // We will just swap visually for now or log a warning.
-        console.warn("Sorting is visual-only until 'order' field is implemented in DB structure.");
+        const list = document.getElementById('inventory-list');
+        const allItems = Array.from(list.children);
+
+        const fromIndex = allItems.indexOf(draggedItem);
+        const toIndex = allItems.indexOf(targetItem);
+
+        // Modify local cache order
+        const [movedCar] = currentCars.splice(fromIndex, 1);
+        currentCars.splice(toIndex, 0, movedCar);
+
+        // Optimistic UI Update (optional, or just wait for store update)
+        renderAdminInventory(currentCars);
+
+        // Persist to Firestore
+        // We catch errors and revert if needed, but for now just alert on error
+        store.reorderCars(currentCars).catch(err => {
+            alert('Error al guardar el nuevo orden: ' + err.message);
+            // Reload from store to revert UI (since listener will trigger anyway, loop might be risky if we don't manage it)
+        });
     }
 }
 
