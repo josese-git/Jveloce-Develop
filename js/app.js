@@ -28,7 +28,17 @@ function renderInventory(cars) {
     cars.forEach(car => {
 
         // Determine Logo Class (wide or normal)
-        const logoClass = car.logoClass ? `brand-logo-floating ${car.logoClass}` : 'brand-logo-floating';
+        // Determine Logo Class (wide or normal)
+        const isWide = car.logoClass && car.logoClass.includes('wide');
+        const logoClass = isWide ? `brand-logo-floating ${car.logoClass}` : 'brand-logo-floating';
+
+        // Calculate Logo Size
+        // standard: 80x80, wide: 200x100
+        const baseW = isWide ? 200 : 80;
+        const baseH = isWide ? 100 : 80;
+
+        const scale = car.logoSize ? (parseFloat(car.logoSize) / 100) : 1;
+        const style = `width: ${baseW * scale}px; height: ${baseH * scale}px;`;
 
         // Sold Overlay
         const soldOverlay = car.sold ? '<img src="assets/vendido.png" class="sold-overlay-img" alt="Vendido">' : '';
@@ -44,7 +54,7 @@ function renderInventory(cars) {
             </div>
 
             <div class="card-details">
-                <img src="${car.logo}" alt="${car.brand}" class="${logoClass}" style="width: ${car.logoSize ? 80 * (car.logoSize / 100) : 80}px; height: ${car.logoSize ? 80 * (car.logoSize / 100) : 80}px;">
+                <img src="${car.logo}" alt="${car.brand}" class="${logoClass}" style="${style}">
                 <h3 class="car-model">${car.brand} ${car.model}</h3>
                 <div class="car-specs">
                     <span>${car.year}</span>
