@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let startY = 0;
     let isDragging = false;
 
+    // Tap detection state
+    let tapStartTime = 0;
+    let tapStartX = 0;
+    let tapStartY = 0;
+
     // Open Lightbox
     galleryItems.forEach(img => {
         img.addEventListener('click', () => {
@@ -38,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     closeBtn.addEventListener('click', closeLightbox);
-
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) closeLightbox();
     });
@@ -47,15 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. DESKTOP (Mouse)
     lightboxImg.addEventListener('click', (e) => {
-        // Only trigger Desktop logic if not a touch event (simple heuristic)
-        // We will preventDefault on touchstart/touchend to avoid click firing on mobile
-        if (e.pointerType === 'mouse' || !('ontouchstart' in window)) {
+        // Only trigger Desktop logic if user is using a mouse (heuristically)
+        // We use touchend for mobile taps now.
+        if (e.pointerType === 'mouse' && !isDragging) {
             toggleDesktopZoom(e);
         }
     });
 
     lightboxImg.addEventListener('mousemove', (e) => {
-        if (isZoomed && scale === 1) { // scale 1 means we are in "css transform-origin" mode
+        // Desktop Pan (only if not manually transformed by mobile logic)
+        if (isZoomed && scale === 1) {
             moveImageDesktop(e);
         }
     });
@@ -63,14 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. MOBILE (Touch)
     let initialDistance = 0;
     let initialScale = 1;
-    let lastTap = 0;
 
     lightboxImg.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
-            // Drag or Tap
+            // Drag Start
+            // Records where the finger is relative to the current image position
             startX = e.touches[0].clientX - pointX;
             startY = e.touches[0].clientY - pointY;
             isDragging = true;
+
+            // Tap Detection Start
+            tapStartTime = new Date().getTime();
+            tapStartX = e.touches[0].clientX;
+            tapStartY = e.touches[0].clientY;
+
         } else if (e.touches.length === 2) {
             // Pinch Start
             isDragging = false;
@@ -82,53 +93,49 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxImg.addEventListener('touchmove', (e) => {
         e.preventDefault(); // Prevent body scroll
 
-        if (e.touches.length === 1 && isDragging && scale > 1) {
-            // Drag (Only if zoomed in)
-            pointX = e.touches[0].clientX - startX;
-            pointY = e.touches[0].clientY - startY;
-            updateTransform();
+        if (e.touches.length === 1 && isDragging) {
+            // Drag logic
+            // Calculate new position based on finger move
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+
+            // Only allow dragging if zoomed in
+            if (scale > 1) {
+                pointX = currentX - startX;
+                pointY = currentY - startY;
+                updateTransform();
+            }
+
         } else if (e.touches.length === 2) {
-            // Pinch
+            // Pinch logic
             const currentDistance = getDistance(e.touches);
-            const distanceDiff = currentDistance / initialDistance;
-            scale = initialScale * distanceDiff;
-            scale = Math.max(1, Math.min(scale, 4)); // Clamp scale 1x to 4x
-            updateTransform();
+            if (initialDistance > 0) {
+                const distanceDiff = currentDistance / initialDistance;
+                scale = initialScale * distanceDiff;
+                scale = Math.max(1, Math.min(scale, 4)); // Clamp
+                updateTransform();
+            }
         }
     }, { passive: false });
 
     lightboxImg.addEventListener('touchend', (e) => {
-        isDragging = false;
-
-        // Double Tap / Tap Logic for Mobile
+        // Tap Detection
         if (e.changedTouches.length === 1 && e.touches.length === 0) {
             const currentTime = new Date().getTime();
-            const tapLength = currentTime - lastTap;
+            const tapDuration = currentTime - tapStartTime;
 
-            // If dragging occurred significantly, it's not a tap
-            // (But we didn't track drag distance for tap check, assume short time = tap)
-            if (tapLength < 300 && tapLength > 0) {
-                // Double Tap (Optional, or just Single Tap as requested)
-                // User asked: "pulsara una vez para hacer zoom por defecto 2.5"
-            } else {
-                // Single Tap detection (debounced if needed, but here instant)
-                // If we want instant tap-to-zoom:
+            const touch = e.changedTouches[0];
+            const dist = Math.hypot(touch.clientX - tapStartX, touch.clientY - tapStartY);
+
+            // If short duration and very little movement -> It's a TAP
+            if (tapDuration < 300 && dist < 10) {
+                handleMobileTap();
             }
-
-            // Implementing "Tap to Toggle Zoom"
-            // We use a simple logic: if NOT zoomed, zoom in. If zoomed, do nothing?
-            // "pulsara una vez para hacer zoom por defecto 2.5"
-
-            // NOTE: 'click' event fires after touchend. 
-            // We'll handle Tap here to be responsive and prevent ghost clicks.
-            // But we need to distinguish Tap from Drag.
-            // If Scale didn't change and Position didn't change much:
-
-            // Simplified: If duration is short, treat as tap.
         }
-        lastTap = new Date().getTime();
 
-        // Boundary Check (Snap back)
+        isDragging = false;
+
+        // Boundary / Snap Back
         if (scale < 1) {
             scale = 1;
             pointX = 0;
@@ -137,36 +144,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Dedicated Tap Handler for Mobile (using Click with touch check is unreliable/slow)
-    lightboxImg.addEventListener('click', (e) => {
-        // If it was a touch action, we handle zoom toggle
-        // "pulsara una vez para hacer zoom"
-
-        // We need to differentiate dragging vs clicking.
-        // If 'scale' is 1, regular click zooms to 2.5
-        // If 'scale' > 1, regular click does nothing (or zooms out?)
-        // User said: "pulsara una vez para hacer zoom por defecto 2.5 y que pellizcara... y arrastre"
-
-        // Let's implement: Tap -> Toggle between 1x and 2.5x
-        if (('ontouchstart' in window) && (e.pointerType !== 'mouse')) {
-            if (scale === 1) {
-                scale = 2.5;
-                // Center zoom?
-                pointX = 0;
-                pointY = 0;
-                updateTransform();
-                isZoomed = true;
-            } else {
-                // Should tap allow zoom out? standard UX says yes.
-                // But user didn't specify. Assuming toggle.
-                // scale = 1;
-                // pointX = 0;
-                // pointY = 0;
-                // updateTransform();
-                // isZoomed = false;
-            }
+    function handleMobileTap() {
+        if (scale > 1.1) {
+            // If zoomed in (approx), zoom out
+            scale = 1;
+            pointX = 0;
+            pointY = 0;
+            updateTransform();
+            isZoomed = false;
+        } else {
+            // If not zoomed, zoom in to 2.5
+            scale = 2.5;
+            pointX = 0;
+            pointY = 0; // Center zoom
+            updateTransform();
+            isZoomed = true;
         }
-    });
+    }
 
     // --- HELPER FUNCTIONS ---
 
@@ -176,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         pointX = 0;
         pointY = 0;
 
-        // Reset styles
         lightboxImg.classList.remove('zoomed');
         lightboxImg.style.transform = '';
         lightboxImg.style.transformOrigin = 'center center';
@@ -201,11 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
     }
 
-    // Mobile Logic update
     function updateTransform() {
         lightboxImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
-        // Disable the desktop class styles if we are using manual transform
-        lightboxImg.classList.remove('zoomed');
+        lightboxImg.classList.remove('zoomed'); // Ensure manual transform takes precedence
     }
 
     function getDistance(touches) {
