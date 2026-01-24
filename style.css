@@ -275,8 +275,8 @@ body {
 }
 
 .car-card:hover .car-image {
-    transform: scale(1.15);
-    /* Slightly reduced hover scale */
+    transform: scale(1.075);
+    /* Reduced zoom by half as requested */
 }
 
 /* Floating Brand Logo */
@@ -655,6 +655,11 @@ body {
     .hero-title {
         font-size: 2.8rem;
         /* Smaller title to prevent overflow */
+    }
+
+    .hero-section {
+        padding-top: 100px;
+        min-height: 60vh;
     }
 }
 
