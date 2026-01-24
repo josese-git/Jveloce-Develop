@@ -1228,17 +1228,17 @@ html {
     border-radius: 4px;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
     cursor: zoom-in;
-    transition: transform 0.3s ease-out;
-    /* Smooth Zoom */
+    transition: transform 0.1s ease-out;
+    /* Faster for mobile pinch */
     transform-origin: center center;
+    touch-action: none;
+    /* Prevent scrolling while interacting */
 }
 
 .lightbox img.zoomed {
     transform: scale(2.5);
     cursor: zoom-out;
-    /* When zoomed, we want meaningful panning. 
-       The JS handles transform-origin updates. 
-       Transition needs to be quick enough to feel responsive */
+    /* The JS handles transform-origin updates. Transition needs to be quick enough to feel responsive */
 }
 
 .lightbox-close {

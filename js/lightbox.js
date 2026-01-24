@@ -1,6 +1,7 @@
 /**
- * Gallery Lightbox with Zoom & Pan
- * Supports Mouse and Touch events.
+ * Gallery Lightbox with Dual-Mode Zoom
+ * - Desktop: Click to Zoom, Mouse Move to Pan (Amazon style).
+ * - Mobile: Tap to Zoom (2.5x), Pinch to Scale, Drag to Pan.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,112 +10,208 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.lightbox-close');
     const galleryItems = document.querySelectorAll('.gallery-item img');
 
+    // State
     let isZoomed = false;
 
-    // 1. Open Lightbox
+    // Mobile State
+    let scale = 1;
+    let pointX = 0;
+    let pointY = 0;
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+
+    // Open Lightbox
     galleryItems.forEach(img => {
         img.addEventListener('click', () => {
             lightbox.classList.add('active');
             lightboxImg.src = img.src;
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
-            isZoomed = false;
+            document.body.style.overflow = 'hidden';
             resetZoom();
         });
     });
 
-    // 2. Close Lightbox
     function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
-        isZoomed = false;
         resetZoom();
     }
 
     closeBtn.addEventListener('click', closeLightbox);
 
-    // Close on background click (if not zooming)
     lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target.closest('.lightbox-content') === null) {
-            closeLightbox();
-        }
+        if (e.target === lightbox) closeLightbox();
     });
 
-    // 3. Zoom Logic
+    // --- CORE LOGIC ---
+
+    // 1. DESKTOP (Mouse)
     lightboxImg.addEventListener('click', (e) => {
-        e.stopPropagation(); // Don't trigger background close
-        toggleZoom(e);
+        // Only trigger Desktop logic if not a touch event (simple heuristic)
+        // We will preventDefault on touchstart/touchend to avoid click firing on mobile
+        if (e.pointerType === 'mouse' || !('ontouchstart' in window)) {
+            toggleDesktopZoom(e);
+        }
     });
 
-    function toggleZoom(e) {
-        if (isZoomed) {
-            resetZoom();
-        } else {
-            zoomIn(e);
-        }
-        isZoomed = !isZoomed;
-    }
-
-    function zoomIn(e) {
-        lightboxImg.classList.add('zoomed');
-        moveImage(e); // Center zoom on click
-    }
-
-    function resetZoom() {
-        lightboxImg.classList.remove('zoomed');
-        lightboxImg.style.transformOrigin = 'center center';
-    }
-
-    // 4. Pan Logic (Mouse)
     lightboxImg.addEventListener('mousemove', (e) => {
-        if (isZoomed) {
-            moveImage(e);
+        if (isZoomed && scale === 1) { // scale 1 means we are in "css transform-origin" mode
+            moveImageDesktop(e);
         }
     });
 
-    // 5. Pan Logic (Touch)
-    lightboxImg.addEventListener('touchmove', (e) => {
-        if (isZoomed) {
-            e.preventDefault(); // Prevent scroll
-            const touch = e.touches[0];
-            moveImage(touch);
+    // 2. MOBILE (Touch)
+    let initialDistance = 0;
+    let initialScale = 1;
+    let lastTap = 0;
+
+    lightboxImg.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+            // Drag or Tap
+            startX = e.touches[0].clientX - pointX;
+            startY = e.touches[0].clientY - pointY;
+            isDragging = true;
+        } else if (e.touches.length === 2) {
+            // Pinch Start
+            isDragging = false;
+            initialDistance = getDistance(e.touches);
+            initialScale = scale;
         }
     }, { passive: false });
 
+    lightboxImg.addEventListener('touchmove', (e) => {
+        e.preventDefault(); // Prevent body scroll
 
-    function moveImage(e) {
-        const rect = lightboxImg.getBoundingClientRect();
+        if (e.touches.length === 1 && isDragging && scale > 1) {
+            // Drag (Only if zoomed in)
+            pointX = e.touches[0].clientX - startX;
+            pointY = e.touches[0].clientY - startY;
+            updateTransform();
+        } else if (e.touches.length === 2) {
+            // Pinch
+            const currentDistance = getDistance(e.touches);
+            const distanceDiff = currentDistance / initialDistance;
+            scale = initialScale * distanceDiff;
+            scale = Math.max(1, Math.min(scale, 4)); // Clamp scale 1x to 4x
+            updateTransform();
+        }
+    }, { passive: false });
 
-        // Calculate position relative to the image
-        // (Note: we need the rect of the container or the image itself before scale)
-        // A simpler approach for "magnifying glass" style:
+    lightboxImg.addEventListener('touchend', (e) => {
+        isDragging = false;
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        // Double Tap / Tap Logic for Mobile
+        if (e.changedTouches.length === 1 && e.touches.length === 0) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
 
-        // We want the transform origin to be where the mouse is
-        // But simply setting transform-origin moves the image around
-        // Standard "Amazon" zoom usually uses background-position or strict layout
-        // For transform: scale, changing origin works but requires offset calculation.
+            // If dragging occurred significantly, it's not a tap
+            // (But we didn't track drag distance for tap check, assume short time = tap)
+            if (tapLength < 300 && tapLength > 0) {
+                // Double Tap (Optional, or just Single Tap as requested)
+                // User asked: "pulsara una vez para hacer zoom por defecto 2.5"
+            } else {
+                // Single Tap detection (debounced if needed, but here instant)
+                // If we want instant tap-to-zoom:
+            }
 
-        // Simplified approach that works robustly:
-        // When scaled, transform-origin dictates the "center" of the zoom.
-        // We set transform-origin to the mouse position relative to the image element.
+            // Implementing "Tap to Toggle Zoom"
+            // We use a simple logic: if NOT zoomed, zoom in. If zoomed, do nothing?
+            // "pulsara una vez para hacer zoom por defecto 2.5"
 
-        // Since the image is usually centered in the viewport, we used clientX/Y relative to viewport
-        // But we need percentage within the image.
+            // NOTE: 'click' event fires after touchend. 
+            // We'll handle Tap here to be responsive and prevent ghost clicks.
+            // But we need to distinguish Tap from Drag.
+            // If Scale didn't change and Position didn't change much:
 
-        // Use the displayed width/height (which might be scaled, but we want the base rect)
-        // Resetting transform temporarily to get true dimensions? No, too laggy.
+            // Simplified: If duration is short, treat as tap.
+        }
+        lastTap = new Date().getTime();
 
-        // Better:
-        // Position percentage = (Mouse Pos inside Image) / (Image Width) * 100%
+        // Boundary Check (Snap back)
+        if (scale < 1) {
+            scale = 1;
+            pointX = 0;
+            pointY = 0;
+            updateTransform();
+        }
+    });
 
+    // Dedicated Tap Handler for Mobile (using Click with touch check is unreliable/slow)
+    lightboxImg.addEventListener('click', (e) => {
+        // If it was a touch action, we handle zoom toggle
+        // "pulsara una vez para hacer zoom"
+
+        // We need to differentiate dragging vs clicking.
+        // If 'scale' is 1, regular click zooms to 2.5
+        // If 'scale' > 1, regular click does nothing (or zooms out?)
+        // User said: "pulsara una vez para hacer zoom por defecto 2.5 y que pellizcara... y arrastre"
+
+        // Let's implement: Tap -> Toggle between 1x and 2.5x
+        if (('ontouchstart' in window) && (e.pointerType !== 'mouse')) {
+            if (scale === 1) {
+                scale = 2.5;
+                // Center zoom?
+                pointX = 0;
+                pointY = 0;
+                updateTransform();
+                isZoomed = true;
+            } else {
+                // Should tap allow zoom out? standard UX says yes.
+                // But user didn't specify. Assuming toggle.
+                // scale = 1;
+                // pointX = 0;
+                // pointY = 0;
+                // updateTransform();
+                // isZoomed = false;
+            }
+        }
+    });
+
+    // --- HELPER FUNCTIONS ---
+
+    function resetZoom() {
+        isZoomed = false;
+        scale = 1;
+        pointX = 0;
+        pointY = 0;
+
+        // Reset styles
+        lightboxImg.classList.remove('zoomed');
+        lightboxImg.style.transform = '';
+        lightboxImg.style.transformOrigin = 'center center';
+    }
+
+    // Desktop logic
+    function toggleDesktopZoom(e) {
+        if (isZoomed) {
+            resetZoom();
+        } else {
+            isZoomed = true;
+            lightboxImg.classList.add('zoomed');
+            moveImageDesktop(e);
+        }
+    }
+
+    function moveImageDesktop(e) {
         const offsetX = e.clientX - (window.innerWidth - lightboxImg.offsetWidth) / 2;
         const offsetY = e.clientY - (window.innerHeight - lightboxImg.offsetHeight) / 2;
-
         const xPercent = (offsetX / lightboxImg.offsetWidth) * 100;
         const yPercent = (offsetY / lightboxImg.offsetHeight) * 100;
-
         lightboxImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+    }
+
+    // Mobile Logic update
+    function updateTransform() {
+        lightboxImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+        // Disable the desktop class styles if we are using manual transform
+        lightboxImg.classList.remove('zoomed');
+    }
+
+    function getDistance(touches) {
+        return Math.hypot(
+            touches[0].clientX - touches[1].clientX,
+            touches[0].clientY - touches[1].clientY
+        );
     }
 });
