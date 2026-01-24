@@ -128,13 +128,15 @@ body {
 
 /* --- Hero Section --- */
 .hero-section {
-    height: 100vh;
+    min-height: 70vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    padding-top: 80px;
+    padding-top: 120px;
+    padding-bottom: 30px;
     text-align: center;
 }
 
@@ -161,7 +163,7 @@ body {
     letter-spacing: 8px;
     color: white;
     opacity: 0.8;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -197,7 +199,7 @@ body {
 
 /* --- Inventory Grid --- */
 .inventory-section {
-    padding: 100px 5%;
+    padding: 40px 5%;
     max-width: 1400px;
     margin: 0 auto;
 }
