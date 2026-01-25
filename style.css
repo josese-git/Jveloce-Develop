@@ -739,11 +739,13 @@ html {
 /* Hero Split Screen */
 .car-detail-hero {
     min-height: 100vh;
-    padding: 120px 5% 50px 5%;
+    padding: 20px 5% 50px 5%;
+    /* Drastically reduced to 20px based on user feedback */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    /* padding-top removed to strictly follow reduced padding */
 }
 
 .hero-split-container {
@@ -973,6 +975,8 @@ html {
     min-width: 0;
     display: flex;
     /* Ensure img fills it properly */
+    cursor: pointer;
+    /* Interaction cursor */
 }
 
 .gallery-item img {
@@ -1256,4 +1260,79 @@ html {
 .lightbox-close:hover {
     color: var(--gold-primary);
     text-shadow: 0 0 10px var(--gold-primary);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 2001;
+    padding: 20px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    color: var(--gold-primary);
+    text-shadow: 0 0 15px var(--gold-primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-counter {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    color: var(--silver-accent);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    z-index: 2001;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 2rem;
+        padding: 10px;
+    }
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+    .lightbox-next {
+        right: 10px;
+    }
+
+    .lightbox-close {
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+    }
+
+    .lightbox-counter {
+        top: 25px;
+        left: 20px;
+        font-size: 1rem;
+    }
 }

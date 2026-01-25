@@ -1,16 +1,23 @@
 /**
- * Gallery Lightbox with Dual-Mode Zoom
- * - Desktop: Click to Zoom, Mouse Move to Pan (Amazon style).
- * - Mobile: Tap to Zoom (2.5x), Pinch to Scale, Drag to Pan.
+ * Gallery Lightbox with Dual-Mode Zoom & Navigation
+ * - Desktop: Click to Zoom, Mouse Move to Pan.
+ * - Mobile: Tap to Zoom, Pinch to Scale, Drag to Pan.
+ * - Navigation: Next/Prev buttons, Counter (X of Y).
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.lightbox-close');
-    const galleryItems = document.querySelectorAll('.gallery-item img');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    const counter = document.querySelector('.lightbox-counter');
+
+    // Select all images from the gallery blocks
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
 
     // State
+    let currentIndex = 0;
     let isZoomed = false;
 
     // Mobile State
@@ -27,14 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let tapStartY = 0;
 
     // Open Lightbox
-    galleryItems.forEach(img => {
+    galleryItems.forEach((img, index) => {
         img.addEventListener('click', () => {
-            lightbox.classList.add('active');
-            lightboxImg.src = img.src;
-            document.body.style.overflow = 'hidden';
-            resetZoom();
+            openLightbox(index);
         });
     });
+
+    function openLightbox(index) {
+        currentIndex = index;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
     function closeLightbox() {
         lightbox.classList.remove('active');
@@ -42,24 +53,66 @@ document.addEventListener('DOMContentLoaded', () => {
         resetZoom();
     }
 
+    function updateLightboxImage() {
+        resetZoom(); // Always reset zoom when changing images
+
+        const img = galleryItems[currentIndex];
+        lightboxImg.src = img.src;
+
+        // Update Counter
+        if (counter) {
+            counter.textContent = `${currentIndex + 1} de ${galleryItems.length}`;
+        }
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        updateLightboxImage();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        updateLightboxImage();
+    }
+
+    // Event Listeners
     closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
+
+    if (prevBtn) prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showPrev();
     });
 
-    // --- CORE LOGIC ---
+    if (nextBtn) nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showNext();
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+    });
+
+    // --- ZOOM CORE LOGIC ---
 
     // 1. DESKTOP (Mouse)
     lightboxImg.addEventListener('click', (e) => {
-        // Only trigger Desktop logic if user is using a mouse (heuristically)
-        // We use touchend for mobile taps now.
         if (e.pointerType === 'mouse' && !isDragging) {
             toggleDesktopZoom(e);
         }
     });
 
     lightboxImg.addEventListener('mousemove', (e) => {
-        // Desktop Pan (only if not manually transformed by mobile logic)
         if (isZoomed && scale === 1) {
             moveImageDesktop(e);
         }
@@ -71,19 +124,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lightboxImg.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
-            // Drag Start
-            // Records where the finger is relative to the current image position
             startX = e.touches[0].clientX - pointX;
             startY = e.touches[0].clientY - pointY;
             isDragging = true;
 
-            // Tap Detection Start
             tapStartTime = new Date().getTime();
             tapStartX = e.touches[0].clientX;
             tapStartY = e.touches[0].clientY;
 
         } else if (e.touches.length === 2) {
-            // Pinch Start
             isDragging = false;
             initialDistance = getDistance(e.touches);
             initialScale = scale;
@@ -91,15 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: false });
 
     lightboxImg.addEventListener('touchmove', (e) => {
-        e.preventDefault(); // Prevent body scroll
+        e.preventDefault();
 
         if (e.touches.length === 1 && isDragging) {
-            // Drag logic
-            // Calculate new position based on finger move
             const currentX = e.touches[0].clientX;
             const currentY = e.touches[0].clientY;
 
-            // Only allow dragging if zoomed in
             if (scale > 1) {
                 pointX = currentX - startX;
                 pointY = currentY - startY;
@@ -107,19 +153,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } else if (e.touches.length === 2) {
-            // Pinch logic
             const currentDistance = getDistance(e.touches);
             if (initialDistance > 0) {
                 const distanceDiff = currentDistance / initialDistance;
                 scale = initialScale * distanceDiff;
-                scale = Math.max(1, Math.min(scale, 4)); // Clamp
+                scale = Math.max(1, Math.min(scale, 4));
                 updateTransform();
             }
         }
     }, { passive: false });
 
     lightboxImg.addEventListener('touchend', (e) => {
-        // Tap Detection
         if (e.changedTouches.length === 1 && e.touches.length === 0) {
             const currentTime = new Date().getTime();
             const tapDuration = currentTime - tapStartTime;
@@ -127,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const touch = e.changedTouches[0];
             const dist = Math.hypot(touch.clientX - tapStartX, touch.clientY - tapStartY);
 
-            // If short duration and very little movement -> It's a TAP
             if (tapDuration < 300 && dist < 10) {
                 handleMobileTap();
             }
@@ -135,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         isDragging = false;
 
-        // Boundary / Snap Back
         if (scale < 1) {
             scale = 1;
             pointX = 0;
@@ -146,17 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleMobileTap() {
         if (scale > 1.1) {
-            // If zoomed in (approx), zoom out
             scale = 1;
             pointX = 0;
             pointY = 0;
             updateTransform();
             isZoomed = false;
         } else {
-            // If not zoomed, zoom in to 2.5
             scale = 2.5;
             pointX = 0;
-            pointY = 0; // Center zoom
+            pointY = 0;
             updateTransform();
             isZoomed = true;
         }
@@ -175,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImg.style.transformOrigin = 'center center';
     }
 
-    // Desktop logic
     function toggleDesktopZoom(e) {
         if (isZoomed) {
             resetZoom();
@@ -196,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateTransform() {
         lightboxImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
-        lightboxImg.classList.remove('zoomed'); // Ensure manual transform takes precedence
+        lightboxImg.classList.remove('zoomed');
     }
 
     function getDistance(touches) {
