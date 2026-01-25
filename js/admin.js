@@ -118,6 +118,7 @@ window.openModal = function (mode = 'create', carId = null) {
             form.km.value = car.km || '';
             form.fuel.value = car.fuel;
             form.transmission.value = car.transmission;
+            form.cv.value = car.cv || '';
             form.description.value = car.description || '';
             form.sold.value = car.sold.toString();
             form.logoSize.value = car.logoSize || 100;
@@ -127,15 +128,22 @@ window.openModal = function (mode = 'create', carId = null) {
             if (car.image) updatePreviewFromUrl(car.image, 'mainPreview', 'finalImageSrc');
             if (car.logo) updatePreviewFromUrl(car.logo, 'logoPreview', 'finalLogoSrc');
 
-            // Populate Gallery
-            galleryFiles = car.gallery || [];
-            renderGallery();
+            // Populate Exterior Gallery (5 slots)
+            exteriorFiles = car.galleryExterior || [null, null, null, null, null];
+            while (exteriorFiles.length < 5) exteriorFiles.push(null);
+            renderExteriorGallery();
+
+            // Populate Interior Gallery
+            interiorFiles = car.galleryInterior || [];
+            renderInteriorGallery();
         }
     } else {
         document.getElementById('modalTitle').innerText = 'Nuevo Vehículo';
         document.getElementById('editCarId').value = '';
-        galleryFiles = [];
-        renderGallery();
+        exteriorFiles = [null, null, null, null, null];
+        interiorFiles = [];
+        renderExteriorGallery();
+        renderInteriorGallery();
     }
 };
 
@@ -227,18 +235,33 @@ window.submitCarForm = async function () {
             logoImageUrl = await uploadImageToStorage(logoBlob, brand, model, 'logo');
         }
 
-        // 3. Upload Gallery
-        // galleryFiles is an array of Base64 strings. We need to upload changed ones.
-        // To keep it simple, if it's base64, upload it. If it's URL, keep it.
-        const newGalleryUrls = [];
-        for (let i = 0; i < galleryFiles.length; i++) {
-            const fileBase64 = galleryFiles[i];
-            const fileBlob = dataURItoBlob(fileBase64);
+        // 3. Upload Exterior Gallery (5 slots)
+        const newExteriorUrls = [];
+        for (let i = 0; i < exteriorFiles.length; i++) {
+            const fileData = exteriorFiles[i];
+            if (!fileData) {
+                newExteriorUrls.push(null);
+                continue;
+            }
+            const fileBlob = dataURItoBlob(fileData);
             if (fileBlob) {
-                const url = await uploadImageToStorage(fileBlob, brand, model, `gallery_${i}`);
-                newGalleryUrls.push(url);
+                const url = await uploadImageToStorage(fileBlob, brand, model, `exterior_${i}`);
+                newExteriorUrls.push(url);
             } else {
-                newGalleryUrls.push(fileBase64); // Assume it's already a URL
+                newExteriorUrls.push(fileData); // Already a URL
+            }
+        }
+
+        // 4. Upload Interior Gallery (up to 9)
+        const newInteriorUrls = [];
+        for (let i = 0; i < interiorFiles.length; i++) {
+            const fileData = interiorFiles[i];
+            const fileBlob = dataURItoBlob(fileData);
+            if (fileBlob) {
+                const url = await uploadImageToStorage(fileBlob, brand, model, `interior_${i}`);
+                newInteriorUrls.push(url);
+            } else {
+                newInteriorUrls.push(fileData); // Already a URL
             }
         }
 
@@ -248,15 +271,17 @@ window.submitCarForm = async function () {
             year: formData.get('year'),
             fuel: formData.get('fuel'),
             transmission: formData.get('transmission'),
+            cv: formData.get('cv') || '',
             price: formData.get('price'),
             km: formData.get('km'),
-            image: mainImageUrl, // Saved as URL
-            logo: logoImageUrl,  // Saved as URL
+            image: mainImageUrl,
+            logo: logoImageUrl,
             logoSize: formData.get('logoSize') || 100,
             logoMargin: formData.get('logoMargin'),
             description: formData.get('description'),
             sold: formData.get('sold') === 'true',
-            gallery: newGalleryUrls
+            galleryExterior: newExteriorUrls,
+            galleryInterior: newInteriorUrls
         };
 
         const editId = document.getElementById('editCarId').value;
@@ -352,12 +377,17 @@ function handleDragEnd() {
 
 // --- FILE HANDLING & EDITOR ---
 let cropper = null;
-let activeEditorType = null; // 'main' | 'logo' | 'gallery'
-// We use a local array `galleryFiles` (Base64 strings)
-let galleryFiles = [];
+let activeEditorType = null; // 'main' | 'logo' | 'exterior' | 'interior'
+let activeSlotIndex = null; // For exterior gallery slots
+let editingInteriorIndex = null; // For interior edit
+
+// Gallery arrays
+let exteriorFiles = [null, null, null, null, null]; // 5 slots
+let interiorFiles = []; // Up to 9
 
 function setupDropZones() {
-    ['main', 'logo', 'gallery'].forEach(type => {
+    // Main and Logo drop zones (these still use editor)
+    ['main', 'logo'].forEach(type => {
         const zone = document.getElementById(`${type}DropZone`);
         const input = document.getElementById(`${type}ImageInput`) || document.getElementById(`${type}Input`);
 
@@ -381,15 +411,326 @@ function setupDropZones() {
             if (e.target.files.length > 0) handleEditorOpen(e.target.files[0], type);
         });
     });
+
+    // Setup exterior slots with drag-drop and click
+    setupExteriorSlots();
+
+    // Exterior image input (for file picker)
+    const exteriorInput = document.getElementById('exteriorImageInput');
+    if (exteriorInput) {
+        exteriorInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0 && activeSlotIndex !== null) {
+                // Direct upload without editor
+                readFileAsBase64(e.target.files[0], (base64) => {
+                    exteriorFiles[activeSlotIndex] = base64;
+                    renderExteriorGallery();
+                    activeSlotIndex = null;
+                });
+            }
+            e.target.value = ''; // Reset input
+        });
+    }
+
+    // Interior drop zone and input - supports multiple files
+    const interiorZone = document.getElementById('interiorDropZone');
+    const interiorInput = document.getElementById('interiorImageInput');
+    if (interiorZone && interiorInput) {
+        interiorZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            interiorZone.classList.add('dragover');
+        });
+        interiorZone.addEventListener('dragleave', () => interiorZone.classList.remove('dragover'));
+        interiorZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            interiorZone.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files);
+            addMultipleInteriorImages(files);
+        });
+        interiorInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            addMultipleInteriorImages(files);
+            e.target.value = ''; // Reset input
+        });
+    }
+
+    // Setup exterior drag-drop for reordering
+    setupExteriorDragDrop();
 }
 
+// Setup exterior slots to accept dropped files and clicks
+function setupExteriorSlots() {
+    const slots = document.querySelectorAll('#exteriorGalleryGrid .gallery-slot');
+
+    slots.forEach((slot, index) => {
+        // Click to upload
+        slot.addEventListener('click', (e) => {
+            if (e.target.classList.contains('slot-edit') || e.target.classList.contains('slot-remove')) return;
+            triggerExteriorUpload(index);
+        });
+
+        // Drag-drop files onto slot
+        slot.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Only show drop effect if dragging files (not reordering)
+            if (e.dataTransfer.types.includes('Files')) {
+                slot.classList.add('drag-over');
+            }
+        });
+
+        slot.addEventListener('dragleave', (e) => {
+            e.stopPropagation();
+            slot.classList.remove('drag-over');
+        });
+
+        slot.addEventListener('drop', (e) => {
+            e.stopPropagation();
+            slot.classList.remove('drag-over');
+
+            // Check if dropping files (not reordering)
+            if (e.dataTransfer.files.length > 0) {
+                e.preventDefault();
+                const file = e.dataTransfer.files[0];
+                if (file.type.startsWith('image/')) {
+                    readFileAsBase64(file, (base64) => {
+                        exteriorFiles[index] = base64;
+                        renderExteriorGallery();
+                    });
+                }
+            }
+        });
+    });
+}
+
+// Add multiple interior images at once
+function addMultipleInteriorImages(files) {
+    const remaining = 9 - interiorFiles.length;
+    if (remaining <= 0) {
+        alert('Máximo 9 fotos de interior');
+        return;
+    }
+
+    const toAdd = files.slice(0, remaining).filter(f => f.type.startsWith('image/'));
+    let processed = 0;
+
+    toAdd.forEach(file => {
+        readFileAsBase64(file, (base64) => {
+            interiorFiles.push(base64);
+            processed++;
+            if (processed === toAdd.length) {
+                renderInteriorGallery();
+            }
+        });
+    });
+}
+
+// Read file as base64
+function readFileAsBase64(file, callback) {
+    const reader = new FileReader();
+    reader.onload = (e) => callback(e.target.result);
+    reader.readAsDataURL(file);
+}
+
+// Trigger exterior upload for specific slot
+window.triggerExteriorUpload = function (index) {
+    const brand = document.getElementById('carForm').brand.value;
+    const model = document.getElementById('carForm').model.value;
+    if (!brand || !model) {
+        alert('⚠️ Por favor, introduce la Marca y el Modelo antes de subir imágenes.');
+        return;
+    }
+    activeSlotIndex = index;
+    document.getElementById('exteriorImageInput').click();
+};
+
+// Open editor for existing exterior image
+window.openExteriorEditor = function (index) {
+    const src = exteriorFiles[index];
+    if (!src) {
+        alert('No hay imagen para editar');
+        return;
+    }
+    activeEditorType = 'exterior';
+    activeSlotIndex = index;
+    openEditorWithSrc(src);
+};
+
+// Open editor for existing interior image
+window.openInteriorEditor = function (index) {
+    const src = interiorFiles[index];
+    if (!src) return;
+    activeEditorType = 'interior';
+    editingInteriorIndex = index;
+    openEditorWithSrc(src);
+};
+
+// Open editor with a source
+function openEditorWithSrc(src) {
+    const editorModal = document.getElementById('editorModal');
+    const editorImage = document.getElementById('editorImage');
+
+    editorImage.crossOrigin = 'anonymous';
+    editorImage.src = src;
+    editorModal.style.display = 'flex';
+
+    editorImage.onload = () => {
+        if (cropper) cropper.destroy();
+        cropper = new Cropper(editorImage, {
+            viewMode: 2,
+            responsive: true,
+            background: false,
+        });
+    };
+}
+
+// Remove exterior image
+window.removeExteriorImage = function (index) {
+    exteriorFiles[index] = null;
+    renderExteriorGallery();
+};
+
+// Render exterior gallery slots
+function renderExteriorGallery() {
+    const slots = document.querySelectorAll('#exteriorGalleryGrid .gallery-slot');
+    slots.forEach((slot, index) => {
+        const preview = slot.querySelector('.slot-preview');
+        const guide = slot.querySelector('.slot-guide');
+        const src = exteriorFiles[index];
+
+        if (src) {
+            preview.src = src;
+            preview.style.display = 'block';
+            slot.classList.add('has-image');
+        } else {
+            preview.src = '';
+            preview.style.display = 'none';
+            slot.classList.remove('has-image');
+        }
+    });
+}
+
+// Setup drag and drop for exterior slots
+function setupExteriorDragDrop() {
+    const grid = document.getElementById('exteriorGalleryGrid');
+    if (!grid) return;
+
+    const slots = grid.querySelectorAll('.gallery-slot');
+    let draggedIndex = null;
+
+    slots.forEach((slot, index) => {
+        slot.setAttribute('draggable', 'true');
+
+        slot.addEventListener('dragstart', (e) => {
+            if (!exteriorFiles[index]) {
+                e.preventDefault();
+                return;
+            }
+            draggedIndex = index;
+            slot.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        });
+
+        slot.addEventListener('dragend', () => {
+            slot.classList.remove('dragging');
+            draggedIndex = null;
+        });
+
+        slot.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            if (draggedIndex !== null && draggedIndex !== index) {
+                slot.classList.add('drag-over');
+            }
+        });
+
+        slot.addEventListener('dragleave', () => {
+            slot.classList.remove('drag-over');
+        });
+
+        slot.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            slot.classList.remove('drag-over');
+
+            if (draggedIndex !== null && draggedIndex !== index) {
+                // Swap files
+                const temp = exteriorFiles[draggedIndex];
+                exteriorFiles[draggedIndex] = exteriorFiles[index];
+                exteriorFiles[index] = temp;
+                renderExteriorGallery();
+            }
+        });
+    });
+}
+
+// Render interior gallery
+function renderInteriorGallery() {
+    const grid = document.getElementById('interiorGalleryGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    interiorFiles.forEach((src, index) => {
+        const slot = document.createElement('div');
+        slot.className = 'interior-slot';
+        slot.setAttribute('draggable', 'true');
+        slot.dataset.index = index;
+
+        slot.innerHTML = `
+            <img src="${src}" alt="Interior ${index + 1}">
+            <div class="slot-actions" style="display:flex;">
+                <div class="slot-edit" onclick="event.stopPropagation(); openInteriorEditor(${index})">✂</div>
+                <div class="slot-remove" onclick="event.stopPropagation(); removeInteriorImage(${index})">×</div>
+            </div>
+        `;
+
+        // Drag events
+        slot.addEventListener('dragstart', (e) => {
+            slot.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', index);
+            e.dataTransfer.effectAllowed = 'move';
+        });
+
+        slot.addEventListener('dragend', () => {
+            slot.classList.remove('dragging');
+        });
+
+        slot.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            slot.classList.add('drag-over');
+        });
+
+        slot.addEventListener('dragleave', () => {
+            slot.classList.remove('drag-over');
+        });
+
+        slot.addEventListener('drop', (e) => {
+            e.preventDefault();
+            slot.classList.remove('drag-over');
+            const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+            const toIndex = index;
+            if (fromIndex !== toIndex) {
+                // Reorder array
+                const [moved] = interiorFiles.splice(fromIndex, 1);
+                interiorFiles.splice(toIndex, 0, moved);
+                renderInteriorGallery();
+            }
+        });
+
+        grid.appendChild(slot);
+    });
+}
+
+// Remove interior image
+window.removeInteriorImage = function (index) {
+    interiorFiles.splice(index, 1);
+    renderInteriorGallery();
+};
+
 function handleEditorOpen(file, type) {
-    // ENFORCE BRAND/MODEL Check
     const brand = document.getElementById('carForm').brand.value;
     const model = document.getElementById('carForm').model.value;
 
     if (!brand || !model) {
-        alert("⚠️ Por favor, introduce la Marca y el Modelo antes de subir imágenes.");
+        alert('⚠️ Por favor, introduce la Marca y el Modelo antes de subir imágenes.');
         return;
     }
 
@@ -399,21 +740,18 @@ function handleEditorOpen(file, type) {
     const reader = new FileReader();
     reader.onload = (e) => {
         const url = e.target.result;
-        // Open Editor Modal
         const editorModal = document.getElementById('editorModal');
         const editorImage = document.getElementById('editorImage');
 
         editorImage.src = url;
         editorModal.style.display = 'flex';
 
-        // Destroy prev instance if exists
         if (cropper) cropper.destroy();
 
-        // Init Cropper
         cropper = new Cropper(editorImage, {
-            viewMode: 2, // Restrict crop to image bounds
+            viewMode: 2,
             responsive: true,
-            background: false, // Dark background from CSS
+            background: false,
         });
     };
     reader.readAsDataURL(file);
@@ -424,6 +762,7 @@ window.closeEditor = function () {
     if (cropper) cropper.destroy();
     cropper = null;
     document.getElementById('editorImage').src = '';
+    activeSlotIndex = null;
 };
 
 window.editorFlipX = function () {
@@ -435,19 +774,26 @@ window.editorFlipX = function () {
 window.editorSave = function () {
     if (!cropper) return;
 
-    // Get cropped canvas
     const canvas = cropper.getCroppedCanvas({
         maxWidth: 1200,
         maxHeight: 1200,
-        // fillColor property removed to default to transparent (empty)
     });
 
-    const base64 = canvas.toDataURL('image/png'); // PNG to preserve transparency
+    const base64 = canvas.toDataURL('image/png');
 
-    if (activeEditorType === 'gallery') {
-        addGalleryImage(base64);
-    } else {
-        // Main or Logo
+    if (activeEditorType === 'exterior' && activeSlotIndex !== null) {
+        exteriorFiles[activeSlotIndex] = base64;
+        renderExteriorGallery();
+    } else if (activeEditorType === 'interior') {
+        // Check if editing existing or adding new
+        if (editingInteriorIndex !== null) {
+            interiorFiles[editingInteriorIndex] = base64;
+            editingInteriorIndex = null;
+        } else if (interiorFiles.length < 9) {
+            interiorFiles.push(base64);
+        }
+        renderInteriorGallery();
+    } else if (activeEditorType === 'main' || activeEditorType === 'logo') {
         const hiddenInputId = activeEditorType === 'main' ? 'finalImageSrc' : 'finalLogoSrc';
         const previewId = activeEditorType === 'main' ? 'mainPreview' : 'logoPreview';
 
@@ -459,40 +805,6 @@ window.editorSave = function () {
 
     closeEditor();
 };
-
-// --- GALLERY LOGIC ---
-function addGalleryImage(base64) {
-    galleryFiles.push(base64);
-    renderGallery();
-}
-
-window.removeGalleryImage = function (index) {
-    galleryFiles.splice(index, 1);
-    renderGallery();
-};
-
-function renderGallery() {
-    const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = '';
-
-    galleryFiles.forEach((src, index) => {
-        const thumb = document.createElement('div');
-        thumb.style.position = 'relative';
-        thumb.style.aspectRatio = '16/9';
-        thumb.style.borderRadius = '4px';
-        thumb.style.overflow = 'hidden';
-        thumb.style.border = '1px solid #333';
-
-        thumb.innerHTML = `
-            <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
-            <div onclick="removeGalleryImage(${index})" 
-                 style="position:absolute; top:2px; right:2px; background:rgba(0,0,0,0.7); 
-                 color:#ff5555; width:20px; height:20px; display:flex; align-items:center; 
-                 justify-content:center; cursor:pointer; font-size:12px; border-radius:50%;">×</div>
-        `;
-        grid.appendChild(thumb);
-    });
-}
 
 // Open editor from existing preview (Edit button)
 // Open editor from existing preview (Edit button)
@@ -552,7 +864,26 @@ function resetDropZones() {
         el.classList.remove('active');
     });
     document.querySelectorAll('.drop-zone').forEach(el => el.classList.remove('dragover'));
-    document.getElementById('galleryGrid').innerHTML = '';
+
+    // Reset hidden input values
+    const finalImageSrc = document.getElementById('finalImageSrc');
+    const finalLogoSrc = document.getElementById('finalLogoSrc');
+    if (finalImageSrc) finalImageSrc.value = '';
+    if (finalLogoSrc) finalLogoSrc.value = '';
+
+    // Reset exterior gallery slots
+    document.querySelectorAll('#exteriorGalleryGrid .gallery-slot').forEach(slot => {
+        slot.classList.remove('has-image');
+        const preview = slot.querySelector('.slot-preview');
+        if (preview) {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
+    });
+
+    // Reset interior gallery grid
+    const interiorGrid = document.getElementById('interiorGalleryGrid');
+    if (interiorGrid) interiorGrid.innerHTML = '';
 }
 
 // Create global wrapper for the inline onchange event in HTML

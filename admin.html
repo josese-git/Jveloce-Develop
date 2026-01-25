@@ -381,6 +381,183 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
+
+        /* Gallery Slots */
+        .gallery-slots {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .gallery-slot {
+            aspect-ratio: 16/9;
+            border: 2px dashed #333;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            background: #080808;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+
+        .gallery-slot:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .gallery-slot.has-image {
+            border-style: solid;
+            border-color: #444;
+        }
+
+        .gallery-slot.dragging {
+            opacity: 0.5;
+            border-color: var(--gold-primary);
+        }
+
+        .gallery-slot.drag-over {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.1);
+            transform: scale(1.02);
+        }
+
+        .slot-guide {
+            color: #555;
+            font-size: 0.7rem;
+            text-align: center;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .slot-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slot-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 50, 50, 0.9);
+            color: white;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .gallery-slot.has-image .slot-remove {
+            display: flex;
+        }
+
+        .gallery-slot.has-image .slot-guide {
+            display: none;
+        }
+
+        /* Interior Gallery Grid */
+        .gallery-grid-interior {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            min-height: 50px;
+        }
+
+        .interior-slot {
+            aspect-ratio: 16/9;
+            border: 1px solid #333;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+            cursor: grab;
+            transition: all 0.2s;
+        }
+
+        .interior-slot:hover {
+            border-color: var(--gold-primary);
+        }
+
+        .interior-slot.dragging {
+            opacity: 0.5;
+        }
+
+        .interior-slot.drag-over {
+            border-color: var(--gold-primary);
+            transform: scale(1.02);
+        }
+
+        .interior-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .interior-slot .slot-remove {
+            display: flex;
+        }
+
+        /* Slot Actions Container */
+        .slot-actions {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            display: none;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        .gallery-slot.has-image .slot-actions {
+            display: flex;
+        }
+
+        .slot-edit {
+            width: 22px;
+            height: 22px;
+            background: rgba(212, 175, 55, 0.9);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .slot-edit:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .gallery-slot .slot-remove,
+        .interior-slot .slot-remove {
+            width: 22px;
+            height: 22px;
+            background: rgba(255, 50, 50, 0.9);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .slot-remove:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -486,18 +663,77 @@
                     </div>
 
                     <div class="form-section">
-                        <h4 class="section-title">GALERÍA</h4>
-                        <div class="drop-zone" onclick="document.getElementById('galleryInput').click()"
-                            id="galleryDropZone">
-                            <i style="font-size:1.5rem; color:#444;">📚</i>
-                            <p>Añadir fotos a galería</p>
-                            <input type="file" id="galleryInput" class="drop-input" accept="image/*" multiple>
+                        <h4 class="section-title">GALERÍA EXTERIOR (5 fotos)</h4>
+                        <p style="color:#666; font-size:0.75rem; margin-bottom:10px;">Arrastra fotos a los slots o haz
+                            clic para seleccionar</p>
+                        <div id="exteriorGalleryGrid" class="gallery-slots">
+                            <div class="gallery-slot" data-index="0">
+                                <div class="slot-guide">📷 Frontal</div>
+                                <img class="slot-preview" src="" style="display:none;">
+                                <div class="slot-actions">
+                                    <div class="slot-edit" onclick="event.stopPropagation(); openExteriorEditor(0)">✂
+                                    </div>
+                                    <div class="slot-remove" onclick="event.stopPropagation(); removeExteriorImage(0)">×
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-slot" data-index="1">
+                                <div class="slot-guide">📷 3/4 Frontal</div>
+                                <img class="slot-preview" src="" style="display:none;">
+                                <div class="slot-actions">
+                                    <div class="slot-edit" onclick="event.stopPropagation(); openExteriorEditor(1)">✂
+                                    </div>
+                                    <div class="slot-remove" onclick="event.stopPropagation(); removeExteriorImage(1)">×
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-slot" data-index="2">
+                                <div class="slot-guide">📷 Lateral</div>
+                                <img class="slot-preview" src="" style="display:none;">
+                                <div class="slot-actions">
+                                    <div class="slot-edit" onclick="event.stopPropagation(); openExteriorEditor(2)">✂
+                                    </div>
+                                    <div class="slot-remove" onclick="event.stopPropagation(); removeExteriorImage(2)">×
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-slot" data-index="3">
+                                <div class="slot-guide">📷 3/4 Trasero</div>
+                                <img class="slot-preview" src="" style="display:none;">
+                                <div class="slot-actions">
+                                    <div class="slot-edit" onclick="event.stopPropagation(); openExteriorEditor(3)">✂
+                                    </div>
+                                    <div class="slot-remove" onclick="event.stopPropagation(); removeExteriorImage(3)">×
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-slot" data-index="4">
+                                <div class="slot-guide">📷 Trasero</div>
+                                <img class="slot-preview" src="" style="display:none;">
+                                <div class="slot-actions">
+                                    <div class="slot-edit" onclick="event.stopPropagation(); openExteriorEditor(4)">✂
+                                    </div>
+                                    <div class="slot-remove" onclick="event.stopPropagation(); removeExteriorImage(4)">×
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <input type="file" id="exteriorImageInput" class="drop-input" accept="image/*"
+                            style="display:none;">
+                    </div>
 
-                        <!-- Thumbnail Grid -->
-                        <div id="galleryGrid"
-                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; margin-top: 15px;">
-                            <!-- Thumbnails injected here -->
+                    <div class="form-section">
+                        <h4 class="section-title">GALERÍA INTERIOR (hasta 9 fotos)</h4>
+                        <p style="color:#666; font-size:0.75rem; margin-bottom:10px;">Puedes subir varias fotos a la vez
+                        </p>
+                        <div id="interiorGalleryGrid" class="gallery-grid-interior">
+                            <!-- Dynamic interior slots will be rendered here -->
+                        </div>
+                        <div class="drop-zone" onclick="document.getElementById('interiorImageInput').click()"
+                            id="interiorDropZone" style="margin-top:10px;">
+                            <i style="font-size:1.5rem; color:#444;">➕</i>
+                            <p>Añadir fotos interiores (máx. 9)</p>
+                            <input type="file" id="interiorImageInput" class="drop-input" accept="image/*" multiple>
                         </div>
                     </div>
                 </div>
@@ -551,6 +787,10 @@
                                     <option value="Manual">Manual</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="form-group" style="margin-top:15px;">
+                            <label>Potencia (CV)</label>
+                            <input type="text" name="cv" class="form-input" placeholder="Ej: 150">
                         </div>
                     </div>
 

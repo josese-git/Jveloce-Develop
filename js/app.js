@@ -70,6 +70,12 @@ function renderInventory(cars) {
             <div class="card-glow"></div>
         `;
 
+        // Add click event to navigate to detail page
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            window.location.href = `Coches/detalle.html?id=${car.id}`;
+        });
+
         container.appendChild(card);
     });
 }
