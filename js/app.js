@@ -18,12 +18,18 @@ function renderInventory(cars) {
     const container = document.querySelector('.car-grid');
     if (!container) return;
 
-    container.innerHTML = ''; // Clear content
-
+    // If no cars, show empty message
     if (cars.length === 0) {
-        container.innerHTML = '<p style="color:white;text-align:center;">Cargando vehículos...</p>';
+        container.innerHTML = `
+            <div style="text-align: center; padding: 50px; grid-column: 1 / -1; width: 100%;">
+                <h3 style="color: var(--gold-primary); font-family: 'Orbitron', sans-serif;">Inventario Actualizado</h3>
+                <p style="color: #888; margin-top: 10px;">No hay vehículos disponibles en este momento.</p>
+            </div>
+        `;
         return;
     }
+
+    container.innerHTML = ''; // Clear loader/content only when we have data to show
 
     cars.forEach(car => {
 

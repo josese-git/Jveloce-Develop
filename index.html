@@ -12,6 +12,59 @@
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Loading Spinner Styles -->
+    <style>
+        .inventory-loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 100px 0;
+            width: 100%;
+        }
+
+        .spinner-ring {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid rgba(212, 175, 55, 0.15);
+            border-top-color: #d4af37;
+            animation: spin 1s ease-in-out infinite;
+            box-shadow:
+                0 0 20px rgba(212, 175, 55, 0.3),
+                0 0 40px rgba(212, 175, 55, 0.1),
+                inset 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -79,7 +132,12 @@
     <section id="inventory" class="inventory-section">
         <h2 class="section-title">NUESTROS <span class="text-stroke">VEHÍCULOS</span></h2>
 
-        <div class="car-grid">
+        <div class="car-grid" id="carGrid">
+            <!-- Loading Spinner -->
+            <div id="inventoryLoader" class="inventory-loader">
+                <div class="spinner-ring"></div>
+                <span class="loader-text">Cargando Vehículos...</span>
+            </div>
             <!-- Dynamic Content Rendered by js/app.js -->
         </div>
     </section>
