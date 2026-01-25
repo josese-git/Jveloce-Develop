@@ -100,7 +100,7 @@ class Store {
     async addCar(car) {
         // Use ID if provided (from migration/defaults) or generate one
         if (!car.id) {
-            car.id = `${car.brand}-${car.model}-${Date.now()}`.toLowerCase().replace(/\s+/g, '-');
+            car.id = `${car.brand}-${car.model}-${car.year}`.toLowerCase().replace(/\s+/g, '-');
         }
 
         // Assign a default order if not present (sort of naive, but works for basic app)

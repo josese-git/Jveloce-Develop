@@ -409,36 +409,81 @@ body {
 }
 
 .footer-logo img {
-    height: 60px;
+    height: 120px;
+    /* Increased size for contact logo */
     margin-bottom: 30px;
-    opacity: 0.8;
+    transition: all 0.5s ease;
+}
+
+.contact-glow-img {
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+}
+
+.contact-glow-img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.8));
 }
 
 .social-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
     margin-bottom: 30px;
 }
 
 .social-btn {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy spring effect */
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtle glass bg */
+    overflow: hidden;
+    /* Clip image to circle */
+    padding: 10px;
+    /* Padding for the icon inside */
+}
+
+.social-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
 .social-btn:hover {
-    background: var(--gold-primary);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-    color: black;
-    transform: translateY(-5px);
+    background: rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6), inset 0 0 10px rgba(212, 175, 55, 0.2);
+    transform: translateY(-8px) scale(1.1);
+    border-color: var(--gold-primary);
+}
+
+.legal-links {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.legal-link {
+    color: var(--silver-accent);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.legal-link:hover {
+    color: var(--gold-primary);
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
 .copyright {
