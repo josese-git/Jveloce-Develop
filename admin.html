@@ -385,15 +385,29 @@
 </head>
 
 <body>
-    <script src="js/auth.js"></script>
-    <script>auth.requireAuth();</script>
+    <script type="module">
+        import { auth, ADMIN_EMAIL, signOut, onAuthStateChanged } from './js/firebase-config.js';
+
+        // Make logout function available globally
+        window.firebaseLogout = async () => {
+            await signOut(auth);
+            window.location.href = 'index.html';
+        };
+
+        // Check authentication on page load
+        onAuthStateChanged(auth, (user) => {
+            if (!user || user.email !== ADMIN_EMAIL) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 
     <div class="sidebar">
         <img src="assets/logo sin fondo.png" alt="Admin" class="admin-logo">
         <a href="#" class="menu-item active">➜ Inventario</a>
         <a href="#" class="menu-item">➜ Estadísticas (WIP)</a>
         <a href="#" class="menu-item">➜ Configuración</a>
-        <a href="#" onclick="auth.logout()" class="logout-btn menu-item">✕ Salir</a>
+        <a href="#" onclick="firebaseLogout()" class="logout-btn menu-item">✕ Salir</a>
     </div>
 
     <div class="main-content">
