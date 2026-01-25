@@ -128,8 +128,6 @@
     </section>
 
     <!-- Gallery Section (Asymmetric Grid) -->
-    <br>
-    <br>
     <h1 class="car-title" style="text-align: center;">
         <span class="text-gold">Galería</span>
     </h1>
@@ -186,50 +184,51 @@
                 alt="Extra"></div>
 
 
-        </section>
+    </div>
+    </section>
 
-        <!-- Footer -->
-        <footer id="contact" class="glass-footer">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="../assets/uploaded_image_3_1769020016406.png" alt="JVeloce Footer">
-                </div>
-                <div class="social-links">
-                    <a href="#" class="social-btn glass-btn">FB</a>
-                    <a href="#" class="social-btn glass-btn">IG</a>
-                    <a href="#" class="social-btn glass-btn">WA</a>
-                    <a href="#" class="social-btn glass-btn">EM</a>
-                </div>
-                <p class="copyright">© 2026 Autos JVeloce. Future Ready.</p>
+    <!-- Footer -->
+    <footer id="contact" class="glass-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../assets/uploaded_image_3_1769020016406.png" alt="JVeloce Footer">
             </div>
-        </footer>
-
-        <!-- Lightbox Container -->
-        <div id="lightbox" class="lightbox">
-            <span class="lightbox-close">&times;</span>
-            <button class="lightbox-prev">&#10094;</button>
-            <button class="lightbox-next">&#10095;</button>
-            <span class="lightbox-counter">1 / 1</span>
-            <div class="lightbox-content">
-                <img id="lightbox-img" src="" alt="Full Detail">
+            <div class="social-links">
+                <a href="#" class="social-btn glass-btn">FB</a>
+                <a href="#" class="social-btn glass-btn">IG</a>
+                <a href="#" class="social-btn glass-btn">WA</a>
+                <a href="#" class="social-btn glass-btn">EM</a>
             </div>
+            <p class="copyright">© 2026 Autos JVeloce. Future Ready.</p>
         </div>
+    </footer>
 
-        <!-- Scripts -->
-        <script src="../js/background-animation.js"></script>
-        <script src="../js/lightbox.js"></script>
-        <script>
-            // Simple script for mobile menu toggle (copied logic from app.js roughly)
-            const hamburger = document.getElementById('hamburgerBtn');
-            const navLinks = document.querySelector('.nav-links');
-            const body = document.body;
+    <!-- Lightbox Container -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev">&#10094;</button>
+        <button class="lightbox-next">&#10095;</button>
+        <span class="lightbox-counter">1 / 1</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Full Detail">
+        </div>
+    </div>
 
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('toggle');
-                navLinks.classList.toggle('active');
-                body.classList.toggle('menu-open');
-            });
-        </script>
+    <!-- Scripts -->
+    <script src="../js/background-animation.js"></script>
+    <script src="../js/lightbox.js"></script>
+    <script>
+        // Simple script for mobile menu toggle (copied logic from app.js roughly)
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navLinks = document.querySelector('.nav-links');
+        const body = document.body;
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('toggle');
+            navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+    </script>
 </body>
 
 </html>

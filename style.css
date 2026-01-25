@@ -739,13 +739,13 @@ html {
 /* Hero Split Screen */
 .car-detail-hero {
     min-height: 100vh;
-    padding: 20px 5% 50px 5%;
-    /* Drastically reduced to 20px based on user feedback */
+    padding: 0px 5% 50px 5%;
+    /* Reduced back to 40px to remove gap */
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    /* Aligns content to top, removing extra space */
     justify-content: center;
     position: relative;
-    /* padding-top removed to strictly follow reduced padding */
 }
 
 .hero-split-container {
@@ -999,6 +999,13 @@ html {
 
 .gallery-item:hover img {
     transform: scale(1.1);
+}
+
+/* Main Gallery Block Wrapper */
+.gallery-block {
+    margin-bottom: 20px;
+    /* Ensures gap between the stacked blocks (A, B, C...) */
+    width: 100%;
 }
 
 /* Block A: Asymmetric (Left stack, Right main) */
