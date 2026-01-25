@@ -1182,6 +1182,48 @@ html {
     .gallery-item {
         min-height: 0;
         /* Remove min-height to let aspect-ratio rule */
+        width: 100%;
+        /* Force width to fit container */
+    }
+
+    /* FIX: Prevent gallery overflow causing horizontal scroll/shift */
+    .gallery-section {
+        padding: 30px 20px;
+        /* Reduced padding for mobile */
+        width: 100%;
+        overflow: hidden;
+        /* Cut off anything sticking out */
+        box-sizing: border-box;
+    }
+
+    .gallery-block,
+    .block-a,
+    .block-b,
+    .block-c,
+    .block-d {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        /* Force single column on everything */
+        display: grid !important;
+        margin-left: 0;
+        margin-right: 0;
+        gap: 15px;
+    }
+
+    .col-left-stacked,
+    .col-right-main {
+        width: 100% !important;
+        display: block !important;
+        /* Reset flex/grid complexity */
+    }
+
+    .col-left-stacked .gallery-item,
+    .col-right-main .gallery-item {
+        width: 100% !important;
+        margin-bottom: 15px;
+        /* Spacing between stacked items */
+        aspect-ratio: 4/3;
+        /* Consistent ratio */
     }
 
     .hero-price-tag {
@@ -1198,6 +1240,52 @@ html {
 
     .car-title {
         font-size: 2.5rem;
+    }
+
+    /* FIX: Force hero image centering on mobile */
+    .hero-visual {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-image-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 40px 10px 10px 10px;
+        /* Added top padding for float animation */
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .hero-car-img {
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain;
+    }
+
+    /* NUCLEAR OPTION: Force all containers to respect viewport width */
+    html,
+    body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        position: relative;
+    }
+
+    .car-detail-hero,
+    .gallery-section,
+    .hero-split-container,
+    .hero-visual,
+    .hero-data {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 }
 
