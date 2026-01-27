@@ -624,26 +624,22 @@ body {
         transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    /* Mobile Menu Overlay - Liquid Glass Style */
+    /* Mobile Menu Overlay - Liquid Glass Style (OPTIMIZED) */
     .nav-links {
         position: fixed;
-        /* Much more transparent for Liquid Glass effect */
-        background: rgba(10, 10, 10, 0.4);
+        /* Darker background to compensate for reduced blur */
+        background: rgba(8, 8, 8, 0.85);
 
-        /* Strong blur for that "IOS 26" look */
-        backdrop-filter: blur(40px);
-        -webkit-backdrop-filter: blur(40px);
+        /* OPTIMIZED: Reduced blur from 40px to 15px for better mobile performance */
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
 
         /* Subtle glass border */
-        border-right: 1px solid rgba(255, 255, 255, 0.15);
-        border-left: 1px solid rgba(255, 255, 255, 0.05);
-        /* Double border feel */
-        box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.05),
-            0 20px 50px rgba(0, 0, 0, 0.5);
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        border-left: 1px solid rgba(255, 255, 255, 0.04);
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.03),
+            0 10px 40px rgba(0, 0, 0, 0.6);
 
-        /* Ensure hardware acceleration */
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
         height: 100vh;
         width: 100vw;
         top: 0;
@@ -651,18 +647,29 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        transform: translateY(-100%);
-        /* Hidden by default */
-        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        /* Smooth easing */
+
+        /* OPTIMIZED: Use opacity + visibility for smoother animation instead of transform */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-30px);
+
+        /* OPTIMIZED: Faster, simpler transition */
+        transition: opacity 0.25s ease-out,
+            visibility 0.25s ease-out,
+            transform 0.25s ease-out;
+
         z-index: 99;
-        /* Behind nav bar but above content */
         margin: 0;
-        /* Reset margins */
         padding: 0;
+
+        /* PERFORMANCE: GPU layer promotion */
+        will-change: opacity, transform;
+        contain: layout style;
     }
 
     .nav-links.active {
+        opacity: 1;
+        visibility: visible;
         transform: translateY(0);
     }
 
@@ -675,29 +682,26 @@ body {
 
     .nav-links a {
         font-size: 1.8rem;
-        /* Larger and cleaner */
         font-weight: 300;
-        /* Thinner font looks more futuristic */
-        /* Larger text for touch */
         position: relative;
         padding: 10px 30px;
         border-radius: 50px;
-        /* Fully rounded pills */
-        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        /* OPTIMIZED: Specific transitions instead of 'all' for better performance */
+        transition: color 0.2s ease,
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease;
         letter-spacing: 4px;
         border: 1px solid transparent;
-        /* Prepare for border transition */
     }
 
-    /* Animated Glow for Active Link (Gold) */
+    /* Gold highlight for Active Link */
     .nav-links a.active {
         color: var(--gold-primary);
         font-weight: 600;
-        /* Deep Gold Glow */
-        text-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.4);
-        background: rgba(212, 175, 55, 0.08);
-        border: 1px solid rgba(212, 175, 55, 0.4);
-        box-shadow: 0 0 30px rgba(212, 175, 55, 0.15), inset 0 0 10px rgba(212, 175, 55, 0.05);
+        text-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.35);
     }
 
     /* Animated Glow for Inactive/Hover Links (White) */
@@ -707,47 +711,48 @@ body {
     }
 
     .nav-links a:not(.active):active,
-    /* Touch feedback */
     .nav-links a:not(.active):hover {
         color: #fff;
-        /* Bright White Glow */
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.5);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         background: rgba(255, 255, 255, 0.08);
-        /* White glass background */
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.15), inset 0 0 10px rgba(255, 255, 255, 0.05);
-        transform: scale(1.05);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        transform: scale(1.03);
     }
 
-    /* --- Page Blur Effect (Triggered by JS) --- */
-    body.menu-open>*:not(.glass-nav) {
-        filter: blur(15px);
-        transform: translateZ(0);
-        /* Force GPU */
-        will-change: filter;
-        /* Hint browser to optimize for filter changes */
-        transition: filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* --- Page Dim + Blur Effect (OPTIMIZED) --- */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        /* Blur applied to this single layer instead of all elements - MUCH more efficient */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 98;
         pointer-events: none;
-        /* Prevent interaction with background */
-        user-select: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+        /* GPU optimization */
+        will-change: opacity;
+    }
+
+    body.menu-open::before {
+        opacity: 1;
+        visibility: visible;
     }
 
     body.menu-open .glass-nav {
-        filter: none;
-        /* Keep nav sharp */
         z-index: 1000;
-        /* Ensure nav itself is also optimized */
-        transform: translateZ(0);
-        will-change: transform;
     }
 
-    /* Ensure transition works when blur is removed */
-    body>*:not(.glass-nav) {
-        transition: filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        will-change: filter;
-        /* Keep hint active to prevent initial lag */
-        transform: translateZ(0);
-        /* Keep GPU active */
+    /* Disable pointer events on background content when menu is open */
+    body.menu-open>*:not(.glass-nav):not(script) {
+        pointer-events: none;
+        user-select: none;
     }
 
     /* Hide Search Icon in Mobile Menu (User Request) */
