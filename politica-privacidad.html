@@ -6,24 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidad | Autos JVeloce</title>
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Navigation -->
     <nav class="glass-nav">
         <div class="nav-content">
+            <!-- Hamburger Menu for Mobile -->
+            <div class="hamburger" id="hamburgerBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <div class="logo-container">
                 <a href="index.html">
                     <img src="assets/logo sin fondo.png" alt="JVeloce Logo" class="nav-logo">
                 </a>
             </div>
+
+            <!-- Mobile Search Icon -->
+            <div class="mobile-search-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E0E0E0" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="index.html#home">Inicio</a></li>
                 <li><a href="index.html#inventory">Coches</a></li>
+                <li><a href="index.html#reviews">Reseñas</a></li>
                 <li><a href="index.html#contact">Contacto</a></li>
+                <li><a href="#" class="search-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="search-modal">
+        <div class="search-modal-content glass-panel">
+            <button class="search-close-btn" id="searchCloseBtn" aria-label="Cerrar búsqueda">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="search-header">
+                <svg class="search-icon-lg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar vehículo..."
+                    autocomplete="off">
+            </div>
+            <div id="searchResults" class="search-results">
+                <p class="search-hint">Escribe para buscar por marca, modelo, año...</p>
+            </div>
+        </div>
+    </div>
 
     <div style="padding: 150px 10%; color: white; min-height: 80vh;">
         <h1 class="hero-title" style="font-size: 2.5rem; margin-bottom: 30px;">Política de Privacidad</h1>
@@ -44,6 +99,22 @@
             <p class="copyright">© 2026 Autos JVeloce. Future Ready.</p>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="js/store.js"></script>
+    <script type="module" src="js/search.js"></script>
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('toggle');
+                navLinks.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+        }
+    </script>
 </body>
 
 </html>

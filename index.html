@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autos JVeloce</title>
-    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    <link rel="icon" href="assets/icons/favicon.png" sizes="48x48">
     <!-- Open Graph / WhatsApp Meta Tags -->
     <meta property="og:title" content="Autos JVeloce">
     <meta property="og:description"
@@ -121,6 +121,30 @@
         </div>
     </nav>
 
+    <!-- Search Modal -->
+    <div id="searchModal" class="search-modal">
+        <div class="search-modal-content glass-panel">
+            <button class="search-close-btn" id="searchCloseBtn" aria-label="Cerrar búsqueda">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="search-header">
+                <svg class="search-icon-lg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar vehículo..."
+                    autocomplete="off">
+            </div>
+            <div id="searchResults" class="search-results">
+                <p class="search-hint">Escribe para buscar por marca, modelo, año...</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-content">
@@ -204,8 +228,8 @@
     <!-- Scripts -->
     <script src="js/background-animation.js"></script> <!-- New Fancy Background -->
     <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/search.js"></script>
     <script src="script.js"></script> <!-- Original script if needed -->
-    <!-- Simple Tilt.js library for 3D effect if we wanted to use external libs, but we will write custom vanilla js for it -->
 </body>
 
 </html>

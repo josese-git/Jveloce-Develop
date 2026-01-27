@@ -12,27 +12,258 @@
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            display: grid;
-            grid-template-columns: 250px 1fr;
+            display: block;
             min-height: 100vh;
             overflow: hidden;
             background: #050505;
         }
 
+        /* Hamburger Button */
+        .hamburger-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 150;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            color: #888;
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(30, 30, 30, 0.95);
+            color: #fff;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .hamburger-btn.active {
+            color: var(--gold-primary);
+        }
+
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Sidebar */
         .sidebar {
-            background: rgba(10, 10, 10, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
             border-right: 1px solid rgba(255, 255, 255, 0.05);
             padding: 30px;
             display: flex;
             flex-direction: column;
             z-index: 100;
+            transform: translateX(-100%) !important;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .sidebar.open {
+            transform: translateX(0) !important;
         }
 
         .admin-logo {
             width: 150px;
             margin-bottom: 50px;
             filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80%;
+                max-width: 280px;
+            }
+
+            .hamburger-btn {
+                top: 15px;
+                left: 15px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .main-content {
+                padding: 15px;
+                padding-top: 70px;
+                padding-left: 15px;
+            }
+
+            /* Header responsive */
+            .main-content>div:first-child {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 15px;
+            }
+
+            .main-content>div:first-child h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .main-content>div:first-child>div {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .main-content>div:first-child .btn {
+                padding: 10px 15px;
+                font-size: 0.75rem;
+            }
+
+            /* Inventory list responsive */
+            .inventory-list {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+
+            /* Card responsive */
+            .admin-card {
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .admin-card img {
+                width: 70px;
+                height: 45px;
+            }
+
+            .admin-card-info h4 {
+                font-size: 1rem;
+            }
+
+            /* Modal responsive - full screen on mobile */
+            .modal-content {
+                width: 100%;
+                max-width: 100%;
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            .modal-header {
+                padding: 15px 20px;
+            }
+
+            .modal-header h2 {
+                font-size: 1.1rem;
+            }
+
+            /* Modal body - single column on mobile */
+            .modal-body {
+                grid-template-columns: 1fr !important;
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .form-section {
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 0.8rem;
+            }
+
+            /* Form grid responsive */
+            .form-grid.two-col {
+                grid-template-columns: 1fr !important;
+            }
+
+            .form-input,
+            select,
+            textarea {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            /* Gallery slots responsive - 3 columns on mobile */
+            .gallery-slots {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 8px;
+            }
+
+            .slot-guide {
+                font-size: 0.6rem;
+            }
+
+            /* Interior gallery responsive */
+            .gallery-grid-interior {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Drop zone responsive */
+            .drop-zone {
+                padding: 15px;
+            }
+
+            .drop-zone p {
+                font-size: 0.75rem;
+            }
+
+            .drop-zone-preview {
+                height: 120px;
+            }
+
+            /* Modal footer responsive */
+            .modal-footer {
+                padding: 15px;
+                flex-wrap: wrap;
+            }
+
+            .modal-footer .btn {
+                flex: 1;
+                min-width: 120px;
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+
+            /* Editor modal responsive */
+            #editorModal .modal-content {
+                width: 100%;
+                height: 100vh;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 400px) {
+            .gallery-slots {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .main-content>div:first-child>div {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .main-content>div:first-child .btn {
+                width: 100%;
+                text-align: center;
+            }
         }
 
         .menu-item {
@@ -63,6 +294,8 @@
         /* Main Content */
         .main-content {
             padding: 40px;
+            padding-top: 80px;
+            padding-left: 80px;
             overflow-y: auto;
             height: 100vh;
             position: relative;
@@ -580,13 +813,57 @@
         });
     </script>
 
-    <div class="sidebar">
+    <!-- Hamburger Button -->
+    <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()">
+        <span id="hamburgerIcon">☰</span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <div class="sidebar" id="sidebar">
         <img src="assets/logo sin fondo.png" alt="Admin" class="admin-logo">
         <a href="#" class="menu-item active">➜ Inventario</a>
         <a href="#" class="menu-item">➜ Estadísticas (WIP)</a>
         <a href="#" class="menu-item">➜ Configuración</a>
         <a href="#" onclick="firebaseLogout()" class="logout-btn menu-item">✕ Salir</a>
     </div>
+
+    <script>
+        // Sidebar toggle functions
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const btn = document.getElementById('hamburgerBtn');
+            const icon = document.getElementById('hamburgerIcon');
+
+            const isOpen = sidebar.classList.toggle('open');
+            overlay.classList.toggle('visible', isOpen);
+            btn.classList.toggle('active', isOpen);
+            icon.textContent = isOpen ? '✕' : '☰';
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const btn = document.getElementById('hamburgerBtn');
+            const icon = document.getElementById('hamburgerIcon');
+
+            sidebar.classList.remove('open');
+            overlay.classList.remove('visible');
+            btn.classList.remove('active');
+            icon.textContent = '☰';
+        }
+
+        // Close sidebar when clicking on a menu item
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.sidebar .menu-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    closeSidebar();
+                });
+            });
+        });
+    </script>
 
     <div class="main-content">
         <div style="display:flex; justify-content:space-between; margin-bottom:30px;">

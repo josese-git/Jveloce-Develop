@@ -2,10 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Mouse Follow Information (Cursor Glow)
     const cursorGlow = document.getElementById('cursorGlow');
 
-    document.addEventListener('mousemove', (e) => {
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
-    });
+    if (cursorGlow) {
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+    }
 
     // 2. 3D Tilt Effect for Cars
     const cards = document.querySelectorAll('.car-card');
@@ -36,9 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
@@ -70,3 +75,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+

@@ -14,10 +14,10 @@ const firebaseConfig = {
     measurementId: "G-YSCZ95T9LY"
 };
 
-// Admin email - only this account can access the control panel
+
 const ADMIN_EMAIL = "julio@autosjveloce.com";
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
