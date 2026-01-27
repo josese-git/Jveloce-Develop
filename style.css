@@ -772,6 +772,34 @@ body {
         padding-top: 100px;
         min-height: 60vh;
     }
+
+    /* --- MOBILE PERFORMANCE: Hero Text Optimizations --- */
+    /* Reduce costly text-shadow layers but keep visible glow */
+    .hero-description-box p {
+        text-shadow:
+            0 0 20px rgba(212, 175, 55, 0.5),
+            0 0 40px rgba(212, 175, 55, 0.2);
+        /* 2 layers instead of 3, but more visible */
+    }
+
+    /* Disable breathing glow animation on mobile - static glow is fine */
+    .hero-description-box::before {
+        animation: none;
+        opacity: 0.7;
+        /* Higher static opacity for more visible glow */
+        transform: scale(1.05);
+    }
+
+    /* Keep text-gold filter but lighter */
+    .text-gold {
+        filter: drop-shadow(0 0 10px rgba(184, 134, 11, 0.25));
+        /* Lighter shadow, still visible */
+    }
+
+    /* Simplify hero subtitle shadow */
+    .hero-subtitle {
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
 }
 
 /* 4. Fix Hover Scaling on Mobile (Touch Devices) */
