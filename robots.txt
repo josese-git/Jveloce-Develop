@@ -1,0 +1,21 @@
+# Robots.txt para Autos JVeloce
+# https://autosjveloce.com
+
+# Permitir acceso a todos los bots
+User-agent: *
+
+# Permitir rastreo de todo el sitio público
+Allow: /
+
+# Bloquear páginas administrativas y de login (no deben indexarse)
+Disallow: /admin.html
+Disallow: /login.html
+
+# Bloquear archivos JavaScript internos (no necesitan indexarse)
+Disallow: /js/
+
+# Bloquear archivos de configuración
+Disallow: /cors.json
+
+# Referencia al Sitemap
+Sitemap: https://autosjveloce.com/sitemap.xml
