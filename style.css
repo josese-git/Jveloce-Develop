@@ -1426,6 +1426,18 @@ html {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
+
+    /* FIX: Reducir márgenes laterales para títulos largos en móviles */
+    .hero-data {
+        padding: 0 8px !important;
+    }
+
+    .car-title {
+        word-break: break-word;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        font-size: 2.2rem;
+    }
 }
 
 /* --- Lightbox Styles --- */
