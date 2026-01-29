@@ -88,6 +88,22 @@ self.addEventListener('fetch', (event) => {
     // Solo manejar peticiones GET
     if (request.method !== 'GET') return;
 
+    // NO interceptar peticiones que requieren CORS
+    // (cuando JavaScript necesita leer la imagen, como en Cropper.js)
+    // Estas peticiones tienen mode: 'cors' en lugar de 'no-cors'
+    if (request.mode === 'cors') {
+        return; // Dejar que el navegador maneje las peticiones CORS
+    }
+
+    // NO cachear si la URL del cliente es admin.html
+    // Usamos el referrer Y también verificamos el clientId
+    const referrer = request.referrer || '';
+    const isFromAdmin = referrer.includes('admin.html') ||
+        referrer.includes('/admin');
+    if (isFromAdmin) {
+        return; // Dejar que el navegador maneje normalmente
+    }
+
     // Verificar si es una imagen que debemos cachear
     const isImage = request.destination === 'image' ||
         /\.(jpg|jpeg|png|gif|webp|svg|ico)(\?.*)?$/i.test(url);

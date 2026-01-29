@@ -1123,18 +1123,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
 
-    <script type="module" src="js/admin.js"></script>
 
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('[SW] Registered:', reg.scope))
-                    .catch(err => console.log('[SW] Registration failed:', err));
-            });
-        }
-    </script>
+    <script type="module" src="js/admin.js"></script>
 </body>
 
 </html>
