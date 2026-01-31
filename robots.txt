@@ -11,9 +11,6 @@ Allow: /
 Disallow: /admin.html
 Disallow: /login.html
 
-# Bloquear archivos JavaScript internos (no necesitan indexarse)
-Disallow: /js/
-
 # Bloquear archivos de configuración
 Disallow: /cors.json
 
