@@ -11,8 +11,5 @@ Allow: /
 Disallow: /admin.html
 Disallow: /login.html
 
-# Bloquear archivos de configuración
-Disallow: /cors.json
-
 # Referencia al Sitemap
 Sitemap: https://autosjveloce.com/sitemap.xml
