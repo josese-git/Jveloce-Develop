@@ -25,9 +25,16 @@
     {
         "@context": "https://schema.org/",
         "@type": "Car",
-        "name": "Vehículo disponible en Autos JVeloce",
-        "description": "Consulta los detalles completos de este vehículo",
-        "url": "https://autosjveloce.com"
+        "name": "Vehículo disponible",
+        "brand": {
+            "@type": "Brand",
+            "name": "Autos JVeloce"
+        },
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        }
     }
     </script>
 
