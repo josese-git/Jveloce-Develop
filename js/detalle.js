@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 3. Inject data into HTML
         populateVehicleData(car);
 
-        // Populate gallery with exterior and interior arrays separately
-        populateGallery(car.galleryExterior || [], car.galleryInterior || []);
+        // Populate gallery with exterior and interior arrays separately, passing car data for alt text
+        populateGallery(car.galleryExterior || [], car.galleryInterior || [], car);
 
     } catch (error) {
         console.error('Error loading vehicle:', error);
@@ -46,8 +46,15 @@ document.addEventListener('DOMContentLoaded', async () => {
  * Populate vehicle data into HTML elements
  */
 function populateVehicleData(car) {
-    // Page Title
-    document.title = `${car.brand} ${car.model} | Autos JVeloce`;
+    // Page Title - Dynamic for SEO
+    const pageTitle = `${car.brand} ${car.model} ${car.year || ''} | Autos JVeloce`.trim();
+    document.title = pageTitle;
+
+    // Update Meta Tags for SEO and Social Sharing
+    updateMetaTags(car);
+
+    // Generate and inject JSON-LD Structured Data
+    generateStructuredData(car);
 
     // Hero Section
     const heroImg = document.getElementById('heroCarImg');
@@ -60,7 +67,7 @@ function populateVehicleData(car) {
             heroImg.style.display = 'block';
         };
         heroImg.src = car.image;
-        heroImg.alt = `${car.brand} ${car.model}`;
+        heroImg.alt = `${car.brand} ${car.model} ${car.year || ''} - Imagen principal`.trim();
     }
 
     // Price
@@ -105,6 +112,124 @@ function populateVehicleData(car) {
 }
 
 /**
+ * Update meta tags dynamically for SEO and social sharing
+ */
+function updateMetaTags(car) {
+    const carTitle = `${car.brand} ${car.model} ${car.year || ''}`.trim();
+    const carDescription = car.description && car.description.trim() !== ''
+        ? car.description.substring(0, 160)
+        : `${carTitle} - ${car.km || 'N/D'} km, ${car.fuel || 'N/D'}, ${car.cv || 'N/D'} CV. Disponible en Autos JVeloce.`;
+
+    // Update or create meta tags
+    updateOrCreateMetaTag('property', 'og:title', carTitle);
+    updateOrCreateMetaTag('property', 'og:description', carDescription);
+    updateOrCreateMetaTag('name', 'description', carDescription);
+
+    // Update og:image with main car image
+    if (car.image) {
+        updateOrCreateMetaTag('property', 'og:image', car.image);
+    }
+
+    // Update og:url with current page URL
+    updateOrCreateMetaTag('property', 'og:url', window.location.href);
+}
+
+/**
+ * Helper function to update or create meta tags
+ */
+function updateOrCreateMetaTag(attribute, attributeValue, content) {
+    let metaTag = document.querySelector(`meta[${attribute}="${attributeValue}"]`);
+
+    if (metaTag) {
+        metaTag.setAttribute('content', content);
+    } else {
+        metaTag = document.createElement('meta');
+        metaTag.setAttribute(attribute, attributeValue);
+        metaTag.setAttribute('content', content);
+        document.head.appendChild(metaTag);
+    }
+}
+
+/**
+ * Generate JSON-LD structured data for Google indexing
+ */
+function generateStructuredData(car) {
+    // Collect all images (main + gallery)
+    const allImages = [];
+
+    if (car.image) allImages.push(car.image);
+    if (car.galleryExterior) {
+        car.galleryExterior.filter(img => img !== null).forEach(img => allImages.push(img));
+    }
+    if (car.galleryInterior) {
+        car.galleryInterior.filter(img => img !== null).forEach(img => allImages.push(img));
+    }
+
+    // Create structured data object
+    const structuredData = {
+        "@context": "https://schema.org/",
+        "@type": "Car",
+        "name": `${car.brand} ${car.model} ${car.year || ''}`.trim(),
+        "brand": {
+            "@type": "Brand",
+            "name": car.brand
+        },
+        "model": car.model,
+        "vehicleModelDate": car.year ? car.year.toString() : undefined,
+        "mileageFromOdometer": {
+            "@type": "QuantitativeValue",
+            "value": car.km ? car.km.replace(/[^\d]/g, '') : undefined,
+            "unitCode": "KMT"
+        },
+        "fuelType": car.fuel,
+        "vehicleTransmission": car.transmission === 'Auto' ? 'Automático' : car.transmission,
+        "vehicleEngine": {
+            "@type": "EngineSpecification",
+            "enginePower": {
+                "@type": "QuantitativeValue",
+                "value": car.cv ? car.cv.replace(/[^\d]/g, '') : undefined,
+                "unitCode": "BHP"
+            }
+        },
+        "image": allImages.length > 0 ? allImages : undefined,
+        "description": car.description || `${car.brand} ${car.model} ${car.year || ''} en excelente estado.`,
+        "offers": {
+            "@type": "Offer",
+            "price": car.price ? car.price.toString().replace(/[€\s]/g, '') : undefined,
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "AutoDealer",
+                "name": "Autos JVeloce",
+                "telephone": "+34603945181",
+                "url": "https://autosjveloce.com"
+            }
+        },
+        "url": window.location.href
+    };
+
+    // Remove undefined values
+    Object.keys(structuredData).forEach(key => {
+        if (structuredData[key] === undefined) {
+            delete structuredData[key];
+        }
+    });
+
+    // Create and inject script tag
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(structuredData, null, 2);
+
+    // Remove existing structured data if present
+    const existingScript = document.querySelector('script[type="application/ld+json"]');
+    if (existingScript) {
+        existingScript.remove();
+    }
+
+    document.head.appendChild(script);
+}
+
+/**
  * Format price for display
  */
 function formatPrice(price) {
@@ -119,13 +244,16 @@ function formatPrice(price) {
  * Populate gallery with images using asymmetric layout
  * Structure: Block A (2+1), Block B (2), Block C (3 interior), Block D (up to 6 interior)
  */
-function populateGallery(exteriorImages, interiorImages) {
+function populateGallery(exteriorImages, interiorImages, car) {
     const container = document.getElementById('galleryContainer');
     if (!container) return;
 
     // Filter out null values
     const exterior = (exteriorImages || []).filter(img => img !== null);
     const interior = interiorImages || [];
+
+    // Generate base alt text
+    const carName = car ? `${car.brand} ${car.model} ${car.year || ''}`.trim() : 'Vehículo';
 
     // If no gallery images, hide the gallery section
     if (exterior.length === 0 && interior.length === 0) {
@@ -144,11 +272,11 @@ function populateGallery(exteriorImages, interiorImages) {
         blockA.className = 'gallery-block block-a';
         blockA.innerHTML = `
             <div class="col-left-stacked">
-                <div class="gallery-item"><img src="${exterior[0]}" alt="Frontal"></div>
-                <div class="gallery-item"><img src="${exterior[1]}" alt="3/4 Frontal"></div>
+                <div class="gallery-item"><img src="${exterior[0]}" alt="${carName} - Vista frontal"></div>
+                <div class="gallery-item"><img src="${exterior[1]}" alt="${carName} - Vista 3/4 frontal"></div>
             </div>
             <div class="col-right-main">
-                <div class="gallery-item main-img"><img src="${exterior[2]}" alt="Lateral"></div>
+                <div class="gallery-item main-img"><img src="${exterior[2]}" alt="${carName} - Vista lateral"></div>
             </div>
         `;
         container.appendChild(blockA);
@@ -159,7 +287,7 @@ function populateGallery(exteriorImages, interiorImages) {
         exterior.slice(0, Math.min(exterior.length, 2)).forEach((img, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
-            item.innerHTML = `<img src="${img}" alt="Exterior ${i + 1}">`;
+            item.innerHTML = `<img src="${img}" alt="${carName} - Exterior ${i + 1}">`;
             blockA.appendChild(item);
         });
         container.appendChild(blockA);
@@ -169,8 +297,8 @@ function populateGallery(exteriorImages, interiorImages) {
     if (exterior.length >= 4) {
         const blockB = document.createElement('div');
         blockB.className = 'gallery-block block-b';
-        const photo4 = exterior[3] ? `<div class="gallery-item"><img src="${exterior[3]}" alt="3/4 Trasero"></div>` : '';
-        const photo5 = exterior[4] ? `<div class="gallery-item"><img src="${exterior[4]}" alt="Trasero"></div>` : '';
+        const photo4 = exterior[3] ? `<div class="gallery-item"><img src="${exterior[3]}" alt="${carName} - Vista 3/4 trasera"></div>` : '';
+        const photo5 = exterior[4] ? `<div class="gallery-item"><img src="${exterior[4]}" alt="${carName} - Vista trasera"></div>` : '';
         blockB.innerHTML = photo4 + photo5;
         container.appendChild(blockB);
     }
@@ -179,10 +307,12 @@ function populateGallery(exteriorImages, interiorImages) {
     if (interior.length >= 1) {
         const blockC = document.createElement('div');
         blockC.className = 'gallery-block block-c';
+        const interiorViews = ['salpicadero', 'asientos delanteros', 'consola central'];
         interior.slice(0, 3).forEach((img, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
-            item.innerHTML = `<img src="${img}" alt="Interior ${i + 1}">`;
+            const viewName = interiorViews[i] || `interior ${i + 1}`;
+            item.innerHTML = `<img src="${img}" alt="${carName} - ${viewName}">`;
             blockC.appendChild(item);
         });
         container.appendChild(blockC);
@@ -192,10 +322,12 @@ function populateGallery(exteriorImages, interiorImages) {
     if (interior.length > 3) {
         const blockD = document.createElement('div');
         blockD.className = 'gallery-block block-d';
+        const detailViews = ['asientos traseros', 'maletero', 'volante', 'panel de control', 'detalles', 'acabados'];
         interior.slice(3).forEach((img, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
-            item.innerHTML = `<img src="${img}" alt="Detalle ${i + 1}">`;
+            const viewName = detailViews[i] || `detalle ${i + 1}`;
+            item.innerHTML = `<img src="${img}" alt="${carName} - ${viewName}">`;
             blockD.appendChild(item);
         });
         container.appendChild(blockD);
