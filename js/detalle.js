@@ -18,6 +18,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
+    // Set canonical URL to tell Google this page is unique
+    const canonicalUrl = `https://autosjveloce.com/Coches/detalle.html?id=${vehicleId}`;
+    const canonicalTag = document.getElementById('canonical-url');
+    if (canonicalTag) {
+        canonicalTag.setAttribute('href', canonicalUrl);
+    }
+
+
     try {
         // 2. Fetch vehicle data from Firebase
         const docRef = doc(db, COLLECTION_NAME, vehicleId);
