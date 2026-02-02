@@ -202,7 +202,14 @@ function generateStructuredData(car) {
                 "@type": "AutoDealer",
                 "name": "Autos JVeloce",
                 "telephone": "+34603945181",
-                "url": "https://autosjveloce.com"
+                "url": "https://autosjveloce.com",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Sevilla",
+                    "addressRegion": "Andalucía",
+                    "postalCode": "41000",
+                    "addressCountry": "ES"
+                }
             }
         },
         "url": window.location.href
