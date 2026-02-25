@@ -1,143 +1,823 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
+
+    <!-- Página de reseñas -->
     <url>
-        <loc>https://autosjveloce.com/Coches/detalle.html?id=citroën-c4-picasso-2016</loc>
+        <loc>https://autosjveloce.com/resenas.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Coches publicados -->
+    <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704722991_main.png?alt=media&amp;token=eff5a1b0-1daf-4e0c-b785-21a05ed7f845</image:loc>
             <image:caption>Citroën C4 Picasso 2016 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769705503067_exterior_0.png?alt=media&amp;token=1358df1f-b1c8-4494-8090-ebdf6de9d549</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769705504802_exterior_1.png?alt=media&amp;token=8df7b1a6-d785-4e12-86d7-b9a8a56a3b7c</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704729569_exterior_2.png?alt=media&amp;token=7d4fbf20-76c5-4cc1-b30d-c0d9b9ca3879</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704731091_exterior_3.png?alt=media&amp;token=14baf6a9-decb-4569-95a9-b909dbeb0a26</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769705547778_exterior_4.png?alt=media&amp;token=8daf0137-35aa-4f96-9ae4-d6071fa93b06</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704733852_interior_0.png?alt=media&amp;token=c909f214-e393-4fe0-9845-1e641c29ef2d</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704735415_interior_1.png?alt=media&amp;token=02e3b84a-f7a1-4502-bde8-a52320fcbbbc</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704736829_interior_2.png?alt=media&amp;token=9831c3ba-c0ec-43eb-9aee-e7799bcb10c9</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704738235_interior_3.png?alt=media&amp;token=1eb30324-3a6c-4b69-ae0c-556a9a2227b4</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704739586_interior_4.png?alt=media&amp;token=c065966e-76d3-42f0-a7e8-04e7af74c721</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Maletero</image:caption>
+        </image:image>
     </url>
     <url>
-        <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-doblò-2021</loc>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769636018902_main.png?alt=media&amp;token=e1e4c801-2101-49a0-bdef-1e906a61cce9</image:loc>
             <image:caption>Fiat Doblò 2021 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769635993549_exterior_0.png?alt=media&amp;token=dd5e3b0b-bf86-43ed-92d2-543bf0696bfb</image:loc>
+            <image:caption>Fiat Doblò 2021 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769635994941_exterior_1.png?alt=media&amp;token=b496c1bc-0b36-48f0-9442-a35864b898c3</image:loc>
+            <image:caption>Fiat Doblò 2021 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769635996128_exterior_2.png?alt=media&amp;token=8b448149-93ba-4cf4-956e-43663b0d01b8</image:loc>
+            <image:caption>Fiat Doblò 2021 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769635997496_exterior_3.png?alt=media&amp;token=d0f2f003-ed4f-4d7d-bb3f-e6b3713b2edb</image:loc>
+            <image:caption>Fiat Doblò 2021 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769635998823_exterior_4.png?alt=media&amp;token=97a4c3bb-2cd9-4a97-a587-bbfb3b907ffd</image:loc>
+            <image:caption>Fiat Doblò 2021 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769636000184_interior_0.png?alt=media&amp;token=2e6132e8-146a-4593-b524-73db713005e8</image:loc>
+            <image:caption>Fiat Doblò 2021 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769636001569_interior_1.png?alt=media&amp;token=c57fd9da-59ad-447c-893e-9a476fa66d01</image:loc>
+            <image:caption>Fiat Doblò 2021 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769636002705_interior_2.png?alt=media&amp;token=4eaed568-7342-4568-bfb4-8c952fa9c58e</image:loc>
+            <image:caption>Fiat Doblò 2021 - Consola central</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636458295_main.png?alt=media&amp;token=3edbdefb-2e81-40db-8497-773ab6d87252</image:loc>
             <image:caption>Ford 2014 2014 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636461654_exterior_0.png?alt=media&amp;token=75c67bee-635c-476d-90ca-bbe05c71fa74</image:loc>
+            <image:caption>Ford 2014 2014 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636463312_exterior_1.png?alt=media&amp;token=49346545-ffe9-4b12-8f13-668e64dcc5e4</image:loc>
+            <image:caption>Ford 2014 2014 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636465163_exterior_2.png?alt=media&amp;token=34712698-51f2-4eaa-a591-e69994e21ad2</image:loc>
+            <image:caption>Ford 2014 2014 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636466483_exterior_3.png?alt=media&amp;token=4fc9542e-f886-45ea-8fae-e6fff9f57e09</image:loc>
+            <image:caption>Ford 2014 2014 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636467728_exterior_4.png?alt=media&amp;token=4b7ac68e-6bb0-4f66-ad7b-37555d8e3445</image:loc>
+            <image:caption>Ford 2014 2014 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636469009_interior_0.png?alt=media&amp;token=f2124f37-8a5e-4a45-bb4a-f59f1cd06d0f</image:loc>
+            <image:caption>Ford 2014 2014 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636471076_interior_1.png?alt=media&amp;token=b5550167-1886-4dac-9d83-6565bb13fc84</image:loc>
+            <image:caption>Ford 2014 2014 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636472764_interior_2.png?alt=media&amp;token=e230df3d-b906-41ef-b491-13d0a0b2f381</image:loc>
+            <image:caption>Ford 2014 2014 - Consola central</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382602020_main.png?alt=media&amp;token=3d2aa2fc-3828-4054-8b21-29c41f70c5b5</image:loc>
             <image:caption>KIA Sportage 2020 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382514499_exterior_0.png?alt=media&amp;token=41327369-558d-4e42-8815-efbc5653c03b</image:loc>
+            <image:caption>KIA Sportage 2020 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382516339_exterior_1.png?alt=media&amp;token=0ab5abf0-5193-4308-af37-5a53f0be62e4</image:loc>
+            <image:caption>KIA Sportage 2020 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382517924_exterior_2.png?alt=media&amp;token=87a34eea-97e5-4fef-9ca0-52c24255e41d</image:loc>
+            <image:caption>KIA Sportage 2020 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382520336_exterior_3.png?alt=media&amp;token=4cb5b04c-f602-448a-a040-8bf291e493e9</image:loc>
+            <image:caption>KIA Sportage 2020 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382522072_exterior_4.png?alt=media&amp;token=82040657-56d5-4aef-ae4d-8859588110af</image:loc>
+            <image:caption>KIA Sportage 2020 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382522786_interior_0.png?alt=media&amp;token=508813a5-a232-4d12-92e8-5f6ba01afdb6</image:loc>
+            <image:caption>KIA Sportage 2020 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382524112_interior_1.png?alt=media&amp;token=f4429e8c-3c54-4007-b004-0db77def9d09</image:loc>
+            <image:caption>KIA Sportage 2020 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382525706_interior_2.png?alt=media&amp;token=e4aca11c-e5da-4fd1-be0a-a047fd1f203c</image:loc>
+            <image:caption>KIA Sportage 2020 - Consola central</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383681075_main.png?alt=media&amp;token=3fdfebb2-2d72-428c-85d1-b43a4b4f8a6d</image:loc>
             <image:caption>Mercedes Clase A 200d 2019 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383684338_exterior_0.png?alt=media&amp;token=2982a275-99b9-4972-a5dc-6d5b377c5b8e</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383685750_exterior_1.png?alt=media&amp;token=738bed48-b07e-4b15-b963-38896be62d64</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383687512_exterior_2.png?alt=media&amp;token=44f2e08f-413c-4726-82f3-018640da9ad1</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383688947_exterior_3.png?alt=media&amp;token=d038362c-b6d4-49b3-af2d-7658c8e58f93</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383690506_exterior_4.png?alt=media&amp;token=3f3d0b2c-1ff0-4cb7-8263-cd55a526ac44</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383692828_interior_0.png?alt=media&amp;token=319878ad-02a5-4578-9f56-e7f469966dc8</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383694452_interior_1.png?alt=media&amp;token=0846ca63-0dcc-469c-9792-2193cb5c6a6c</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383696206_interior_2.png?alt=media&amp;token=a6242628-d1b9-4d30-9c83-605f35bf9911</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383697887_interior_3.png?alt=media&amp;token=28be30fc-c6b8-492f-b3f6-184ec4e8f0cf</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383699436_interior_4.png?alt=media&amp;token=a89ac976-23ef-46b9-84d2-f94a36a2002c</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383700718_interior_5.png?alt=media&amp;token=eab50fd3-824f-4b23-960d-a0759d67920f</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Volante</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635095090_main.png?alt=media&amp;token=5ea78e5b-33f9-43c9-ada5-1c424003a9f0</image:loc>
             <image:caption>Nissan Juke 2017 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635099742_exterior_0.png?alt=media&amp;token=ddcbba80-5f67-46f7-9266-8b15ae7a79be</image:loc>
+            <image:caption>Nissan Juke 2017 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635101038_exterior_1.png?alt=media&amp;token=3fc0d440-d329-4321-a9bd-d49cea1dbd97</image:loc>
+            <image:caption>Nissan Juke 2017 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635102516_exterior_2.png?alt=media&amp;token=32db2481-9095-47c8-ba5f-a6f29e33e7e9</image:loc>
+            <image:caption>Nissan Juke 2017 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635103933_exterior_3.png?alt=media&amp;token=3d51d460-c235-42ab-a8a0-f84690b81b24</image:loc>
+            <image:caption>Nissan Juke 2017 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635105355_exterior_4.png?alt=media&amp;token=9c24eeec-f632-4921-821e-3d48fb2d3e0d</image:loc>
+            <image:caption>Nissan Juke 2017 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635106852_interior_0.png?alt=media&amp;token=e4670cb9-48a2-482f-82f6-4c95fa6eac6a</image:loc>
+            <image:caption>Nissan Juke 2017 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635108130_interior_1.png?alt=media&amp;token=cb63c870-4be6-49a7-95c4-7357362f78b0</image:loc>
+            <image:caption>Nissan Juke 2017 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635109833_interior_2.png?alt=media&amp;token=4c7fb5c5-0f5f-4990-9a6e-ac6bc1d076e8</image:loc>
+            <image:caption>Nissan Juke 2017 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635111091_interior_3.png?alt=media&amp;token=980fb6f8-4d36-4c4a-925e-1c8605de2540</image:loc>
+            <image:caption>Nissan Juke 2017 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635112370_interior_4.png?alt=media&amp;token=ec8beb29-fe0e-433c-ad53-3c6971241eee</image:loc>
+            <image:caption>Nissan Juke 2017 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635113682_interior_5.png?alt=media&amp;token=93fc7c9f-1029-436f-81d3-593b1253b27d</image:loc>
+            <image:caption>Nissan Juke 2017 - Volante</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634459434_main.png?alt=media&amp;token=5abec11c-8d19-439d-b522-07f9753f58f8</image:loc>
             <image:caption>Nissan Terrano 2003 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634462978_exterior_0.png?alt=media&amp;token=ce7ab6c5-796f-4e76-89d4-4e4dbd1d8180</image:loc>
+            <image:caption>Nissan Terrano 2003 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634464692_exterior_1.png?alt=media&amp;token=26f581bb-e04d-45c2-91d9-b521d0d8eb9d</image:loc>
+            <image:caption>Nissan Terrano 2003 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634466745_exterior_2.png?alt=media&amp;token=17458017-fb2e-4bcf-a64d-5f4f226621d6</image:loc>
+            <image:caption>Nissan Terrano 2003 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634468463_exterior_3.png?alt=media&amp;token=2c9639d2-10f8-49c1-bde5-59861f124c29</image:loc>
+            <image:caption>Nissan Terrano 2003 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634469731_exterior_4.png?alt=media&amp;token=6adf9fda-3c3e-4f61-9085-453662962a2d</image:loc>
+            <image:caption>Nissan Terrano 2003 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634471035_interior_0.png?alt=media&amp;token=85f2d25d-935f-43d9-a6fd-e6bc46025567</image:loc>
+            <image:caption>Nissan Terrano 2003 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634472321_interior_1.png?alt=media&amp;token=fde2bdf9-d8b6-41f0-b1a4-1c3aa0b4ff23</image:loc>
+            <image:caption>Nissan Terrano 2003 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634473705_interior_2.png?alt=media&amp;token=b2d8195f-430a-40c9-b4e3-e4ede16e66a1</image:loc>
+            <image:caption>Nissan Terrano 2003 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634475327_interior_3.png?alt=media&amp;token=a0c05bfd-050c-43b6-8cbf-367f2b06cef6</image:loc>
+            <image:caption>Nissan Terrano 2003 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634476658_interior_4.png?alt=media&amp;token=b23da141-3db2-4fe4-9b39-3773d6d95785</image:loc>
+            <image:caption>Nissan Terrano 2003 - Maletero</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360789273_main.png?alt=media&amp;token=56d822c5-2afa-4bcf-a3b1-29ba4bc41b32</image:loc>
             <image:caption>Peugeot 3008 2016 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360792210_exterior_0.png?alt=media&amp;token=c0d0b314-4930-457c-a85a-bffa7845584b</image:loc>
+            <image:caption>Peugeot 3008 2016 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360794284_exterior_1.png?alt=media&amp;token=114c7343-90d3-4c01-8259-a3f1aeca5dd6</image:loc>
+            <image:caption>Peugeot 3008 2016 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360796243_exterior_2.png?alt=media&amp;token=36d77297-a0fa-48e1-bf5e-f61ffe9c15b0</image:loc>
+            <image:caption>Peugeot 3008 2016 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360797860_exterior_3.png?alt=media&amp;token=95832132-8a01-44a1-85d8-8af8d6d93737</image:loc>
+            <image:caption>Peugeot 3008 2016 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360799967_exterior_4.png?alt=media&amp;token=3e3ddb99-4ece-4f4d-8577-b5369101a7a5</image:loc>
+            <image:caption>Peugeot 3008 2016 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360801578_interior_0.png?alt=media&amp;token=0b500191-be51-4765-a591-c89a95435038</image:loc>
+            <image:caption>Peugeot 3008 2016 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360803298_interior_1.png?alt=media&amp;token=8dc94a6d-37db-41ef-9049-f1430dac8c1f</image:loc>
+            <image:caption>Peugeot 3008 2016 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360804862_interior_2.png?alt=media&amp;token=8f998d75-4a09-40a7-9554-730b0d1ba5e1</image:loc>
+            <image:caption>Peugeot 3008 2016 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360806357_interior_3.png?alt=media&amp;token=80e3f49d-1aac-450b-a993-128ecf2b303d</image:loc>
+            <image:caption>Peugeot 3008 2016 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360808438_interior_4.png?alt=media&amp;token=0657811c-e889-468e-ae47-877aa74a95ec</image:loc>
+            <image:caption>Peugeot 3008 2016 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360810316_interior_5.png?alt=media&amp;token=9d6d3d3f-86de-44d6-941d-7ac630628aa5</image:loc>
+            <image:caption>Peugeot 3008 2016 - Volante</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704240170_main.png?alt=media&amp;token=0d91c88d-e6a5-4052-8f3b-f924f78c2533</image:loc>
             <image:caption>Peugeot 5008 2010 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704243282_exterior_0.png?alt=media&amp;token=f78f267d-8a46-4566-9a1d-08171791ee6c</image:loc>
+            <image:caption>Peugeot 5008 2010 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704244687_exterior_1.png?alt=media&amp;token=6fc310f5-0f61-4264-b458-9f273b140517</image:loc>
+            <image:caption>Peugeot 5008 2010 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704246605_exterior_2.png?alt=media&amp;token=68df8f1d-c298-4beb-a20a-bf2a50128e12</image:loc>
+            <image:caption>Peugeot 5008 2010 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704248379_exterior_3.png?alt=media&amp;token=d4e1e962-a8ef-457d-bf2c-df43616ec563</image:loc>
+            <image:caption>Peugeot 5008 2010 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704249724_exterior_4.png?alt=media&amp;token=b4ce4c84-b2f8-4ae3-8a75-af31ebc87100</image:loc>
+            <image:caption>Peugeot 5008 2010 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704251162_interior_0.png?alt=media&amp;token=e00d32d1-03a0-4893-aa95-384c2e6445d4</image:loc>
+            <image:caption>Peugeot 5008 2010 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704252916_interior_1.png?alt=media&amp;token=a9176ff0-92b1-48f2-8c8e-3201d61f577e</image:loc>
+            <image:caption>Peugeot 5008 2010 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704254250_interior_2.png?alt=media&amp;token=c14857dd-881c-4821-8e6a-e2c8b2af96a9</image:loc>
+            <image:caption>Peugeot 5008 2010 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704255519_interior_3.png?alt=media&amp;token=a5bd8b5d-eced-4a71-bce6-d81a6ee97091</image:loc>
+            <image:caption>Peugeot 5008 2010 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704256815_interior_4.png?alt=media&amp;token=f5446a6f-2e7f-4a69-9015-3073928afd2c</image:loc>
+            <image:caption>Peugeot 5008 2010 - Maletero</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453463794_main.png?alt=media&amp;token=00bc4277-169c-49f4-b329-3b3d8077cbac</image:loc>
             <image:caption>Peugeot Expert 2017 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453427923_exterior_0.png?alt=media&amp;token=350ef326-0190-4cdc-9416-204395a93c37</image:loc>
+            <image:caption>Peugeot Expert 2017 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453429455_exterior_1.png?alt=media&amp;token=195ea436-9dff-4f20-a62e-fe6ea6d45c97</image:loc>
+            <image:caption>Peugeot Expert 2017 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453430749_exterior_2.png?alt=media&amp;token=3a1c5c6c-1d1d-4954-8037-fee822b7c0fc</image:loc>
+            <image:caption>Peugeot Expert 2017 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453432262_exterior_3.png?alt=media&amp;token=c67e5fc1-1734-417a-a9a6-889ffdc4256b</image:loc>
+            <image:caption>Peugeot Expert 2017 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453433587_exterior_4.png?alt=media&amp;token=aad5ac10-80e9-4696-acdb-ca9735e6e0a3</image:loc>
+            <image:caption>Peugeot Expert 2017 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453434932_interior_0.png?alt=media&amp;token=37bd82f7-dc22-4e3c-bfaa-6837467765bb</image:loc>
+            <image:caption>Peugeot Expert 2017 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453436322_interior_1.png?alt=media&amp;token=58c03af8-df11-44b2-8b0e-d3d5102ed72d</image:loc>
+            <image:caption>Peugeot Expert 2017 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453437553_interior_2.png?alt=media&amp;token=cf289fe2-06d5-4f48-91a0-b8195843c1db</image:loc>
+            <image:caption>Peugeot Expert 2017 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453438831_interior_3.png?alt=media&amp;token=2780f77b-5308-43d3-a260-b6f10b35dbb4</image:loc>
+            <image:caption>Peugeot Expert 2017 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453440081_interior_4.png?alt=media&amp;token=e4e0497d-46f7-446b-90e0-827811e12b98</image:loc>
+            <image:caption>Peugeot Expert 2017 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453441321_interior_5.png?alt=media&amp;token=342cc4d5-5c87-458c-9ea0-db4f935a621a</image:loc>
+            <image:caption>Peugeot Expert 2017 - Volante</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453442569_interior_6.png?alt=media&amp;token=27440988-5a4d-4c7e-b184-f6166b852ca0</image:loc>
+            <image:caption>Peugeot Expert 2017 - Panel de control</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453443786_interior_7.png?alt=media&amp;token=e5a7f7d9-ce47-4cab-a11f-4c6e73caf03d</image:loc>
+            <image:caption>Peugeot Expert 2017 - Detalles</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPrueba%2FPrueba%2F1769368105799_main.png?alt=media&amp;token=e2ee0afe-e575-46ee-8e2d-389ed2370669</image:loc>
             <image:caption>Land Rover Discovery Sport 2016 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368327461_exterior_0.png?alt=media&amp;token=3f85369c-3695-4810-b4c2-5c509a0c70b8</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368329146_exterior_1.png?alt=media&amp;token=5ed32487-51fd-4b39-8596-5d5ecd7c0244</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368330794_exterior_2.png?alt=media&amp;token=46972d31-a752-4191-aa29-e4dee367fb5e</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368332722_exterior_3.png?alt=media&amp;token=cf5ef1e8-9568-42dd-adba-f67ab4f80427</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368334024_exterior_4.png?alt=media&amp;token=3a1af2b6-f12b-4451-83cb-eba6fbfc1e26</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368335613_interior_0.png?alt=media&amp;token=88634d17-001e-4c33-9ca8-eefe078df405</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368336864_interior_1.png?alt=media&amp;token=35a1dfbe-7ea2-4df2-a881-55d39ef50f0f</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368338070_interior_2.png?alt=media&amp;token=41955028-67d6-4a35-8fa9-72a91e94b31d</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368339535_interior_3.png?alt=media&amp;token=6ebe1e45-d0ad-4bff-b5a7-7e57eef3ccad</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368341008_interior_4.png?alt=media&amp;token=4fa077be-017a-4310-9eab-f328dcd41f33</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368342257_interior_5.png?alt=media&amp;token=99c5a30b-54b0-4b1a-9038-4706d29044cb</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Volante</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368343474_interior_6.png?alt=media&amp;token=0e3561ed-2aba-4cca-86f7-a7a163449e6c</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Panel de control</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FLand_Rover%2FDiscovery_Sport%2F1769368344851_interior_7.png?alt=media&amp;token=adbbc75d-18e0-4221-862b-0de137ada256</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Detalles</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635586166_main.png?alt=media&amp;token=6f7d3d53-5f6d-45a7-ad67-0767624671a5</image:loc>
             <image:caption>Seat Toledo 2018 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635589898_exterior_0.png?alt=media&amp;token=18bd16c7-9a9c-4ef2-881a-ca78eb2938bf</image:loc>
+            <image:caption>Seat Toledo 2018 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635591076_exterior_1.png?alt=media&amp;token=d359e094-2c4e-46a2-9e94-f9c25413c470</image:loc>
+            <image:caption>Seat Toledo 2018 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635593109_exterior_2.png?alt=media&amp;token=e854992d-3f32-4cb1-8e46-66eee0d2e36b</image:loc>
+            <image:caption>Seat Toledo 2018 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635595173_exterior_3.png?alt=media&amp;token=74aecded-b392-4aa1-a572-a89131aeae65</image:loc>
+            <image:caption>Seat Toledo 2018 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635596712_exterior_4.png?alt=media&amp;token=d4a3c2ba-f36b-4e2c-960b-653e2bea3ab5</image:loc>
+            <image:caption>Seat Toledo 2018 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635598024_interior_0.png?alt=media&amp;token=588a0092-0e0d-48ca-b1d2-eb41d229419b</image:loc>
+            <image:caption>Seat Toledo 2018 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635599317_interior_1.png?alt=media&amp;token=f19e03d3-8a3d-4fb5-84fc-da64428fe6bc</image:loc>
+            <image:caption>Seat Toledo 2018 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635600478_interior_2.png?alt=media&amp;token=80cbb0ec-51ec-4497-a6d1-eda4a6d49d0f</image:loc>
+            <image:caption>Seat Toledo 2018 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635601606_interior_3.png?alt=media&amp;token=f31e6958-e0f5-421b-98ed-ec2560bc9b12</image:loc>
+            <image:caption>Seat Toledo 2018 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635602736_interior_4.png?alt=media&amp;token=55dc643a-287e-4346-b89f-b908c7b04ea1</image:loc>
+            <image:caption>Seat Toledo 2018 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635603886_interior_5.png?alt=media&amp;token=cbf51496-0b04-4b8e-92e0-6672b0946cbf</image:loc>
+            <image:caption>Seat Toledo 2018 - Volante</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635604985_interior_6.png?alt=media&amp;token=fdb4faad-e7d5-4e7a-8451-cf639ef37148</image:loc>
+            <image:caption>Seat Toledo 2018 - Panel de control</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363760650_main.png?alt=media&amp;token=c284141c-1f0d-4f4b-b813-3e143a028564</image:loc>
             <image:caption>Skoda Octavia 2018 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363762271_exterior_0.png?alt=media&amp;token=e7f09851-f23b-48d2-a81f-77a37b5d8b95</image:loc>
+            <image:caption>Skoda Octavia 2018 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363764381_exterior_1.png?alt=media&amp;token=9a2d7d4b-88a2-4372-8cca-ac923cfa5816</image:loc>
+            <image:caption>Skoda Octavia 2018 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363766053_exterior_2.png?alt=media&amp;token=5c9df87b-4c92-4721-b96c-30c36933df3d</image:loc>
+            <image:caption>Skoda Octavia 2018 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363767573_exterior_3.png?alt=media&amp;token=bd16ee9d-cdee-4cd7-8933-1c4b715be595</image:loc>
+            <image:caption>Skoda Octavia 2018 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363768812_exterior_4.png?alt=media&amp;token=7b69ae40-e809-4f58-92ed-60c4dbb9a60b</image:loc>
+            <image:caption>Skoda Octavia 2018 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363770170_interior_0.png?alt=media&amp;token=f04aef39-1d1d-4cdf-a00d-a1307572cf0d</image:loc>
+            <image:caption>Skoda Octavia 2018 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363771485_interior_1.png?alt=media&amp;token=b922edb5-4678-4412-bdaa-8085bdf8058f</image:loc>
+            <image:caption>Skoda Octavia 2018 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363772878_interior_2.png?alt=media&amp;token=45d84aa1-d689-4638-816b-e9074730dc09</image:loc>
+            <image:caption>Skoda Octavia 2018 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363774204_interior_3.png?alt=media&amp;token=88e73d4c-c51e-409f-81ca-62f5bb1b5b0a</image:loc>
+            <image:caption>Skoda Octavia 2018 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363775591_interior_4.png?alt=media&amp;token=8eea3dd3-4194-46f7-94a9-30ac30a03a79</image:loc>
+            <image:caption>Skoda Octavia 2018 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363776996_interior_5.png?alt=media&amp;token=bf7e9745-251b-4a5e-9db5-520c48f685bb</image:loc>
+            <image:caption>Skoda Octavia 2018 - Volante</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769557347005_main.png?alt=media&amp;token=420b0d80-a5d4-4c5a-9fb0-8157e53477c7</image:loc>
             <image:caption>Toyota Auris Hybrid 2014 - Imagen principal</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470928863_exterior_0.png?alt=media&amp;token=68473107-573c-48d3-b8e6-2ecd4c847a01</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470931396_exterior_1.png?alt=media&amp;token=04a38121-c6a6-42f1-b230-110d55383d3a</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470933915_exterior_2.png?alt=media&amp;token=ee0fe64b-4c22-4c34-b9b5-d47125bb4392</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470936033_exterior_3.png?alt=media&amp;token=3234a78b-6fae-4ce6-94f7-55af5b3b0dbc</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470937855_exterior_4.png?alt=media&amp;token=6dc51ab2-63e9-4dc8-a98d-91b5ef7eb069</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470939707_interior_0.png?alt=media&amp;token=233f4d31-b38c-4f27-9d7e-7528edf2dc99</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470941118_interior_1.png?alt=media&amp;token=ffaceb6a-739c-4999-b0fc-7eb06f72a187</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470942829_interior_2.png?alt=media&amp;token=c21b432b-3066-41cf-bd88-d1f55949abae</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470944305_interior_3.png?alt=media&amp;token=e4e01ec7-e454-402e-b74a-97a744a48639</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470946060_interior_4.png?alt=media&amp;token=84c1345a-49dd-41ab-af8e-1d3c1ecaa69b</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470947477_interior_5.png?alt=media&amp;token=426ded70-cad8-4826-b042-31dfb76b98ac</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Volante</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470948912_interior_6.png?alt=media&amp;token=63f7d7b7-3fbe-4d19-be4a-c3fe80aa7242</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Panel de control</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769470950484_interior_7.png?alt=media&amp;token=10d27c10-fe8b-4b72-a9ea-0172bf183571</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Detalles</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
+        <lastmod>2026-02-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769697054298_main.png?alt=media&amp;token=8da7294b-fbab-48b8-9f6a-583196773e97</image:loc>
             <image:caption>Volkswagen Passat Variant 2015 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695694370_exterior_0.png?alt=media&amp;token=c5d42b10-e209-47e3-a2d1-b4c592e2cafc</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695696298_exterior_1.png?alt=media&amp;token=34c81793-7292-422d-9b10-ce9442a6709e</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695698083_exterior_2.png?alt=media&amp;token=098e58aa-5033-4173-915d-0774427f8bc0</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695699922_exterior_3.png?alt=media&amp;token=868e647f-682a-4fe7-8314-61d04b32b31d</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695701636_exterior_4.png?alt=media&amp;token=4f367e2f-9f69-478b-95da-34a7e52c4eab</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695707164_interior_2.png?alt=media&amp;token=b5c4ba19-d4a9-44d2-b58e-0c9eb5f76058</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695710777_interior_4.png?alt=media&amp;token=092e590f-0565-41bf-a83a-63c91562656d</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695703693_interior_0.png?alt=media&amp;token=7dfd065d-e28d-4757-8cfb-80cfa6a16a47</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695705436_interior_1.png?alt=media&amp;token=6515fa86-2720-45ce-9318-ba911f4df949</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695709125_interior_3.png?alt=media&amp;token=8078825d-69f3-461e-8427-bacc87253b04</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695712378_interior_5.png?alt=media&amp;token=52e64710-9d34-4aa8-8628-8b72b87938ae</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Volante</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695713996_interior_6.png?alt=media&amp;token=ad61aff9-e1e0-4d82-aead-23c1c4dec788</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Panel de control</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769695715477_interior_7.png?alt=media&amp;token=904f9174-fcaa-4e5d-8974-077bd1154434</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Detalles</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769697324226_interior_8.png?alt=media&amp;token=f7eec4c0-7fa3-422c-a01d-4bbb1511d545</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Acabados</image:caption>
         </image:image>
     </url>
 </urlset>
