@@ -82,8 +82,6 @@ app.get('/Coches/detalle.html', async (req, res) => {
     <meta charset="UTF-8">
     <title>${carName} | Autos JVeloce Jaén</title>
     <meta name="description" content="${description}">
-    <link rel="icon" href="https://autosjveloce.com/assets/icons/favicon.png" sizes="48x48">
-    <link rel="apple-touch-icon" href="https://autosjveloce.com/assets/icons/favicon.png">
     
     <!-- Open Graph (Facebook, WhatsApp) -->
     <meta property="og:title" content="${carName} | Autos JVeloce">
@@ -99,6 +97,10 @@ app.get('/Coches/detalle.html', async (req, res) => {
     <meta name="twitter:title" content="${carName} | Autos JVeloce">
     <meta name="twitter:description" content="${description}">
     <meta name="twitter:image" content="${carImage}">
+    
+    <!-- Explicit icon tags for messenger apps -->
+    <link rel="icon" href="https://autosjveloce.com/assets/icons/favicon.png" sizes="48x48">
+    <link rel="apple-touch-icon" href="https://autosjveloce.com/assets/icons/favicon.png">
 </head>
 <body>
     <h1>${carName}</h1>
