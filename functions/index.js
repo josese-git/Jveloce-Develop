@@ -29,13 +29,27 @@ app.get('/Coches/detalle.html', async (req, res) => {
 
     // 1. If it's a normal human OR there is no car ID, send the normal HTML file
     if (!isBot(userAgent) || !carId) {
+        console.log("Serving request format: Human visitor.", { userAgent, carId });
         try {
-            // Forward the actual HTML shell from Firebase Hosting directly
-            const response = await fetch(`https://jveloce-cf602.web.app/Coches/detalle-app.html?id=${carId || ''}`);
-            const html = await response.text();
+            const https = require('https');
+            const targetUrl = `https://jveloce-cf602.web.app/Coches/detalle-app.html?id=${carId || ''}`;
+
+            const html = await new Promise((resolve, reject) => {
+                https.get(targetUrl, (res) => {
+                    if (res.statusCode < 200 || res.statusCode >= 300) {
+                        return reject(new Error('Status ' + res.statusCode));
+                    }
+                    let data = '';
+                    res.on('data', chunk => data += chunk);
+                    res.on('end', () => resolve(data));
+                }).on('error', err => reject(err));
+            });
+
+            console.log("Successfully retrieved HTML shell via proxy.");
             res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
             return res.status(200).send(html);
         } catch (error) {
+            console.error("Failed to proxy HTML shell, falling back to JS redirect:", error);
             // Ultimate fallback if internal network fails
             return res.status(200).send(`<!DOCTYPE html><html><head><title>Autos JVeloce</title></head><body><script>window.location.href="/Coches/detalle-app.html?id=${carId || ''}";</script></body></html>`);
         }
