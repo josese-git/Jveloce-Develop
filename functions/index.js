@@ -64,8 +64,12 @@ app.get('/Coches/detalle.html', async (req, res) => {
 
         const carData = doc.data();
         const carName = `${carData.brand} ${carData.model} ${carData.year || ''}`.trim();
-        const carImage = carData.image || 'https://autosjveloce.com/assets/logo%20con%20fondo.png';
 
+        // Use the third exterior gallery image (large right image in UI) if available, fallback to main image
+        let carImage = carData.image || 'https://autosjveloce.com/assets/logo%20con%20fondo.png';
+        if (carData.galleryExterior && carData.galleryExterior[2]) {
+            carImage = carData.galleryExterior[2];
+        }
         let description = `${carData.price}€`;
         if (carData.mileage) description += ` | ${carData.mileage}km`;
         if (carData.fuel) description += ` | ${carData.fuel}`;
