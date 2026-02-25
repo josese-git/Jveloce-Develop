@@ -16,6 +16,45 @@
     <meta property="og:image" content="https://autosjveloce.com/assets/logo%20con%20fondo.png">
     <meta property="og:url" content="https://autosjveloce.com/">
     <meta property="og:type" content="website">
+
+    <!-- Local Business (AutoDealer) Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      "name": "Autos JVeloce",
+      "image": "https://autosjveloce.com/assets/logo%20con%20fondo.png",
+      "@id": "https://autosjveloce.com/",
+      "url": "https://autosjveloce.com/",
+      "telephone": "+34603945181",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ctra. de Madrid N° 37",
+        "addressLocality": "Jaén",
+        "postalCode": "23009",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.785265, 
+        "longitude": -3.784403
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      "priceRange": "€€"
+    }
+    </script>
+
     <!-- Fonts: Rajdhani and Orbitron for that futuristic/sporty look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,7 +224,7 @@
             <!-- Dynamic Content Rendered by js/app.js -->
         </div>
 
-        <!-- SEO Hidden Links injected by GitHub Actions for Googlebot -->
+        <!-- SEO Links for Googlebot -->
         <div id="seo-links" style="display:none;">
             <!-- SEO_LINKS_START -->
             <a href="https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016">Citroën C4 Picasso 2016</a>
