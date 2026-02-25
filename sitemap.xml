@@ -1,102 +1,143 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Página principal -->
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-01-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
-
-    <!-- Coches publicados -->
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citroën-c4-picasso-2016</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FCitro%C3%ABn%2FC4_Picasso%2F1769704722991_main.png?alt=media&amp;token=eff5a1b0-1daf-4e0c-b785-21a05ed7f845</image:loc>
+            <image:caption>Citroën C4 Picasso 2016 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-doblò-2021</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFiat%2FDobl%C3%B2%2F1769636018902_main.png?alt=media&amp;token=e1e4c801-2101-49a0-bdef-1e906a61cce9</image:loc>
+            <image:caption>Fiat Doblò 2021 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636458295_main.png?alt=media&amp;token=3edbdefb-2e81-40db-8497-773ab6d87252</image:loc>
+            <image:caption>Ford 2014 2014 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382602020_main.png?alt=media&amp;token=3d2aa2fc-3828-4054-8b21-29c41f70c5b5</image:loc>
+            <image:caption>KIA Sportage 2020 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1769383681075_main.png?alt=media&amp;token=3fdfebb2-2d72-428c-85d1-b43a4b4f8a6d</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FJuke%2F1769635095090_main.png?alt=media&amp;token=5ea78e5b-33f9-43c9-ada5-1c424003a9f0</image:loc>
+            <image:caption>Nissan Juke 2017 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FNissan%2FTerrano%2F1769634459434_main.png?alt=media&amp;token=5abec11c-8d19-439d-b522-07f9753f58f8</image:loc>
+            <image:caption>Nissan Terrano 2003 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1769360789273_main.png?alt=media&amp;token=56d822c5-2afa-4bcf-a3b1-29ba4bc41b32</image:loc>
+            <image:caption>Peugeot 3008 2016 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F5008%2F1769704240170_main.png?alt=media&amp;token=0d91c88d-e6a5-4052-8f3b-f924f78c2533</image:loc>
+            <image:caption>Peugeot 5008 2010 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2FExpert%2F1769453463794_main.png?alt=media&amp;token=00bc4277-169c-49f4-b329-3b3d8077cbac</image:loc>
+            <image:caption>Peugeot Expert 2017 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPrueba%2FPrueba%2F1769368105799_main.png?alt=media&amp;token=e2ee0afe-e575-46ee-8e2d-389ed2370669</image:loc>
+            <image:caption>Land Rover Discovery Sport 2016 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSeat%2FToledo%2F1769635586166_main.png?alt=media&amp;token=6f7d3d53-5f6d-45a7-ad67-0767624671a5</image:loc>
+            <image:caption>Seat Toledo 2018 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSkoda%2FOctavia%2F1769363760650_main.png?alt=media&amp;token=c284141c-1f0d-4f4b-b813-3e143a028564</image:loc>
+            <image:caption>Skoda Octavia 2018 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FAuris_Hybrid%2F1769557347005_main.png?alt=media&amp;token=420b0d80-a5d4-4c5a-9fb0-8157e53477c7</image:loc>
+            <image:caption>Toyota Auris Hybrid 2014 - Imagen principal</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FPassat_Variant%2F1769697054298_main.png?alt=media&amp;token=8da7294b-fbab-48b8-9f6a-583196773e97</image:loc>
+            <image:caption>Volkswagen Passat Variant 2015 - Imagen principal</image:caption>
+        </image:image>
     </url>
 </urlset>
