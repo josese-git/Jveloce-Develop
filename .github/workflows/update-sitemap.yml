@@ -1,0 +1,38 @@
+name: Actualizar Sitemap de Google
+
+on:
+  schedule:
+    # Se ejecuta todos los días a las 04:00 AM (UTC)
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    # Permite ejecutarlo manualmente desde la pestaña "Actions"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Generar nuevo Sitemap
+        run: npm run generate-sitemap
+
+      - name: Subir cambios a GitHub (si hay nuevos coches)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          # Solo haremos un commit si el sitemap.xml realmente ha cambiado
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: automatización del sitemap con nuevos coches e imágenes" && git push)
