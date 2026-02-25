@@ -30,12 +30,14 @@ app.get('/Coches/detalle.html', async (req, res) => {
     // 1. If it's a normal human OR there is no car ID, send the normal HTML file
     if (!isBot(userAgent) || !carId) {
         try {
-            const htmlPath = path.resolve(__dirname, '../Coches/detalle-app.html');
-            const html = fs.readFileSync(htmlPath, 'utf8');
+            // Forward the actual HTML shell from Firebase Hosting directly
+            const response = await fetch(`https://jveloce-cf602.web.app/Coches/detalle-app.html?id=${carId || ''}`);
+            const html = await response.text();
+            res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
             return res.status(200).send(html);
         } catch (error) {
-            // Fallback if local file read fails (e.g., during some deployments)
-            return res.status(200).send(`<!DOCTYPE html><html><head><title>Autos JVeloce</title></head><body><script>window.location.href="/Coches/detalle-app.html?id=${carId}";</script></body></html>`);
+            // Ultimate fallback if internal network fails
+            return res.status(200).send(`<!DOCTYPE html><html><head><title>Autos JVeloce</title></head><body><script>window.location.href="/Coches/detalle-app.html?id=${carId || ''}";</script></body></html>`);
         }
     }
 
