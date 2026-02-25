@@ -21,20 +21,24 @@
                 const canonicalUrl = `https://autosjveloce.com/Coches/detalle.html?id=${vehicleId}`;
 
                 // Write Title
-                document.write(`<title>${carName} | Autos JVeloce</title>`);
+                document.write(`<title>${carName} | Autos JVeloce Jaén</title>`);
 
                 // Write Canonical
                 document.write(`<link rel="canonical" id="canonical-url" href="${canonicalUrl}">`);
 
+                // Write standard Meta Description
+                document.write(`<meta name="description" content="Descubre todos los detalles, fotos y equipamiento del ${carName} de segunda mano en Autos JVeloce, tu concesionario de confianza en Jaén.">`);
+
                 // Write Open Graph
-                document.write(`<meta property="og:title" content="${carName} | Autos JVeloce">`);
+                document.write(`<meta property="og:title" content="${carName} | Autos JVeloce Jaén">`);
                 document.write(`<meta property="og:description" content="Descubre los detalles del ${carName} en Autos JVeloce.">`);
                 document.write(`<meta property="og:url" content="${canonicalUrl}">`);
             } else {
                 // Default fallback
-                document.write('<title>Autos JVeloce | Detalle del Vehículo</title>');
+                document.write('<title>Coches de Ocasión | Autos JVeloce Jaén</title>');
                 document.write('<link rel="canonical" id="canonical-url" href="https://autosjveloce.com/Coches/detalle.html">');
-                document.write('<meta property="og:title" content="Autos JVeloce | Detalle del Vehículo">');
+                document.write('<meta name="description" content="Descubre los detalles de este coche de segunda mano y ocasión en Autos JVeloce, tu concesionario de compra-venta en Jaén.">');
+                document.write('<meta property="og:title" content="Coches de Ocasión | Autos JVeloce Jaén">');
                 document.write('<meta property="og:description" content="Descubre los detalles de este vehículo exclusivo en Autos JVeloce.">');
                 document.write('<meta property="og:url" content="https://autosjveloce.com/">');
             }
