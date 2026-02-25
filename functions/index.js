@@ -46,7 +46,7 @@ app.get('/Coches/detalle.html', async (req, res) => {
             });
 
             console.log("Successfully retrieved HTML shell via proxy.");
-            res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
+            res.set('Cache-Control', 'private, no-cache, no-store, must-revalidate');
             return res.status(200).send(html);
         } catch (error) {
             console.error("Failed to proxy HTML shell, falling back to JS redirect:", error);
@@ -98,11 +98,12 @@ app.get('/Coches/detalle.html', async (req, res) => {
     <img src="${carImage}" alt="${carName}">
     <script>
         // Just in case a real browser accidentally gets here, redirect them nicely
-        window.location.replace("/Coches/detalle.html?id=${carId}");
+        window.location.replace("/Coches/detalle-app.html?id=${carId}");
     </script>
 </body>
 </html>`;
 
+        res.set('Cache-Control', 'private, no-cache, no-store, must-revalidate');
         return res.status(200).send(rawHtml);
 
     } catch (error) {
