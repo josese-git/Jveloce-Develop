@@ -1,0 +1,34 @@
+name: Deploy to Firebase Hosting & Functions on Merge
+
+on:
+  push:
+    branches:
+      - main
+    # Only run this workflow if files outside of the automated sitemap change
+    paths-ignore:
+      - 'sitemap.xml'
+      - 'index.html'
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: |
+          npm ci
+          cd functions && npm install
+
+      - name: Deploy to Firebase Hosting and Functions
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting,functions
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

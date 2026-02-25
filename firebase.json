@@ -1,0 +1,36 @@
+{
+    "hosting": {
+        "public": ".",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**",
+            "functions/**",
+            "package.json",
+            "package-lock.json",
+            "generate-sitemap.js"
+        ],
+        "rewrites": [
+            {
+                "source": "/Coches/detalle.html",
+                "function": "renderSocialTags"
+            }
+        ]
+    },
+    "functions": [
+        {
+            "source": "functions",
+            "codebase": "default",
+            "ignore": [
+                "node_modules",
+                ".git",
+                "firebase-debug.log",
+                "firebase-debug.*.log",
+                "*.local"
+            ],
+            "predeploy": [
+                "npm --prefix \"$RESOURCE_DIR\" run lint"
+            ]
+        }
+    ]
+}
