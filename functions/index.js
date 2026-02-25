@@ -83,6 +83,8 @@ app.get('/Coches/detalle.html', async (req, res) => {
     <meta property="og:title" content="${carName} | Autos JVeloce">
     <meta property="og:description" content="${description}">
     <meta property="og:image" content="${carImage}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://autosjveloce.com/Coches/detalle.html?id=${carId}">
     <meta property="og:type" content="article">
     
