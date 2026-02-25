@@ -72,7 +72,7 @@ app.get('/Coches/detalle.html', async (req, res) => {
         }
         let description = `${carData.price}€`;
         if (carData.fuel) description += ` | ${carData.fuel}`;
-        if (carData.km) description += ` | ${carData.km}km`;
+        if (carData.km) description += ` | ${carData.km}`;
         description += ` - Descubre este increíble ${carName} en Autos JVeloce Jaén.`;
 
         // 3. Return the exact Meta Tags the bot needs (No javascript required)
