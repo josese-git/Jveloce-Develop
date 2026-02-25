@@ -124,9 +124,20 @@ function populateVehicleData(car) {
  */
 function updateMetaTags(car) {
     const carTitle = `${car.brand} ${car.model} ${car.year || ''}`.trim();
-    const carDescription = car.description && car.description.trim() !== ''
-        ? car.description.substring(0, 160)
-        : `${carTitle} - ${car.km || 'N/D'} km, ${car.fuel || 'N/D'}, ${car.cv || 'N/D'} CV. Disponible en Autos JVeloce.`;
+
+    let priceStr = 'N/D€';
+    if (car.price) {
+        let numericPrice = car.price.toString().replace(/[€\s]/g, '');
+        numericPrice = numericPrice.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        priceStr = `${numericPrice}€`;
+    }
+
+    let dynamicDesc = `${priceStr}`;
+    if (car.fuel && car.fuel !== 'N/D') dynamicDesc += ` | ${car.fuel}`;
+    if (car.km && car.km !== 'N/D') dynamicDesc += ` | ${car.km}`;
+    dynamicDesc += ` - Descubre este increíble ${carTitle} en Autos JVeloce Jaén.`;
+
+    const carDescription = dynamicDesc;
 
     // Update or create meta tags
     updateOrCreateMetaTag('property', 'og:title', carTitle);
