@@ -104,10 +104,39 @@ async function generateSitemap() {
 
         xml += `</urlset>`;
 
-        // Write to file
+        // Write to sitemap file
         writeFileSync('sitemap.xml', xml, 'utf8');
         console.log('✅ Sitemap generado exitosamente: sitemap.xml');
         console.log(`📊 Total de URLs: ${vehicles.length + 2}`);
+
+        // --- NEW: Inject static links into index.html for SEO ---
+        console.log('🔄 Inyectando enlaces estáticos en index.html...');
+        try {
+            const fs = await import('fs');
+            const indexPath = 'index.html';
+            let indexHtml = fs.readFileSync(indexPath, 'utf8');
+
+            let linksHtml = '\n';
+            vehicles.forEach(vehicle => {
+                const carName = `${vehicle.brand} ${vehicle.model} ${vehicle.year || ''}`.trim();
+                const carUrl = `${BASE_URL}/Coches/detalle.html?id=${encodeURIComponent(vehicle.id)}`;
+                linksHtml += `            <a href="${carUrl}">${escapeXml(carName)}</a>\n`;
+            });
+            linksHtml += '        ';
+
+            // Regex to replace content between the injection markers
+            const regex = /(<!-- SEO_LINKS_START -->)[\s\S]*?(<!-- SEO_LINKS_END -->)/;
+            if (regex.test(indexHtml)) {
+                indexHtml = indexHtml.replace(regex, `$1${linksHtml}$2`);
+                fs.writeFileSync(indexPath, indexHtml, 'utf8');
+                console.log('✅ Enlaces SEO inyectados exitosamente en index.html');
+            } else {
+                console.warn('⚠️ No se encontraron las marcas <!-- SEO_LINKS_START --> y <!-- SEO_LINKS_END --> en index.html');
+            }
+        } catch (htmlError) {
+            console.error('❌ Error inyectando enlaces en index.html:', htmlError);
+        }
+        // --------------------------------------------------------
 
         // Count total images
         let totalImages = 0;
