@@ -4,7 +4,7 @@
     <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,7 +12,7 @@
     <!-- Página de reseñas -->
     <url>
         <loc>https://autosjveloce.com/resenas.html</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -20,7 +20,7 @@
     <!-- Coches publicados -->
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -70,7 +70,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -112,7 +112,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -154,49 +154,17 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382602020_main.png?alt=media&amp;token=3d2aa2fc-3828-4054-8b21-29c41f70c5b5</image:loc>
-            <image:caption>KIA Sportage 2020 - Imagen principal</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382514499_exterior_0.png?alt=media&amp;token=41327369-558d-4e42-8815-efbc5653c03b</image:loc>
-            <image:caption>KIA Sportage 2020 - Vista frontal</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382516339_exterior_1.png?alt=media&amp;token=0ab5abf0-5193-4308-af37-5a53f0be62e4</image:loc>
-            <image:caption>KIA Sportage 2020 - Vista 3/4 frontal</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382517924_exterior_2.png?alt=media&amp;token=87a34eea-97e5-4fef-9ca0-52c24255e41d</image:loc>
-            <image:caption>KIA Sportage 2020 - Vista lateral</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382520336_exterior_3.png?alt=media&amp;token=4cb5b04c-f602-448a-a040-8bf291e493e9</image:loc>
-            <image:caption>KIA Sportage 2020 - Vista 3/4 trasera</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382522072_exterior_4.png?alt=media&amp;token=82040657-56d5-4aef-ae4d-8859588110af</image:loc>
-            <image:caption>KIA Sportage 2020 - Vista trasera</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382522786_interior_0.png?alt=media&amp;token=508813a5-a232-4d12-92e8-5f6ba01afdb6</image:loc>
-            <image:caption>KIA Sportage 2020 - Salpicadero</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382524112_interior_1.png?alt=media&amp;token=f4429e8c-3c54-4007-b004-0db77def9d09</image:loc>
-            <image:caption>KIA Sportage 2020 - Asientos delanteros</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKIA%2FSportage%2F1769382525706_interior_2.png?alt=media&amp;token=e4aca11c-e5da-4fd1-be0a-a047fd1f203c</image:loc>
-            <image:caption>KIA Sportage 2020 - Consola central</image:caption>
+            <image:loc>assets/kia_sportage.png</image:loc>
+            <image:caption>Kia Sportage 2020 - Imagen principal</image:caption>
         </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -249,8 +217,18 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-class-a-2019</loc>
+        <lastmod>2026-02-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>assets/mercedes_a_class.png</image:loc>
+            <image:caption>Mercedes Clase A 200d 2019 - Imagen principal</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -304,7 +282,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -354,7 +332,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -407,8 +385,18 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-2016</loc>
+        <lastmod>2026-02-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>assets/peugeot_3008.png</image:loc>
+            <image:caption>Peugeot 3008 2016 - Imagen principal</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -458,7 +446,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -520,7 +508,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -582,7 +570,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -640,7 +628,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -694,7 +682,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -756,7 +744,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-02-25</lastmod>
+        <lastmod>2026-02-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
