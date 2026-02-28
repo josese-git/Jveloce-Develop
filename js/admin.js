@@ -386,8 +386,8 @@ let exteriorFiles = [null, null, null, null, null]; // 5 slots
 let interiorFiles = []; // Up to 9
 
 function setupDropZones() {
-    // Main drop zone (this still uses editor)
-    ['main'].forEach(type => {
+    // Main and Logo drop zones (these still use editor)
+    ['main', 'logo'].forEach(type => {
         const zone = document.getElementById(`${type}DropZone`);
         const input = document.getElementById(`${type}ImageInput`) || document.getElementById(`${type}Input`);
 
