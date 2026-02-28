@@ -58,6 +58,8 @@ app.get('/Coches/detalle.html', async (req, res) => {
                 carImage = carData.galleryExterior[2];
             }
 
+            const optimizedImage = `https://wsrv.nl/?url=${encodeURIComponent(carImage)}&w=800&h=420&fit=cover&output=jpeg`;
+
             let priceStr = 'N/D€';
             if (carData.price) {
                 let numericPrice = carData.price.toString().replace(/[€\s]/g, '');
@@ -79,16 +81,16 @@ app.get('/Coches/detalle.html', async (req, res) => {
     <!-- Open Graph (Facebook, WhatsApp) -->
     <meta property="og:title" content="${carName} | Autos JVeloce">
     <meta property="og:description" content="${description}">
-    <meta property="og:image" content="${carImage}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="${optimizedImage}">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="420">
     <meta property="og:url" content="https://autosjveloce.com/Coches/detalle.html?id=${carId}">
     <meta property="og:type" content="article">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${carName} | Autos JVeloce">
     <meta name="twitter:description" content="${description}">
-    <meta name="twitter:image" content="${carImage}">
+    <meta name="twitter:image" content="${optimizedImage}">
     <!-- Explicit icon tags for messenger apps -->
     <link rel="icon" href="https://autosjveloce.com/assets/icons/favicon.png" sizes="48x48">
     <link rel="apple-touch-icon" href="https://autosjveloce.com/assets/icons/favicon.png">
@@ -96,7 +98,7 @@ app.get('/Coches/detalle.html', async (req, res) => {
 <body>
     <h1>${carName}</h1>
     <p>${description}</p>
-    <img src="${carImage}" alt="${carName}">
+    <img src="${optimizedImage}" alt="${carName}">
     <script>window.location.replace("/Coches/detalle-app.html?id=${carId}");</script>
 </body>
 </html>`;
@@ -154,6 +156,8 @@ app.get('/Coches/detalle.html', async (req, res) => {
                             carImage = carData.galleryExterior[2];
                         }
 
+                        const optimizedImage = `https://wsrv.nl/?url=${encodeURIComponent(carImage)}&w=800&h=420&fit=cover&output=jpeg`;
+
                         const injectedTags = `
     <!-- SSR Injected SEO Tags -->
     <title>${carName} | Autos JVeloce Jaén</title>
@@ -161,7 +165,7 @@ app.get('/Coches/detalle.html', async (req, res) => {
     <meta name="description" content="${description}">
     <meta property="og:title" content="${carName} | Autos JVeloce Jaén">
     <meta property="og:description" content="${description}">
-    <meta property="og:image" content="${carImage}">
+    <meta property="og:image" content="${optimizedImage}">
     <meta property="og:url" content="https://autosjveloce.com/Coches/detalle.html?id=${carId}">`;
 
                         const scriptStart = html.indexOf('<!-- SEO Tags to be dynamically injected for Googlebot -->');
