@@ -913,17 +913,36 @@
 
                     <div class="form-section">
                         <h4 class="section-title">LOGO DE MARCA</h4>
-                        <div class="drop-zone" onclick="document.getElementById('logoInput').click()" id="logoDropZone"
-                            style="padding:10px;">
-                            <img src="" class="drop-zone-preview" id="logoPreview" style="height:60px;">
-                            <p>Logo Marca</p>
-                            <input type="file" id="logoInput" class="drop-input" accept="image/*">
-                            <input type="hidden" name="logo" id="finalLogoSrc">
+
+                        <!-- Custom Select/Search UI -->
+                        <div style="position: relative; margin-bottom: 15px;">
+                            <!-- Search Input -->
+                            <input type="text" id="brandSearchInput" class="form-input"
+                                placeholder="Buscar marca para logo (ej. Audi)..." autocomplete="off"
+                                onfocus="showBrandDropdown()" onblur="setTimeout(hideBrandDropdown, 200)"
+                                oninput="filterBrands()">
+
+                            <!-- Dropdown List -->
+                            <div id="brandDropdown"
+                                style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: #111; border: 1px solid #333; z-index: 50; max-height: 200px; overflow-y: auto; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-top: 5px;">
+                                <!-- List populated by JS -->
+                            </div>
                         </div>
-                        <div style="margin-top:5px; display:flex; gap:10px;">
-                            <button type="button" class="btn btn-cancel" style="padding:5px 10px; font-size:0.8rem;"
-                                onclick="openEditorFromPreview('logo')">✂ Editar</button>
-                            <input type="text" class="form-input" placeholder="URL Logo..."
+
+                        <!-- Preview Container -->
+                        <div
+                            style="background: #080808; border: 1px solid #333; border-radius: 6px; padding: 10px; display: flex; align-items: center; justify-content: center; min-height: 80px; margin-bottom: 10px;">
+                            <img src="" id="logoPreview" style="height:60px; display: none;" class="drop-zone-preview">
+                            <span id="logoPlaceholderText" style="color:#666; font-size:0.8rem;">Selecciona una marca
+                                para ver el logo</span>
+                        </div>
+
+                        <!-- Hidden Inputs -->
+                        <input type="hidden" name="logo" id="finalLogoSrc">
+
+                        <!-- Manual Override / Edit -->
+                        <div style="display:flex; gap:10px; margin-top: 5px;">
+                            <input type="text" class="form-input" placeholder="O pega URL de Logo manual..."
                                 onchange="updatePreviewFromUrl(this.value, 'logoPreview', 'finalLogoSrc')">
                         </div>
                         <div style="margin-top:10px; display:flex; gap:10px;">
@@ -1123,7 +1142,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
 
+    <script type="module">
+        import { CAR_BRANDS } from './js/car-brands.js';
 
+        // Brand Selector Logic
+        window.showBrandDropdown = function () {
+            document.getElementById('brandDropdown').style.display = 'block';
+            filterBrands(); // populate initially
+        };
+
+        window.hideBrandDropdown = function () {
+            document.getElementById('brandDropdown').style.display = 'none';
+        };
+
+        window.filterBrands = function () {
+            const input = document.getElementById('brandSearchInput').value.toLowerCase();
+            const dropdown = document.getElementById('brandDropdown');
+            dropdown.innerHTML = '';
+
+            const filtered = CAR_BRANDS.filter(brand => brand.toLowerCase().includes(input));
+
+            if (filtered.length === 0) {
+                dropdown.innerHTML = '<div style="padding: 10px; color: #666; font-size: 0.9rem;">No se encontraron marcas</div>';
+                return;
+            }
+
+            filtered.forEach(brand => {
+                const div = document.createElement('div');
+                div.style.cssText = 'padding: 10px 15px; color: #ccc; cursor: pointer; border-bottom: 1px solid #222; font-family: "Rajdhani"; font-size: 1rem; transition: background 0.2s;';
+                div.textContent = brand;
+                div.onmouseover = () => div.style.background = '#252525';
+                div.onmouseout = () => div.style.background = 'transparent';
+                div.onclick = () => selectBrand(brand);
+                dropdown.appendChild(div);
+            });
+        };
+
+        window.selectBrand = function (brand) {
+            document.getElementById('brandSearchInput').value = brand;
+            hideBrandDropdown();
+
+            const logoUrl = `https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${brand}.png`;
+            window.updatePreviewFromUrl(logoUrl, 'logoPreview', 'finalLogoSrc');
+
+            document.getElementById('logoPlaceholderText').style.display = 'none';
+            document.getElementById('logoPreview').style.display = 'block';
+        };
+    </script>
     <script type="module" src="js/admin.js"></script>
 </body>
 
