@@ -4,7 +4,7 @@
     <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,7 +12,7 @@
     <!-- Página de reseñas -->
     <url>
         <loc>https://autosjveloce.com/resenas.html</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -20,7 +20,7 @@
     <!-- Coches publicados -->
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -70,7 +70,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -112,7 +112,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -154,21 +154,21 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
-            <image:loc>assets/kia_sportage.png</image:loc>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FKia%2FSportage%2F1772281255805_main.png?alt=media&amp;token=4ad71969-725e-4a7c-bf71-023409ee6b9f</image:loc>
             <image:caption>Kia Sportage 2020 - Imagen principal</image:caption>
         </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1772100436457_main.png?alt=media&amp;token=0c0b12e6-9e22-4aad-95ca-37fefd0e4d06</image:loc>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FClase_A_200d%2F1772281224838_main.png?alt=media&amp;token=e14f5c6e-d3ea-4db3-9978-e189deeb2fd8</image:loc>
             <image:caption>Mercedes Clase A 200d 2019 - Imagen principal</image:caption>
         </image:image>
         <image:image>
@@ -218,7 +218,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mini-cooper-cabrio-2012</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -276,7 +276,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -330,7 +330,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -379,8 +379,62 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-vivaro-2018</loc>
+        <lastmod>2026-03-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772804023405_main.png?alt=media&amp;token=b4d0d1c7-c9d3-4896-8e58-ce0470bb248f</image:loc>
+            <image:caption>Opel Vivaro 2018 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772803984144_exterior_0.png?alt=media&amp;token=e80cbf30-c672-49fa-a7f2-b8fa23e0f99d</image:loc>
+            <image:caption>Opel Vivaro 2018 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772803986439_exterior_1.png?alt=media&amp;token=c5b2ab4a-278b-4700-a8d2-40a1a76f3b70</image:loc>
+            <image:caption>Opel Vivaro 2018 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772803988366_exterior_2.png?alt=media&amp;token=ef2588a3-968f-4543-8493-6b405e5f5b42</image:loc>
+            <image:caption>Opel Vivaro 2018 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772803990064_exterior_3.png?alt=media&amp;token=e30acf33-aa69-4889-a88e-8628bb498101</image:loc>
+            <image:caption>Opel Vivaro 2018 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772803991751_exterior_4.png?alt=media&amp;token=c907aaf8-f318-4f40-ac35-ec328ef6e6ca</image:loc>
+            <image:caption>Opel Vivaro 2018 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772803993791_interior_0.png?alt=media&amp;token=4db18f33-1b5e-4f35-a6ec-e388637ec0f6</image:loc>
+            <image:caption>Opel Vivaro 2018 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772803995473_interior_1.png?alt=media&amp;token=ca0fb254-d07f-400c-8fd3-eaaeaa108ecd</image:loc>
+            <image:caption>Opel Vivaro 2018 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772803999866_interior_2.png?alt=media&amp;token=3c04f415-2379-49bf-94cd-2351726f08bc</image:loc>
+            <image:caption>Opel Vivaro 2018 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772804001805_interior_3.png?alt=media&amp;token=194e5180-98e2-4a69-81dc-774f1aeda1fc</image:loc>
+            <image:caption>Opel Vivaro 2018 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772804003304_interior_4.png?alt=media&amp;token=e49c713b-4d9d-4760-9bb7-b6cf88a4ed0a</image:loc>
+            <image:caption>Opel Vivaro 2018 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FOpel%2FVivaro%2F1772804005604_interior_5.png?alt=media&amp;token=b9400054-49be-45a2-9e9d-442baa68833f</image:loc>
+            <image:caption>Opel Vivaro 2018 - Volante</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -434,17 +488,17 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-2016</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
-            <image:loc>assets/peugeot_3008.png</image:loc>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1772281233772_main.png?alt=media&amp;token=4e550e15-e3dd-423f-b444-090df42331f4</image:loc>
             <image:caption>Peugeot 3008 2016 - Imagen principal</image:caption>
         </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -494,7 +548,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -556,7 +610,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -618,7 +672,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -676,7 +730,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -730,7 +784,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -792,7 +846,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-02-28</lastmod>
+        <lastmod>2026-03-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
