@@ -239,7 +239,18 @@
                         <span style="font-size: 0.8rem; opacity: 0.7;">El anuncio puede contener errores, no supone
                             condiciones contractuales.</span>
                     </p>
-                    <a href="tel:+34603945181" class="glass-btn action-btn">LLAMAR AHORA</a>
+                    <div style="display: flex; gap: 15px; align-items: center; justify-content: center; width: 100%; max-width: 400px;">
+                        <a href="tel:+34603945181" class="glass-btn action-btn" style="flex: 1; text-align: center;">LLAMAR AHORA</a>
+                        <button id="shareVehicleBtn" class="glass-btn action-btn" style="padding: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; border-radius: 50%; width: 56px; height: 56px;" aria-label="Compartir vehículo" title="Compartir vehículo">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="18" cy="5" r="3"></circle>
+                                <circle cx="6" cy="12" r="3"></circle>
+                                <circle cx="18" cy="19" r="3"></circle>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -352,6 +363,42 @@
                     .catch(err => console.log('[SW] Registration failed:', err));
             });
         }
+    </script>
+
+    <!-- Share Button Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const shareBtn = document.getElementById('shareVehicleBtn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', async () => {
+                    const carBrand = document.getElementById('carBrand')?.textContent || '';
+                    const carModel = document.getElementById('carModel')?.textContent || '';
+                    const carName = `${carBrand} ${carModel}`.trim() || document.title;
+                    const pageUrl = window.location.href;
+                    
+                    if (navigator.share) {
+                        try {
+                            await navigator.share({
+                                title: carName,
+                                text: `¡Mira este vehículo que he encontrado en Autos JVeloce! ${carName}`,
+                                url: pageUrl
+                            });
+                            console.log('Vehículo compartido con éxito');
+                        } catch (err) {
+                            console.log('Operación de compartir cancelada o fallida:', err);
+                        }
+                    } else {
+                        // Fallback if Web Share API is not supported
+                        navigator.clipboard.writeText(pageUrl).then(() => {
+                            alert('Enlace copiado al portapapeles: ' + pageUrl);
+                        }).catch(err => {
+                            console.error('Error al copiar el enlace:', err);
+                            alert('No se pudo copiar el enlace. La URL es: ' + pageUrl);
+                        });
+                    }
+                });
+            }
+        });
     </script>
 </body>
 
