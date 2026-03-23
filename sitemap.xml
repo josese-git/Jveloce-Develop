@@ -4,7 +4,7 @@
     <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,7 +12,7 @@
     <!-- Página de reseñas -->
     <url>
         <loc>https://autosjveloce.com/resenas.html</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -20,7 +20,7 @@
     <!-- Coches publicados -->
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -70,7 +70,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -112,49 +112,49 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636458295_main.png?alt=media&amp;token=3edbdefb-2e81-40db-8497-773ab6d87252</image:loc>
-            <image:caption>Ford 2014 2014 - Imagen principal</image:caption>
+            <image:caption>Ford KA 2014 - Imagen principal</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636461654_exterior_0.png?alt=media&amp;token=75c67bee-635c-476d-90ca-bbe05c71fa74</image:loc>
-            <image:caption>Ford 2014 2014 - Vista frontal</image:caption>
+            <image:caption>Ford KA 2014 - Vista frontal</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636463312_exterior_1.png?alt=media&amp;token=49346545-ffe9-4b12-8f13-668e64dcc5e4</image:loc>
-            <image:caption>Ford 2014 2014 - Vista 3/4 frontal</image:caption>
+            <image:caption>Ford KA 2014 - Vista 3/4 frontal</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636465163_exterior_2.png?alt=media&amp;token=34712698-51f2-4eaa-a591-e69994e21ad2</image:loc>
-            <image:caption>Ford 2014 2014 - Vista lateral</image:caption>
+            <image:caption>Ford KA 2014 - Vista lateral</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636466483_exterior_3.png?alt=media&amp;token=4fc9542e-f886-45ea-8fae-e6fff9f57e09</image:loc>
-            <image:caption>Ford 2014 2014 - Vista 3/4 trasera</image:caption>
+            <image:caption>Ford KA 2014 - Vista 3/4 trasera</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636467728_exterior_4.png?alt=media&amp;token=4b7ac68e-6bb0-4f66-ad7b-37555d8e3445</image:loc>
-            <image:caption>Ford 2014 2014 - Vista trasera</image:caption>
+            <image:caption>Ford KA 2014 - Vista trasera</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636469009_interior_0.png?alt=media&amp;token=f2124f37-8a5e-4a45-bb4a-f59f1cd06d0f</image:loc>
-            <image:caption>Ford 2014 2014 - Salpicadero</image:caption>
+            <image:caption>Ford KA 2014 - Salpicadero</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636471076_interior_1.png?alt=media&amp;token=b5550167-1886-4dac-9d83-6565bb13fc84</image:loc>
-            <image:caption>Ford 2014 2014 - Asientos delanteros</image:caption>
+            <image:caption>Ford KA 2014 - Asientos delanteros</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2F2014%2F1769636472764_interior_2.png?alt=media&amp;token=e230df3d-b906-41ef-b491-13d0a0b2f381</image:loc>
-            <image:caption>Ford 2014 2014 - Consola central</image:caption>
+            <image:caption>Ford KA 2014 - Consola central</image:caption>
         </image:image>
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -164,7 +164,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -218,7 +218,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mini-cooper-cabrio-2012</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -276,7 +276,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -330,7 +330,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -380,7 +380,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-vivaro-2018</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -434,7 +434,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -488,7 +488,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-2016</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -498,7 +498,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -548,7 +548,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -610,7 +610,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -672,7 +672,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -730,7 +730,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -784,7 +784,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -846,7 +846,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-03-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
