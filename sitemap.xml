@@ -4,7 +4,7 @@
     <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,7 +12,7 @@
     <!-- Página de reseñas -->
     <url>
         <loc>https://autosjveloce.com/resenas.html</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -20,7 +20,7 @@
     <!-- Coches publicados -->
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -70,7 +70,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-500-2011</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -132,7 +132,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -174,7 +174,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -216,7 +216,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=hyundai-tucson-2021</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -274,7 +274,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -284,7 +284,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -338,7 +338,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mini-cooper-cabrio-2012</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -396,7 +396,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -450,7 +450,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2-2010</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -512,7 +512,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2.-2010</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -554,7 +554,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -604,7 +604,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-insignia-2014</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -658,7 +658,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-vivaro-2018</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -711,8 +711,66 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-2008-16-bluehdi-style-2017</loc>
+        <lastmod>2026-06-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781126031273_main.png?alt=media&amp;token=eb630ea5-b4d3-4785-952d-4db312e46fe5</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125988982_exterior_0.jpg?alt=media&amp;token=5c2fd776-340e-4ed9-a14f-a6e6e4eb85e3</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125989662_exterior_1.jpg?alt=media&amp;token=a13457c4-a3f2-4274-b3c5-ac8e8274f70d</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125990355_exterior_2.jpg?alt=media&amp;token=19a7e103-8ad6-4b70-b1de-835b524bac76</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125991038_exterior_3.jpg?alt=media&amp;token=92a6a234-6a9e-40fd-8bbc-03dcf283001d</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125991780_exterior_4.jpg?alt=media&amp;token=3e2b7501-68af-4046-b26b-29b3b8b8b9c3</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125992438_interior_0.jpg?alt=media&amp;token=ed69b2b9-34c5-4efe-8cbb-99975d645a61</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125993064_interior_1.jpg?alt=media&amp;token=127d8fdb-d5e6-4ab3-b62f-a7135b6416e0</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125993715_interior_2.jpg?alt=media&amp;token=5dd270ed-7b5d-4b80-98ee-e2c0efe40b60</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125994407_interior_3.jpg?alt=media&amp;token=58e15132-2d93-4982-aa6a-0e13a3150f51</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125995083_interior_4.jpg?alt=media&amp;token=75fe8570-b72f-4142-9d12-c1293eb1ff8e</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125995736_interior_5.jpg?alt=media&amp;token=3719163d-992a-4481-9d3d-bb37777865cc</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Volante</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F2008_1.6_BlueHDi_STYLE%2F1781125996407_interior_6.jpg?alt=media&amp;token=869f82cc-ee8d-4d68-be80-dcd6a94db5f5</image:loc>
+            <image:caption>Peugeot 2008 1.6 BlueHDi STYLE 2017 - Panel de control</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -766,7 +824,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-2016</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -776,7 +834,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -826,7 +884,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -888,7 +946,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -949,8 +1007,58 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-ibiza-1-6-tdi-2018</loc>
+        <lastmod>2026-06-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781124008129_main.png?alt=media&amp;token=ac61ca68-ca3f-471f-8bb1-d63ad3a6ffa3</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123254070_exterior_0.jpg?alt=media&amp;token=43c7cacf-b192-408c-9a4d-35e38aa95d85</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123254723_exterior_1.jpg?alt=media&amp;token=95a2414e-b4d6-4fee-bfe6-f13664dfdb4d</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123255372_exterior_2.jpg?alt=media&amp;token=e15a801e-2387-496e-a704-7463c54e209c</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123255983_exterior_3.jpg?alt=media&amp;token=0f1e1293-56c9-48d7-ac7e-3288365240cf</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123256620_exterior_4.jpg?alt=media&amp;token=b50669e9-7d90-4aab-88b6-bbecd5042aa4</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123257239_interior_0.jpg?alt=media&amp;token=9b4c6380-fcfd-4d2d-99fc-160c1ce13629</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123257855_interior_1.jpg?alt=media&amp;token=d8351e0f-12f1-43d0-8d9c-194a20ebf6ab</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123258577_interior_2.jpg?alt=media&amp;token=2cf40280-f576-479c-969d-5f001e342268</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123259163_interior_3.jpg?alt=media&amp;token=aa9b1e41-2612-46ef-ac5b-184555703b74</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FIbiza_1.6_TDI%2F1781123259845_interior_4.jpg?alt=media&amp;token=9bf82cd6-5951-4679-bda5-de5372cce5b9</image:loc>
+            <image:caption>SEAT Ibiza 1.6 TDI 2018 - Maletero</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1008,7 +1116,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1062,7 +1170,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1123,8 +1231,58 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-yaris-1-4-d-4d-2012</loc>
+        <lastmod>2026-06-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781124102557_main.png?alt=media&amp;token=14de1dc5-3284-4f5c-9a8d-814434fcb9f8</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120135010_exterior_0.jpg?alt=media&amp;token=8c78d860-7514-44d0-8350-b0a417fe1f49</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120135667_exterior_1.jpg?alt=media&amp;token=a03c7345-eecb-4fae-9af5-a288ca2d8b13</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120136305_exterior_2.jpg?alt=media&amp;token=cd3d01c3-75a4-4199-8597-651bf35e1726</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120136936_exterior_3.jpg?alt=media&amp;token=4829a8b1-bcad-473b-b196-48fc9974b326</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120137729_exterior_4.jpg?alt=media&amp;token=a6175a7f-6067-498a-a7d3-f76010616d55</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120138398_interior_0.jpg?alt=media&amp;token=b156a60c-367b-4a4a-9621-1048182b2d0b</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120139035_interior_1.jpg?alt=media&amp;token=4d37f59f-6f3b-49c9-91d8-5ed93607928a</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120139678_interior_2.jpg?alt=media&amp;token=86484a16-280c-4ca3-962e-b82d40d17e64</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120140191_interior_3.jpg?alt=media&amp;token=9ce229b3-ec5f-4f2f-a260-4d872fa8eb68</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FToyota%2FYaris_1.4_D-4D%2F1781120140809_interior_4.jpg?alt=media&amp;token=e335e8d2-7992-4c41-a074-efe6e15ab17d</image:loc>
+            <image:caption>Toyota Yaris 1.4 D-4D 2012 - Maletero</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1190,7 +1348,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-touareg-2005</loc>
-        <lastmod>2026-06-10</lastmod>
+        <lastmod>2026-06-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
