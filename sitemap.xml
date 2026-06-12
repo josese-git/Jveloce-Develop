@@ -4,7 +4,7 @@
     <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,15 +12,69 @@
     <!-- Página de reseñas -->
     <url>
         <loc>https://autosjveloce.com/resenas.html</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <!-- Coches publicados -->
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=bmw-serie-3-320d-cabrio-2005</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182277391_main.png?alt=media&amp;token=dbe3615b-d25c-4069-9186-35737bf13447</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182278666_exterior_0.jpg?alt=media&amp;token=ab5e6db5-b056-47bd-8322-8d457c965184</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182280821_exterior_4.jpg?alt=media&amp;token=a94204da-b106-45c2-ba2d-98537e0c75e1</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182279362_exterior_2.jpg?alt=media&amp;token=33e0fafb-c32f-4ff8-9113-48d72fe7f292</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182279996_exterior_3.jpg?alt=media&amp;token=8e48e624-51fc-434d-b4f4-0854f78111c1</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182349743_exterior_4.png?alt=media&amp;token=3624aeda-d48f-4f95-be08-619a6d5c812a</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182281630_interior_0.jpg?alt=media&amp;token=9c8d62dd-33c2-4940-83c2-dcab8798d10e</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182282299_interior_1.jpg?alt=media&amp;token=fffbf945-1cf2-47e5-957b-6c8959961601</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182282831_interior_2.jpg?alt=media&amp;token=ffce7e9d-e0bb-4f73-b8c2-6134aa8a3719</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182283557_interior_3.jpg?alt=media&amp;token=2b70f7d7-323e-471a-9c3a-0992ad524bd5</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182284144_interior_4.jpg?alt=media&amp;token=4217121b-2521-4f66-a445-2b4869282a63</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FBMW%2FSerie_3_320d_Cabrio%2F1781182284837_interior_5.jpg?alt=media&amp;token=03f6f83f-88f4-4eab-9050-a43323281234</image:loc>
+            <image:caption>BMW Serie 3 320d Cabrio 2005 - Volante</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -70,7 +124,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-500-2011</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -132,7 +186,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -174,7 +228,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -216,7 +270,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=hyundai-tucson-2021</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -274,7 +328,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -284,7 +338,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -338,7 +392,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mini-cooper-cabrio-2012</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -396,7 +450,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -450,7 +504,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2-2010</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -512,7 +566,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2.-2010</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -554,7 +608,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -604,7 +658,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-insignia-2014</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -658,7 +712,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-vivaro-2018</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -712,7 +766,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-2008-16-bluehdi-style-2017</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -770,7 +824,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -823,18 +877,8 @@
         </image:image>
     </url>
     <url>
-        <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-2016</loc>
-        <lastmod>2026-06-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-        <image:image>
-            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008%2F1772281233772_main.png?alt=media&amp;token=4e550e15-e3dd-423f-b444-090df42331f4</image:loc>
-            <image:caption>Peugeot 3008 2016 - Imagen principal</image:caption>
-        </image:image>
-    </url>
-    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -884,7 +928,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -946,7 +990,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1008,7 +1052,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-ibiza-1-6-tdi-2018</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1058,7 +1102,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1116,7 +1160,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1170,7 +1214,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1232,7 +1276,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-yaris-1-4-d-4d-2012</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1282,7 +1326,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1348,7 +1392,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-touareg-2005</loc>
-        <lastmod>2026-06-11</lastmod>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
