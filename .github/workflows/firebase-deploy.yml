@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - 'sitemap.xml'
       - 'index.html'
+      - 'telegram-bot/**'
   workflow_dispatch:
 
 jobs:

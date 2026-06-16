@@ -190,5 +190,101 @@ app.get('/Coches/detalle.html', async (req, res) => {
     }
 });
 
+app.get('/sitemap.xml', async (req, res) => {
+    try {
+        const BASE_URL = 'https://autosjveloce.com';
+        const snapshot = await db.collection('anuncios').orderBy('order').get();
+        const vehicles = [];
+        snapshot.forEach(doc => {
+            vehicles.push({ id: doc.id, ...doc.data() });
+        });
+
+        const escapeXml = (unsafe) => {
+            if (!unsafe) return '';
+            return unsafe.toString()
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+        };
+
+        const generateImageTag = (imageUrl, caption) => {
+            return `        <image:image>
+            <image:loc>${escapeXml(imageUrl)}</image:loc>
+            <image:caption>${escapeXml(caption)}</image:caption>
+        </image:image>
+`;
+        };
+
+        const getCurrentDate = () => {
+            return new Date().toISOString().split('T')[0];
+        };
+
+        let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <!-- Página principal -->
+    <url>
+        <loc>${BASE_URL}/</loc>
+        <lastmod>${getCurrentDate()}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Página de reseñas -->
+    <url>
+        <loc>${BASE_URL}/resenas.html</loc>
+        <lastmod>${getCurrentDate()}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+`;
+
+        vehicles.forEach(vehicle => {
+            const carName = `${vehicle.brand} ${vehicle.model} ${vehicle.year || ''}`.trim();
+            xml += `    <url>
+        <loc>${BASE_URL}/Coches/detalle.html?id=${encodeURIComponent(vehicle.id)}</loc>
+        <lastmod>${getCurrentDate()}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+`;
+
+            if (vehicle.image) {
+                xml += generateImageTag(vehicle.image, `${carName} - Imagen principal`);
+            }
+
+            if (vehicle.galleryExterior && Array.isArray(vehicle.galleryExterior)) {
+                const exteriorViews = ['Vista frontal', 'Vista 3/4 frontal', 'Vista lateral', 'Vista 3/4 trasera', 'Vista trasera'];
+                vehicle.galleryExterior.filter(img => img).forEach((img, index) => {
+                    const caption = `${carName} - ${exteriorViews[index] || `Exterior ${index + 1}`}`;
+                    xml += generateImageTag(img, caption);
+                });
+            }
+
+            if (vehicle.galleryInterior && Array.isArray(vehicle.galleryInterior)) {
+                const interiorViews = ['Salpicadero', 'Asientos delanteros', 'Consola central', 'Asientos traseros', 'Maletero', 'Volante', 'Panel de control', 'Detalles', 'Acabados'];
+                vehicle.galleryInterior.filter(img => img).forEach((img, index) => {
+                    const caption = `${carName} - ${interiorViews[index] || `Interior ${index + 1}`}`;
+                    xml += generateImageTag(img, caption);
+                });
+            }
+
+            xml += `    </url>
+`;
+        });
+
+        xml += `</urlset>`;
+
+        res.header('Content-Type', 'application/xml');
+        res.header('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+        return res.status(200).send(xml);
+
+    } catch (error) {
+        console.error('Error generating dynamic sitemap:', error);
+        return res.status(500).send('Error interno al generar el sitemap');
+    }
+});
+
 // Export the Express app as a Firebase Cloud Function
 exports.renderSocialTags = functions.https.onRequest(app);
