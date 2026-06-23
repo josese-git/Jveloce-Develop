@@ -4,7 +4,7 @@
     <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,7 +12,7 @@
     <!-- Página de reseñas -->
     <url>
         <loc>https://autosjveloce.com/resenas.html</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -20,7 +20,7 @@
     <!-- Coches publicados -->
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=bmw-serie-3-320d-cabrio-2005</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -74,7 +74,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -124,7 +124,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-500-2011</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -186,7 +186,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -228,7 +228,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -270,7 +270,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=hyundai-tucson-2021</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -328,7 +328,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -338,7 +338,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -392,7 +392,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mini-cooper-cabrio-2012</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -450,7 +450,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -504,7 +504,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2-2010</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -566,7 +566,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2.-2010</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -608,7 +608,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -658,7 +658,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-insignia-2014</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -712,7 +712,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-vivaro-2018</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -766,7 +766,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-2008-16-bluehdi-style-2017</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -823,8 +823,50 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-16-hdi-2014</loc>
+        <lastmod>2026-06-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149754692_main.png?alt=media&amp;token=b5cd3444-cf4c-4bc2-be51-0be04fd574eb</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149500420_exterior_0.jpg?alt=media&amp;token=f054f572-8f46-450e-986e-ff1ed6ebd873</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149682360_exterior_1.png?alt=media&amp;token=25dae785-345f-4de3-9d2f-5d8b52709480</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149500425_exterior_2.jpg?alt=media&amp;token=9c990293-b4da-4dc1-850d-f75110d76da6</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149500426_exterior_3.jpg?alt=media&amp;token=d2a6b730-f093-4915-8ed5-7ac1b62e4954</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149500426_exterior_4.jpg?alt=media&amp;token=f11207e9-6b55-4aa2-8ca2-4d12eefb8625</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149500653_interior_0.jpg?alt=media&amp;token=010a79a5-1bb4-494c-8685-8dba0fa7f09c</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149500757_interior_1.jpg?alt=media&amp;token=9d327990-acc0-409a-9ea0-db2cbba79f5c</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FPeugeot%2F3008_1.6_HDi%2F1782149500763_interior_2.jpg?alt=media&amp;token=5fdb5f29-6f19-49df-a64e-15163c0d3c73</image:loc>
+            <image:caption>Peugeot 3008 1.6 HDi 2014 - Consola central</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -878,7 +920,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -928,7 +970,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -990,7 +1032,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1052,7 +1094,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-ibiza-1-6-tdi-2018</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1102,7 +1144,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1160,7 +1202,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1214,7 +1256,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1276,7 +1318,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-yaris-1-4-d-4d-2012</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1326,7 +1368,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1392,7 +1434,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-touareg-2005</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-06-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
