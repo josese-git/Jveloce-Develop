@@ -355,6 +355,18 @@ class GeminiClient:
         Extrae y valida el JSON de la respuesta de Gemini.
         Maneja casos donde Gemini envuelve el JSON en bloques de código.
         """
+        # Pre-procesamiento y reparación de JSON malformado de Gemini
+        try:
+            # 1. Reparar claves de lista vacías (como "interior": sin valor antes del cierre)
+            text = re.sub(r'"interior"\s*:\s*(?=\s*[,}])', '"interior": []', text)
+            text = re.sub(r'"inferred_fields"\s*:\s*(?=\s*[,}])', '"inferred_fields": []', text)
+            # 2. Reparar cualquier otra clave vacía asignándole null
+            text = re.sub(r'"(\w+)"\s*:\s*(?=\s*[,}])', r'"\1": null', text)
+            # 3. Eliminar comas flotantes/trailing commas al final de objetos o listas
+            text = re.sub(r',\s*(?=[\]}])', '', text)
+        except Exception as repair_err:
+            logger.warning(f"Error durante el pre-procesamiento/reparación del JSON: {repair_err}")
+
         # Intento 1: Parsear directamente
         try:
             data = json.loads(text)
