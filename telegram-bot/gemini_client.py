@@ -194,13 +194,14 @@ class GeminiClient:
             self.key_manager = GeminiKeyManager([key_manager])
         else:
             self.key_manager = key_manager
-        self.model_name = "gemini-3.5-flash"
+        self.model_name = "gemini-2.5-flash"
         self.fallback_models = [
-            "gemini-3.1-flash-lite",
-            "gemini-2.5-flash",
             "gemini-2.0-flash",
             "gemini-2.0-flash-lite",
-            "gemini-2.5-flash-lite"
+            "gemini-2.5-flash-lite",
+            "gemini-flash-latest",
+            "gemini-3.5-flash",
+            "gemini-3.1-flash-lite"
         ]
 
     def parse_vehicle(self, caption: str, image_paths: list[Path]) -> dict | None:
@@ -279,6 +280,8 @@ class GeminiClient:
                         # google_search se soporta en 2.5-flash y 2.0-flash.
                         tools = [types.Tool(google_search=types.GoogleSearch())]
                         
+                        # NOTA: tools y response_schema/response_mime_type son incompatibles en la API de Gemini (devuelve 400).
+                        # Omitimos response_mime_type/response_schema y dejamos que _extract_json parsee el JSON del texto.
                         response = client.models.generate_content(
                             model=current_model,
                             contents=content_parts,
@@ -286,8 +289,6 @@ class GeminiClient:
                                 system_instruction=SYSTEM_PROMPT,
                                 temperature=0.1,
                                 tools=tools,
-                                response_mime_type="application/json",
-                                response_schema=VehicleData,
                             ),
                         )
                         success = True
