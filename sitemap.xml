@@ -4,7 +4,7 @@
     <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,15 +12,119 @@
     <!-- Página de reseñas -->
     <url>
         <loc>https://autosjveloce.com/resenas.html</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <!-- Coches publicados -->
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=audi-a3-20-tdi-s-line-2007</loc>
+        <lastmod>2026-07-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783037951772_main.png?alt=media&amp;token=51f96500-e84e-4a91-b5fb-ef7756ee6e0d</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793336_exterior_0.jpg?alt=media&amp;token=bbb4e0f8-27d0-4676-8c89-6f757572b551</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793337_exterior_2.jpg?alt=media&amp;token=8d59f70d-70e7-4ef6-99e4-5d65b06065d8</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793337_exterior_1.jpg?alt=media&amp;token=52e970cd-b07a-4047-adbe-62873dc2ff12</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793411_exterior_3.jpg?alt=media&amp;token=2f4e2ab2-be69-482d-911f-86730ad6e8b3</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793418_exterior_4.jpg?alt=media&amp;token=c2be1f0d-908d-4542-b0c7-28a236ac3df8</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793700_interior_0.jpg?alt=media&amp;token=7d6c3b9a-b4dd-4f36-9345-dd566729e154</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793702_interior_1.jpg?alt=media&amp;token=1bb52daf-3a7d-45fb-bcd8-74eb815004e0</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793702_interior_2.jpg?alt=media&amp;token=eb06b925-93f3-4909-aa7c-45bb4de6f694</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FA3_2.0_TDI_S-Line%2F1783035793707_interior_3.jpg?alt=media&amp;token=c044fc8e-48fa-4fb5-a887-92456b08336a</image:loc>
+            <image:caption>Audi A3 2.0 TDI S-Line 2007 - Asientos traseros</image:caption>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=audi-q7-30-tdi-2006</loc>
+        <lastmod>2026-07-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040550136_main.png?alt=media&amp;token=8ac74dad-3beb-4b28-8f0e-f983ba02b75f</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040471704_exterior_0.jpg?alt=media&amp;token=8ea988d3-7ea0-44e0-94d7-6f0e4614a5c0</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040471705_exterior_1.jpg?alt=media&amp;token=b01b5685-61ca-47eb-944e-8369480bb00e</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040471706_exterior_2.jpg?alt=media&amp;token=131e3ed6-c346-45f9-a18e-d514c417df5c</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040471708_exterior_3.jpg?alt=media&amp;token=450597a2-5eeb-45a7-98ff-11e7b3a063eb</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040471709_exterior_4.jpg?alt=media&amp;token=d51c3350-5dce-4018-ba9e-af6eea1c0563</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040471990_interior_0.jpg?alt=media&amp;token=e0ffd3c0-d8a0-4751-ad65-7f6c040f9c6e</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040472007_interior_1.jpg?alt=media&amp;token=252976c1-7e9c-4f55-a36d-d942d104c7a7</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040472010_interior_2.jpg?alt=media&amp;token=0093fc37-8af8-463d-a592-247ff98c09df</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040472016_interior_3.jpg?alt=media&amp;token=9d0ebe8f-9662-48d7-a556-2fb61aae050d</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040472024_interior_4.jpg?alt=media&amp;token=b422b1dc-cf9f-4613-abf5-71beadd9d9cc</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040472028_interior_5.jpg?alt=media&amp;token=3186d51a-140e-4f47-8a4d-df5834a02ed5</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Volante</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FAudi%2FQ7_3.0_TDI%2F1783040472067_interior_6.jpg?alt=media&amp;token=2e87034b-307a-4262-9ee5-c20183f3271c</image:loc>
+            <image:caption>Audi Q7 3.0 TDI 2006 - Panel de control</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=bmw-serie-3-320d-cabrio-2005</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -74,7 +178,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -124,7 +228,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-500-2011</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -186,7 +290,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -228,7 +332,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -270,7 +374,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-kuga-2-0-tdci-2009</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -328,7 +432,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=hyundai-tucson-2021</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -386,7 +490,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -396,7 +500,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -449,8 +553,62 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-gla-200-cdi-2015</loc>
+        <lastmod>2026-07-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041706997_main.png?alt=media&amp;token=cd7d16bf-7bfa-433e-a2df-ecdd697bc5a8</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041706997_exterior_0.jpg?alt=media&amp;token=6259dea8-d5e9-4a97-976d-91a862092b06</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041706997_exterior_1.jpg?alt=media&amp;token=8417448a-1774-4b6d-9212-9d1b64ab69d9</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041706997_exterior_2.jpg?alt=media&amp;token=addac928-84fd-4df7-8e5a-062a26fa4536</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041706998_exterior_3.jpg?alt=media&amp;token=9a96915c-7289-4f41-8b33-16b9fcbf8f4b</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041707002_exterior_4.jpg?alt=media&amp;token=3aa8f14e-6c89-4934-9ac2-c0ad51f50987</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041707225_interior_0.jpg?alt=media&amp;token=1624324a-8e08-43a1-9c89-454868a366f9</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041707233_interior_1.jpg?alt=media&amp;token=7cd369f6-222e-4ddf-83b4-658c46e81233</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041707242_interior_2.jpg?alt=media&amp;token=6cb73371-8865-4891-9424-c9771cf72f50</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041707249_interior_3.jpg?alt=media&amp;token=2020d2dc-3a20-4e58-8ff9-e6a72c85aba7</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041707272_interior_4.jpg?alt=media&amp;token=56ef4c6f-2450-4b73-9c5a-b7a0dbaf3082</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FMercedes%2FGLA_200_CDI%2F1783041707272_interior_5.jpg?alt=media&amp;token=32fa0e35-8b4f-4acd-bfbe-1bc84c6e1d62</image:loc>
+            <image:caption>Mercedes GLA 200 CDI 2015 - Volante</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mini-cooper-cabrio-2012</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -508,7 +666,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -562,7 +720,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2-2010</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -624,7 +782,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2.-2010</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -666,7 +824,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -716,7 +874,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-insignia-2014</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -770,7 +928,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-vivaro-2018</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -824,7 +982,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-2008-16-bluehdi-style-2017</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -882,7 +1040,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-16-hdi-2014</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -924,7 +1082,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -978,7 +1136,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1028,7 +1186,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1090,7 +1248,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1152,7 +1310,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-ibiza-1-6-tdi-2018</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1201,8 +1359,54 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-leon-19-tdi-2007</loc>
+        <lastmod>2026-07-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038478764_main.png?alt=media&amp;token=2d3bd167-469c-4a3a-a041-a267e281d0c0</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038478764_exterior_0.jpg?alt=media&amp;token=1e006f1e-1bb3-4196-b324-9f8762884707</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038478765_exterior_1.jpg?alt=media&amp;token=dedecae1-dd40-4cd8-81d0-5c93e50652c0</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038478766_exterior_2.jpg?alt=media&amp;token=0b5063c0-73b0-4278-80a3-b28af1bac7db</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038478769_exterior_3.jpg?alt=media&amp;token=fa3c492d-a802-4788-a084-d981cff2a15f</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038478769_exterior_4.jpg?alt=media&amp;token=1900c4e3-0cc8-4abb-9d75-fc247f6fba29</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038478998_interior_0.jpg?alt=media&amp;token=b38f43ac-cb8e-435c-824f-de8d6fcb08d1</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038479080_interior_1.jpg?alt=media&amp;token=db19a9e5-6a54-4d3f-a6ec-f7fedee6f42c</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038479086_interior_2.jpg?alt=media&amp;token=147ece54-a687-48fc-bb3b-42e4b1f00634</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FSEAT%2FLe%C3%B3n_1.9_TDI%2F1783038479093_interior_3.jpg?alt=media&amp;token=97fba32c-7f26-46df-9cc0-240cf102e5ba</image:loc>
+            <image:caption>SEAT León 1.9 TDI 2007 - Asientos traseros</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1260,7 +1464,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1314,7 +1518,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1376,7 +1580,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-yaris-1-4-d-4d-2012</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1425,8 +1629,62 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-golf-gtd-2-0-tdi-2017</loc>
+        <lastmod>2026-07-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041490946_main.png?alt=media&amp;token=fdb235fb-004d-428f-be21-e65f33e993ad</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432386_exterior_0.jpg?alt=media&amp;token=23fc5904-0a76-452e-8bf2-50106812cad4</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432386_exterior_1.jpg?alt=media&amp;token=62c19425-ff2d-4936-bcda-9729310e8522</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432409_exterior_2.jpg?alt=media&amp;token=83c4b431-5911-425c-b4a2-ff0ca5a4e56a</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432458_exterior_3.jpg?alt=media&amp;token=8a8abca5-65c3-44c5-96f4-3429e7b802a8</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432461_exterior_4.jpg?alt=media&amp;token=7a548094-e814-4395-b1b9-022f68b3a23a</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432679_interior_0.jpg?alt=media&amp;token=df1051ad-b944-4c5e-a8dd-37e6eb47347c</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432682_interior_1.jpg?alt=media&amp;token=fab86d9e-6199-4b45-aef7-6282cb90b351</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432682_interior_2.jpg?alt=media&amp;token=86b5e341-2c43-4bd3-b60c-b99aab418b23</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432686_interior_3.jpg?alt=media&amp;token=1835d79c-19f6-493f-a2de-ea630a277ebf</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432694_interior_4.jpg?alt=media&amp;token=27c62da6-0246-4c99-b282-bcd8fe4466c5</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FVolkswagen%2FGolf_GTD_2.0_TDI%2F1783041432737_interior_5.jpg?alt=media&amp;token=e7bb132b-5b4a-49c5-9f0e-d8b986338f87</image:loc>
+            <image:caption>Volkswagen Golf GTD 2.0 TDI 2017 - Volante</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1492,7 +1750,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-touareg-2005</loc>
-        <lastmod>2026-07-02</lastmod>
+        <lastmod>2026-07-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
