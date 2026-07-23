@@ -4,7 +4,7 @@
     <!-- Página principal -->
     <url>
         <loc>https://autosjveloce.com/</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,7 +12,7 @@
     <!-- Página de reseñas -->
     <url>
         <loc>https://autosjveloce.com/resenas.html</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -20,7 +20,7 @@
     <!-- Coches publicados -->
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=audi-a3-20-tdi-s-line-2007</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -66,7 +66,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=audi-q7-30-tdi-2006</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -124,7 +124,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=bmw-serie-3-320d-cabrio-2005</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -178,7 +178,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=citro%C3%ABn-c4-picasso-2016</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -228,7 +228,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-500-2011</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -290,7 +290,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=fiat-dobl%C3%B2-2021</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -332,7 +332,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-2014-2014</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -373,8 +373,66 @@
         </image:image>
     </url>
     <url>
+        <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-focus-16-2012</loc>
+        <lastmod>2026-07-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749325714_main.png?alt=media&amp;token=6998354c-53bb-4f82-9d48-d7ec111c8384</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Imagen principal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749325776_exterior_0.jpg?alt=media&amp;token=4e45e6af-be07-4a72-8c66-3ba7b7a29071</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Vista frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749325781_exterior_1.jpg?alt=media&amp;token=8b217c81-d983-4335-b226-e4b6a43fffec</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Vista 3/4 frontal</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749325782_exterior_2.jpg?alt=media&amp;token=e0b007cb-96a8-4161-9b66-19d7c6a16672</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Vista lateral</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749325784_exterior_3.jpg?alt=media&amp;token=d3d0acd2-3cce-489d-b8e6-8f2c36a02590</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Vista 3/4 trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749325786_exterior_4.jpg?alt=media&amp;token=5088c6d6-ae6e-4298-a4c4-bb6e161ad896</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Vista trasera</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749326113_interior_0.jpg?alt=media&amp;token=9c355d67-27c5-47d1-b73c-dc86948e2f71</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Salpicadero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749326123_interior_1.jpg?alt=media&amp;token=fe9ac3f2-c0a8-4a52-a8cb-931bc6b00ca8</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Asientos delanteros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749326126_interior_2.jpg?alt=media&amp;token=958bbcef-e03f-4472-8bea-d43f2b6e99ff</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Consola central</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749326174_interior_3.jpg?alt=media&amp;token=3737c2f8-fc8e-47a8-8fdd-641cf8018afd</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Asientos traseros</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749326175_interior_4.jpg?alt=media&amp;token=7ceca6e4-cdea-47a8-8f9b-6a6d34e3d71a</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Maletero</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749326193_interior_5.jpg?alt=media&amp;token=9286281f-65e4-470f-8cd4-a474cb30a065</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Volante</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://firebasestorage.googleapis.com/v0/b/jveloce-cf602.firebasestorage.app/o/anuncios%2FFord%2FFocus_1.6%2F1784749326196_interior_6.jpg?alt=media&amp;token=78dfadbd-6e2c-4c3b-b805-13fa7059150e</image:loc>
+            <image:caption>Ford Focus 1.6 2012 - Panel de control</image:caption>
+        </image:image>
+    </url>
+    <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=ford-kuga-2-0-tdci-2009</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -432,7 +490,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=hyundai-tucson-2021</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -490,7 +548,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=kia-sportage-2020</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -500,7 +558,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-clase-a-200d-2019</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -554,7 +612,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mercedes-gla-200-cdi-2015</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -608,7 +666,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=mini-cooper-cabrio-2012</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -666,7 +724,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-juke-2017</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -720,7 +778,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2-2010</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -782,7 +840,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-qashqai2.-2010</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -824,7 +882,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=nissan-terrano-2003</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -874,7 +932,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-insignia-2014</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -928,7 +986,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=opel-vivaro-2018</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -982,7 +1040,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-2008-16-bluehdi-style-2017</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1040,7 +1098,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-16-hdi-2014</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1082,7 +1140,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-3008-1769360812025</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1136,7 +1194,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-5008-2010</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1186,7 +1244,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=peugeot-expert-2017</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1248,7 +1306,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=prueba-prueba-1769368003006</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1310,7 +1368,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-ibiza-1-6-tdi-2018</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1360,7 +1418,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-leon-19-tdi-2007</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1406,7 +1464,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=seat-toledo-2018</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1464,7 +1522,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=skoda-octavia-1769195641126</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1518,7 +1576,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-auris-hybrid-2014</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1580,7 +1638,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=toyota-yaris-1-4-d-4d-2012</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1630,7 +1688,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-golf-gtd-2-0-tdi-2017</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1684,7 +1742,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-passat-variant-2015</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -1750,7 +1808,7 @@
     </url>
     <url>
         <loc>https://autosjveloce.com/Coches/detalle.html?id=volkswagen-touareg-2005</loc>
-        <lastmod>2026-07-22</lastmod>
+        <lastmod>2026-07-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
