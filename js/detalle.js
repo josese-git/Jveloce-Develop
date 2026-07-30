@@ -144,9 +144,14 @@ function updateMetaTags(car) {
     updateOrCreateMetaTag('property', 'og:description', carDescription);
     updateOrCreateMetaTag('name', 'description', carDescription);
 
-    // Update og:image with main car image
-    if (car.image) {
-        updateOrCreateMetaTag('property', 'og:image', car.image);
+    // Update og:image — prioritize galleryExterior[2] (same as server SSR)
+    const featuredImg = (car.galleryExterior && car.galleryExterior[2])
+        ? car.galleryExterior[2]
+        : (car.galleryExterior && car.galleryExterior[0])
+            ? car.galleryExterior[0]
+            : car.image;
+    if (featuredImg) {
+        updateOrCreateMetaTag('property', 'og:image', featuredImg);
     }
 
     // Update og:url with current page URL
@@ -224,9 +229,9 @@ function generateStructuredData(car) {
                 "url": "https://autosjveloce.com",
                 "address": {
                     "@type": "PostalAddress",
-                    "addressLocality": "Sevilla",
+                    "addressLocality": "Jaén",
                     "addressRegion": "Andalucía",
-                    "postalCode": "41000",
+                    "postalCode": "23001",
                     "addressCountry": "ES"
                 }
             }
@@ -246,13 +251,16 @@ function generateStructuredData(car) {
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(structuredData, null, 2);
 
-    // Remove existing structured data if present
+    // If SSR-injected JSON-LD already exists (from server), keep it for Googlebot
+    // and add the client-side one alongside it (browsers benefit from fresh data)
     const existingScript = document.querySelector('script[type="application/ld+json"]');
     if (existingScript) {
-        existingScript.remove();
+        // Update existing SSR script content instead of removing it
+        // This ensures Googlebot's cached version stays consistent
+        existingScript.textContent = JSON.stringify(structuredData, null, 2);
+    } else {
+        document.head.appendChild(script);
     }
-
-    document.head.appendChild(script);
 }
 
 /**

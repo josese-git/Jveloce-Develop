@@ -19,6 +19,39 @@
                 "source": "/sitemap.xml",
                 "function": "renderSocialTags"
             }
+        ],
+        "headers": [
+            {
+                "source": "/Coches/detalle-app.html",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=300, s-maxage=300"
+                    },
+                    {
+                        "key": "X-Robots-Tag",
+                        "value": "index, follow"
+                    }
+                ]
+            },
+            {
+                "source": "/robots.txt",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=86400"
+                    }
+                ]
+            },
+            {
+                "source": "/assets/**",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=31536000, immutable"
+                    }
+                ]
+            }
         ]
     },
     "functions": [
