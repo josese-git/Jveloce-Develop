@@ -486,7 +486,18 @@ function initLightbox() {
  */
 function showError(message) {
     const heroData = document.querySelector('.hero-data');
+    const heroVisual = document.querySelector('.hero-visual');
+    const gallerySection = document.getElementById('gallery');
+    
+    if (heroVisual) {
+        heroVisual.style.display = 'none';
+    }
+    if (gallerySection) {
+        gallerySection.style.display = 'none';
+    }
+
     if (heroData) {
+        heroData.style.width = '100%';
         heroData.innerHTML = `
             <div style="text-align: center; padding: 50px;">
                 <h2 style="color: #ff5555;">⚠️ ${message}</h2>
