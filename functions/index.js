@@ -135,7 +135,7 @@ const generateSeoJsonLd = (carData, carName, carId) => {
         } : undefined,
         "image": imageList.length > 0 ? imageList : undefined,
         "description": `${carName} de ocasión en Jaén. ${carData.fuel || ''} ${carData.km || ''} ${carData.cv ? carData.cv + ' CV' : ''}`.trim(),
-        "offers": {
+        "offers": numericPrice ? {
             "@type": "Offer",
             "price": numericPrice,
             "priceCurrency": "EUR",
@@ -154,7 +154,7 @@ const generateSeoJsonLd = (carData, carName, carId) => {
                     "addressCountry": "ES"
                 }
             }
-        },
+        } : undefined,
         "url": `https://autosjveloce.com/Coches/detalle.html?id=${carId}`
     };
 
@@ -313,10 +313,20 @@ ${jsonLdString}
                         if (galleryMarker.test(html)) {
                             html = html.replace(galleryMarker, `$1${seoGalleryHtml}`);
                         }
+                    } else {
+                        // SEO FIX: If the car was deleted or doesn't exist, return HTTP 404
+                        // so Google drops it from the index immediately (avoids Soft 404s).
+                        // We still send the HTML shell so the human user sees the "Not Found" UI.
+                        console.log(`Car ID ${carId} not found, returning 404`);
+                        res.set('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+                        return res.status(404).send(html);
                     }
                 } catch (err) {
                     console.error("Error fetching car data for SSR", err);
                 }
+            } else {
+                // No carId provided -> redirect to inventory
+                return res.redirect(301, '/index.html#inventory');
             }
 
             console.log("Successfully retrieved HTML shell via proxy with SSR injection.");

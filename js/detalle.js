@@ -156,6 +156,9 @@ function updateMetaTags(car) {
 
     // Update og:url with current page URL
     updateOrCreateMetaTag('property', 'og:url', window.location.href);
+
+    // Set og:type to article
+    updateOrCreateMetaTag('property', 'og:type', 'article');
 }
 
 /**
@@ -200,26 +203,26 @@ function generateStructuredData(car) {
         },
         "model": car.model,
         "vehicleModelDate": car.year ? car.year.toString() : undefined,
-        "mileageFromOdometer": {
+        "mileageFromOdometer": car.km ? {
             "@type": "QuantitativeValue",
-            "value": car.km ? car.km.replace(/[^\d]/g, '') : undefined,
+            "value": car.km.replace(/[^\d]/g, ''),
             "unitCode": "KMT"
-        },
+        } : undefined,
         "fuelType": car.fuel,
         "vehicleTransmission": car.transmission === 'Auto' ? 'Automático' : car.transmission,
-        "vehicleEngine": {
+        "vehicleEngine": car.cv ? {
             "@type": "EngineSpecification",
             "enginePower": {
                 "@type": "QuantitativeValue",
-                "value": car.cv ? car.cv.replace(/[^\d]/g, '') : undefined,
+                "value": car.cv.replace(/[^\d]/g, ''),
                 "unitCode": "BHP"
             }
-        },
+        } : undefined,
         "image": allImages.length > 0 ? allImages : undefined,
         "description": car.description || `${car.brand} ${car.model} ${car.year || ''} en excelente estado.`,
-        "offers": {
+        "offers": car.price ? {
             "@type": "Offer",
-            "price": car.price ? car.price.toString().replace(/[€\s]/g, '') : undefined,
+            "price": car.price.toString().replace(/[€\s]/g, ''),
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
             "seller": {
@@ -235,7 +238,7 @@ function generateStructuredData(car) {
                     "addressCountry": "ES"
                 }
             }
-        },
+        } : undefined,
         "url": window.location.href
     };
 
