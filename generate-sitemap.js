@@ -1,11 +1,11 @@
 /**
- * Generate sitemap.xml with image data from Firebase
+ * Update index.html with SEO links from Firebase
  * Run with: node generate-sitemap.js
  */
 
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
-import { writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAKr2_t_-JjzeiO8G8vQUkitqgDXi49ih0",
@@ -23,8 +23,8 @@ const db = getFirestore(app);
 const BASE_URL = 'https://autosjveloce.com';
 const COLLECTION_NAME = 'anuncios';
 
-async function generateSitemap() {
-    console.log('🔄 Generando sitemap con imágenes...');
+async function updateSeoLinks() {
+    console.log('🔄 Obteniendo vehículos para enlaces SEO...');
 
     try {
         // Fetch all vehicles from Firebase
@@ -41,134 +41,41 @@ async function generateSitemap() {
 
         console.log(`✅ Encontrados ${vehicles.length} vehículos`);
 
-        // Generate XML
-        let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-    <!-- Página principal -->
-    <url>
-        <loc>${BASE_URL}/</loc>
-        <lastmod>${getCurrentDate()}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+        // Inject static links into index.html for SEO
+        console.log('🔄 Inyectando enlaces estáticos en index.html...');
+        
+        const indexPath = 'index.html';
+        let indexHtml = readFileSync(indexPath, 'utf8');
 
-    <!-- Página de reseñas -->
-    <url>
-        <loc>${BASE_URL}/resenas.html</loc>
-        <lastmod>${getCurrentDate()}</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Coches publicados -->
-`;
-
-        // Add each vehicle with its images
+        let linksHtml = '\n';
         vehicles.forEach(vehicle => {
             const carName = `${vehicle.brand} ${vehicle.model} ${vehicle.year || ''}`.trim();
-
-            xml += `    <url>
-        <loc>${BASE_URL}/Coches/detalle.html?id=${encodeURIComponent(vehicle.id)}</loc>
-        <lastmod>${getCurrentDate()}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-`;
-
-            // Add main image
-            if (vehicle.image) {
-                xml += generateImageTag(vehicle.image, `${carName} - Imagen principal`);
-            }
-
-            // Add exterior gallery images
-            if (vehicle.galleryExterior && Array.isArray(vehicle.galleryExterior)) {
-                const exteriorViews = ['Vista frontal', 'Vista 3/4 frontal', 'Vista lateral', 'Vista 3/4 trasera', 'Vista trasera'];
-                vehicle.galleryExterior.filter(img => img).forEach((img, index) => {
-                    const caption = `${carName} - ${exteriorViews[index] || `Exterior ${index + 1}`}`;
-                    xml += generateImageTag(img, caption);
-                });
-            }
-
-            // Add interior gallery images
-            if (vehicle.galleryInterior && Array.isArray(vehicle.galleryInterior)) {
-                const interiorViews = ['Salpicadero', 'Asientos delanteros', 'Consola central', 'Asientos traseros', 'Maletero', 'Volante', 'Panel de control', 'Detalles', 'Acabados'];
-                vehicle.galleryInterior.filter(img => img).forEach((img, index) => {
-                    const caption = `${carName} - ${interiorViews[index] || `Interior ${index + 1}`}`;
-                    xml += generateImageTag(img, caption);
-                });
-            }
-
-            xml += `    </url>
-`;
+            const carUrl = `${BASE_URL}/Coches/detalle.html?id=${encodeURIComponent(vehicle.id)}`;
+            linksHtml += `            <a href="${carUrl}">${escapeXml(carName)}</a>\n`;
         });
+        linksHtml += '        ';
 
-        xml += `</urlset>`;
-
-        // Write to sitemap file
-        writeFileSync('sitemap.xml', xml, 'utf8');
-        console.log('✅ Sitemap generado exitosamente: sitemap.xml');
-        console.log(`📊 Total de URLs: ${vehicles.length + 2}`);
-
-        // --- NEW: Inject static links into index.html for SEO ---
-        console.log('🔄 Inyectando enlaces estáticos en index.html...');
-        try {
-            const fs = await import('fs');
-            const indexPath = 'index.html';
-            let indexHtml = fs.readFileSync(indexPath, 'utf8');
-
-            let linksHtml = '\n';
-            vehicles.forEach(vehicle => {
-                const carName = `${vehicle.brand} ${vehicle.model} ${vehicle.year || ''}`.trim();
-                const carUrl = `${BASE_URL}/Coches/detalle.html?id=${encodeURIComponent(vehicle.id)}`;
-                linksHtml += `            <a href="${carUrl}">${escapeXml(carName)}</a>\n`;
-            });
-            linksHtml += '        ';
-
-            // Regex to replace content between the injection markers
-            const regex = /(<!-- SEO_LINKS_START -->)[\s\S]*?(<!-- SEO_LINKS_END -->)/;
-            if (regex.test(indexHtml)) {
-                indexHtml = indexHtml.replace(regex, `$1${linksHtml}$2`);
-                fs.writeFileSync(indexPath, indexHtml, 'utf8');
-                console.log('✅ Enlaces SEO inyectados exitosamente en index.html');
-            } else {
-                console.warn('⚠️ No se encontraron las marcas <!-- SEO_LINKS_START --> y <!-- SEO_LINKS_END --> en index.html');
-            }
-        } catch (htmlError) {
-            console.error('❌ Error inyectando enlaces en index.html:', htmlError);
+        // Regex to replace content between the injection markers
+        const regex = /(<!-- SEO_LINKS_START -->)[\s\S]*?(<!-- SEO_LINKS_END -->)/;
+        if (regex.test(indexHtml)) {
+            indexHtml = indexHtml.replace(regex, `$1${linksHtml}$2`);
+            writeFileSync(indexPath, indexHtml, 'utf8');
+            console.log('✅ Enlaces SEO inyectados exitosamente en index.html');
+        } else {
+            console.warn('⚠️ No se encontraron las marcas <!-- SEO_LINKS_START --> y <!-- SEO_LINKS_END --> en index.html');
         }
-        // --------------------------------------------------------
-
-        // Count total images
-        let totalImages = 0;
-        vehicles.forEach(v => {
-            if (v.image) totalImages++;
-            if (v.galleryExterior) totalImages += v.galleryExterior.filter(img => img).length;
-            if (v.galleryInterior) totalImages += v.galleryInterior.filter(img => img).length;
-        });
-        console.log(`🖼️  Total de imágenes: ${totalImages}`);
 
     } catch (error) {
-        console.error('❌ Error generando sitemap:', error);
+        console.error('❌ Error actualizando enlaces SEO:', error);
         process.exit(1);
     }
 
     process.exit(0);
 }
 
-function generateImageTag(imageUrl, caption) {
-    // Escape XML special characters
-    const escapedUrl = escapeXml(imageUrl);
-    const escapedCaption = escapeXml(caption);
-
-    return `        <image:image>
-            <image:loc>${escapedUrl}</image:loc>
-            <image:caption>${escapedCaption}</image:caption>
-        </image:image>
-`;
-}
-
 function escapeXml(unsafe) {
-    return unsafe
+    if (!unsafe) return '';
+    return unsafe.toString()
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
@@ -176,10 +83,5 @@ function escapeXml(unsafe) {
         .replace(/'/g, '&apos;');
 }
 
-function getCurrentDate() {
-    const now = new Date();
-    return now.toISOString().split('T')[0];
-}
-
-// Run the generator
-generateSitemap();
+// Run the updater
+updateSeoLinks();
