@@ -289,8 +289,13 @@ function populateGallery(exteriorImages, interiorImages, car) {
         return;
     }
 
-    // Clear existing content
-    container.innerHTML = '';
+    // Clear existing content — but preserve SSR-injected .seo-gallery-item nodes
+    // (they are hidden visually but serve Google Images indexing)
+    Array.from(container.children).forEach(child => {
+        if (!child.classList.contains('seo-gallery-item')) {
+            container.removeChild(child);
+        }
+    });
 
     // === BLOCK A: Exterior - 2 stacked left + 1 large right ===
     if (exterior.length >= 3) {
