@@ -11,11 +11,9 @@ Allow: /
 Disallow: /admin.html
 Disallow: /login.html
 
-# Googlebot-Image: acceso explícito a todas las imágenes y páginas de vehículos
+# Googlebot-Image: permitir todo para que pueda leer las cabeceras X-Robots-Tag: noindex
 User-agent: Googlebot-Image
 Allow: /
-Allow: /Coches/
-Allow: /assets/
 
 # Referencia al Sitemap
 Sitemap: https://autosjveloce.com/sitemap.xml
