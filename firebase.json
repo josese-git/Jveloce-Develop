@@ -1,5 +1,6 @@
 {
     "hosting": {
+        "site": "jveloce-cf602",
         "public": ".",
         "ignore": [
             "firebase.json",
