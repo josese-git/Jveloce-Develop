@@ -64,31 +64,71 @@ const generateSeoGalleryHtml = (carData, carName) => {
     const safeCarName = escapeHtmlAttr(carName);
     let html = '';
 
-    // 3ª imagen de la galería (o principal) destacada con alt SEO enriquecido
-    // Estos elementos están ocultos visualmente (para usuarios) pero visibles para Googlebot
-    const featuredImg = getFeaturedGalleryImage(carData);
-    html += `\n        <div class="seo-gallery-item seo-featured" aria-hidden="true">
-            <img src="${escapeHtmlAttr(featuredImg)}" alt="${safeCarName} - Foto principal de la galería de segunda mano en Jaén" title="${safeCarName}" loading="eager" />
-        </div>`;
+    if (exterior.length === 0 && interior.length === 0) {
+        return '';
+    }
 
-    // Resto de imágenes exteriores
-    const exteriorViews = ['Vista frontal', 'Vista 3/4 frontal', 'Vista lateral principal', 'Vista 3/4 trasera', 'Vista trasera'];
-    exterior.forEach((imgUrl, i) => {
-        if (imgUrl === featuredImg && i === 2) return; // Evitar duplicado de la 3ª foto principal
-        const caption = exteriorViews[i] || `Foto exterior ${i + 1}`;
-        html += `\n        <div class="seo-gallery-item" aria-hidden="true">
-            <img src="${escapeHtmlAttr(imgUrl)}" alt="${safeCarName} - ${escapeHtmlAttr(caption)}" title="${safeCarName}" />
+    // === BLOCK A: Exterior - 2 stacked left + 1 large right (3ª foto destacada) ===
+    if (exterior.length >= 3) {
+        html += `
+        <div class="gallery-block block-a">
+            <div class="col-left-stacked">
+                <div class="gallery-item"><img src="${escapeHtmlAttr(exterior[0])}" alt="${safeCarName} - Vista frontal"></div>
+                <div class="gallery-item"><img src="${escapeHtmlAttr(exterior[1])}" alt="${safeCarName} - Vista 3/4 frontal"></div>
+            </div>
+            <div class="col-right-main">
+                <div class="gallery-item main-img"><img src="${escapeHtmlAttr(exterior[2])}" alt="${safeCarName} - Foto principal de la galería de segunda mano en Jaén"></div>
+            </div>
         </div>`;
-    });
+    } else if (exterior.length > 0) {
+        html += `
+        <div class="gallery-block block-b">`;
+        exterior.slice(0, Math.min(exterior.length, 2)).forEach((img, i) => {
+            html += `
+            <div class="gallery-item"><img src="${escapeHtmlAttr(img)}" alt="${safeCarName} - Exterior ${i + 1}"></div>`;
+        });
+        html += `
+        </div>`;
+    }
 
-    // Imágenes interiores
-    const interiorViews = ['Salpicadero', 'Asientos delanteros', 'Consola central', 'Asientos traseros', 'Maletero', 'Volante', 'Panel de control', 'Detalles', 'Acabados'];
-    interior.forEach((imgUrl, i) => {
-        const caption = interiorViews[i] || `Foto interior ${i + 1}`;
-        html += `\n        <div class="seo-gallery-item" aria-hidden="true">
-            <img src="${escapeHtmlAttr(imgUrl)}" alt="${safeCarName} - ${escapeHtmlAttr(caption)}" title="${safeCarName}" />
+    // === BLOCK B: Exterior - 2 horizontal (photos 4 and 5) ===
+    if (exterior.length >= 4) {
+        const photo4 = exterior[3] ? `<div class="gallery-item"><img src="${escapeHtmlAttr(exterior[3])}" alt="${safeCarName} - Vista 3/4 trasera"></div>` : '';
+        const photo5 = exterior[4] ? `<div class="gallery-item"><img src="${escapeHtmlAttr(exterior[4])}" alt="${safeCarName} - Vista trasera"></div>` : '';
+        html += `
+        <div class="gallery-block block-b">
+            ${photo4}
+            ${photo5}
         </div>`;
-    });
+    }
+
+    // === BLOCK C: Interior - First 3 photos in horizontal ===
+    if (interior.length >= 1) {
+        const interiorViews = ['Salpicadero', 'Asientos delanteros', 'Consola central'];
+        html += `
+        <div class="gallery-block block-c">`;
+        interior.slice(0, 3).forEach((img, i) => {
+            const viewName = interiorViews[i] || `Interior ${i + 1}`;
+            html += `
+            <div class="gallery-item"><img src="${escapeHtmlAttr(img)}" alt="${safeCarName} - ${escapeHtmlAttr(viewName)}"></div>`;
+        });
+        html += `
+        </div>`;
+    }
+
+    // === BLOCK D: Interior - Remaining photos (4-9) in 3-column grid ===
+    if (interior.length > 3) {
+        const detailViews = ['Asientos traseros', 'Maletero', 'Volante', 'Panel de control', 'Detalles', 'Acabados'];
+        html += `
+        <div class="gallery-block block-d">`;
+        interior.slice(3).forEach((img, i) => {
+            const viewName = detailViews[i] || `Detalle ${i + 1}`;
+            html += `
+            <div class="gallery-item"><img src="${escapeHtmlAttr(img)}" alt="${safeCarName} - ${escapeHtmlAttr(viewName)}"></div>`;
+        });
+        html += `
+        </div>`;
+    }
 
     return html;
 };
@@ -284,6 +324,9 @@ app.get('/Coches/detalle.html', async (req, res) => {
     <!-- SSR Injected SEO Tags & Structured Data for Google Indexing -->
     <title>${carName} | Autos JVeloce Jaén</title>
     <link rel="canonical" id="canonical-url" href="https://autosjveloce.com/Coches/detalle.html?id=${carId}">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/icons/favicon.png">
     <meta name="description" content="${description}">
     <meta property="og:title" content="${carName} | Autos JVeloce Jaén">
     <meta property="og:description" content="${description}">
@@ -307,11 +350,60 @@ ${jsonLdString}
                             html = html.substring(0, scriptStart) + injectedHeadTags + html.substring(scriptEnd + 9);
                         }
 
-                        // Inject Pre-rendered SEO Gallery Images into Body
-                        // Use regex to handle any whitespace/newline variation in the HTML template
-                        const galleryMarker = /(<div\s+id=["']galleryContainer["']>)/i;
+                        // Inject Hero Section & Specifications directly into HTML for Googlebot WRS rendering
+                        const heroImgUrl = carData.image || mainCarImage;
+                        const formattedPriceNum = priceStr.replace('€', '');
+                        const transmissionDisplay = carData.transmission === 'Auto' ? 'Automático' : (carData.transmission || 'N/D');
+                        const descText = carData.description && carData.description.trim() !== ''
+                            ? carData.description.replace(/\n/g, '<br>')
+                            : `${escapeHtmlAttr(carData.brand || '')} ${escapeHtmlAttr(carData.model || '')} ${carData.year || ''}. Vehículo en excelente estado.<br>Para más información contactar con nosotros.`;
+
+                        // Hide loader, show hero image
+                        html = html.replace(
+                            /<div id="heroLoader" class="hero-loader">[\s\S]*?<\/div>/i,
+                            `<div id="heroLoader" class="hero-loader hidden" style="display:none;"></div>`
+                        );
+                        html = html.replace(
+                            /<img id="heroCarImg" src="" alt="" class="hero-car-img" style="display:none;">/i,
+                            `<img id="heroCarImg" src="${escapeHtmlAttr(heroImgUrl)}" alt="${escapeHtmlAttr(carName)} - Imagen principal" class="hero-car-img" style="display:block;">`
+                        );
+                        html = html.replace(
+                            /<div class="hero-price-tag" id="heroPrice">[\s\S]*?<\/div>/i,
+                            `<div class="hero-price-tag" id="heroPrice"><span class="text-gold">€</span><span class="text-gold">${formattedPriceNum}</span></div>`
+                        );
+                        html = html.replace(
+                            /<span id="carBrand">Vehículo<\/span>/i,
+                            `<span id="carBrand">${escapeHtmlAttr(carData.brand || '')}</span>`
+                        );
+                        html = html.replace(
+                            /<span class="text-gold"\s+id="carModel"><\/span>/i,
+                            `<span class="text-gold" id="carModel">${escapeHtmlAttr(carData.model || '')}</span>`
+                        );
+                        html = html.replace(
+                            /<p id="carDescription">Cargando información del vehículo...<\/p>/i,
+                            `<p id="carDescription">${descText}</p>`
+                        );
+                        html = html.replace(
+                            /<span id="specKm">--<\/span>/i,
+                            `<span id="specKm">${escapeHtmlAttr(carData.km || 'N/D')}</span>`
+                        );
+                        html = html.replace(
+                            /<span id="specFuel">--<\/span>/i,
+                            `<span id="specFuel">${escapeHtmlAttr(carData.fuel || 'N/D')}</span>`
+                        );
+                        html = html.replace(
+                            /<span id="specCV">--<\/span>/i,
+                            `<span id="specCV">${escapeHtmlAttr(carData.cv ? carData.cv + ' CV' : 'N/D')}</span>`
+                        );
+                        html = html.replace(
+                            /<span id="specTransmission">--<\/span>/i,
+                            `<span id="specTransmission">${escapeHtmlAttr(transmissionDisplay)}</span>`
+                        );
+
+                        // Inject Pre-rendered Full SEO Gallery into #galleryContainer
+                        const galleryMarker = /(<div\s+id=["']galleryContainer["']>)([\s\S]*?)(<\/div>)/i;
                         if (galleryMarker.test(html)) {
-                            html = html.replace(galleryMarker, `$1${seoGalleryHtml}`);
+                            html = html.replace(galleryMarker, `$1${seoGalleryHtml}$3`);
                         }
                     } else {
                         // SEO FIX: If the car was deleted or doesn't exist, return HTTP 404

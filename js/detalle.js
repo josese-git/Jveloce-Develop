@@ -9,6 +9,9 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-
 const COLLECTION_NAME = 'anuncios';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize lightbox immediately if gallery was pre-rendered by SSR
+    initLightbox();
+
     // 1. Get vehicle ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const vehicleId = urlParams.get('id');
@@ -300,13 +303,8 @@ function populateGallery(exteriorImages, interiorImages, car) {
         return;
     }
 
-    // Clear existing content — but preserve SSR-injected .seo-gallery-item nodes
-    // (they are hidden visually but serve Google Images indexing)
-    Array.from(container.children).forEach(child => {
-        if (!child.classList.contains('seo-gallery-item')) {
-            container.removeChild(child);
-        }
-    });
+    // Clear existing content completely
+    container.innerHTML = '';
 
     // === BLOCK A: Exterior - 2 stacked left + 1 large right ===
     if (exterior.length >= 3) {
@@ -318,7 +316,7 @@ function populateGallery(exteriorImages, interiorImages, car) {
                 <div class="gallery-item"><img src="${exterior[1]}" alt="${carName} - Vista 3/4 frontal"></div>
             </div>
             <div class="col-right-main">
-                <div class="gallery-item main-img"><img src="${exterior[2]}" alt="${carName} - Vista lateral"></div>
+                <div class="gallery-item main-img"><img src="${exterior[2]}" alt="${carName} - Foto principal de la galería de segunda mano en Jaén"></div>
             </div>
         `;
         container.appendChild(blockA);
@@ -349,11 +347,11 @@ function populateGallery(exteriorImages, interiorImages, car) {
     if (interior.length >= 1) {
         const blockC = document.createElement('div');
         blockC.className = 'gallery-block block-c';
-        const interiorViews = ['salpicadero', 'asientos delanteros', 'consola central'];
+        const interiorViews = ['Salpicadero', 'Asientos delanteros', 'Consola central'];
         interior.slice(0, 3).forEach((img, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
-            const viewName = interiorViews[i] || `interior ${i + 1}`;
+            const viewName = interiorViews[i] || `Interior ${i + 1}`;
             item.innerHTML = `<img src="${img}" alt="${carName} - ${viewName}">`;
             blockC.appendChild(item);
         });
@@ -364,11 +362,11 @@ function populateGallery(exteriorImages, interiorImages, car) {
     if (interior.length > 3) {
         const blockD = document.createElement('div');
         blockD.className = 'gallery-block block-d';
-        const detailViews = ['asientos traseros', 'maletero', 'volante', 'panel de control', 'detalles', 'acabados'];
+        const detailViews = ['Asientos traseros', 'Maletero', 'Volante', 'Panel de control', 'Detalles', 'Acabados'];
         interior.slice(3).forEach((img, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
-            const viewName = detailViews[i] || `detalle ${i + 1}`;
+            const viewName = detailViews[i] || `Detalle ${i + 1}`;
             item.innerHTML = `<img src="${img}" alt="${carName} - ${viewName}">`;
             blockD.appendChild(item);
         });
