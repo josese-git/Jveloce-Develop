@@ -1,10 +1,10 @@
-const functions = require('firebase-functions');
+const { onRequest } = require('firebase-functions/v2/https');
 const admin = require('firebase-admin');
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 
-admin.initializeApp();
+if (!admin.apps.length) {
+    admin.initializeApp();
+}
 const db = admin.firestore();
 const app = express();
 
@@ -350,56 +350,6 @@ ${jsonLdString}
                             html = html.substring(0, scriptStart) + injectedHeadTags + html.substring(scriptEnd + 9);
                         }
 
-                        // Inject Hero Section & Specifications directly into HTML for Googlebot WRS rendering
-                        const heroImgUrl = carData.image || mainCarImage;
-                        const formattedPriceNum = priceStr.replace('€', '');
-                        const transmissionDisplay = carData.transmission === 'Auto' ? 'Automático' : (carData.transmission || 'N/D');
-                        const descText = carData.description && carData.description.trim() !== ''
-                            ? carData.description.replace(/\n/g, '<br>')
-                            : `${escapeHtmlAttr(carData.brand || '')} ${escapeHtmlAttr(carData.model || '')} ${carData.year || ''}. Vehículo en excelente estado.<br>Para más información contactar con nosotros.`;
-
-                        // Hide loader, show hero image
-                        html = html.replace(
-                            /<div id="heroLoader" class="hero-loader">[\s\S]*?<\/div>/i,
-                            `<div id="heroLoader" class="hero-loader hidden" style="display:none;"></div>`
-                        );
-                        html = html.replace(
-                            /<img id="heroCarImg" src="" alt="" class="hero-car-img" style="display:none;">/i,
-                            `<img id="heroCarImg" src="${escapeHtmlAttr(heroImgUrl)}" alt="${escapeHtmlAttr(carName)} - Imagen principal" class="hero-car-img" style="display:block;">`
-                        );
-                        html = html.replace(
-                            /<div class="hero-price-tag" id="heroPrice">[\s\S]*?<\/div>/i,
-                            `<div class="hero-price-tag" id="heroPrice"><span class="text-gold">€</span><span class="text-gold">${formattedPriceNum}</span></div>`
-                        );
-                        html = html.replace(
-                            /<span id="carBrand">Vehículo<\/span>/i,
-                            `<span id="carBrand">${escapeHtmlAttr(carData.brand || '')}</span>`
-                        );
-                        html = html.replace(
-                            /<span class="text-gold"\s+id="carModel"><\/span>/i,
-                            `<span class="text-gold" id="carModel">${escapeHtmlAttr(carData.model || '')}</span>`
-                        );
-                        html = html.replace(
-                            /<p id="carDescription">Cargando información del vehículo...<\/p>/i,
-                            `<p id="carDescription">${descText}</p>`
-                        );
-                        html = html.replace(
-                            /<span id="specKm">--<\/span>/i,
-                            `<span id="specKm">${escapeHtmlAttr(carData.km || 'N/D')}</span>`
-                        );
-                        html = html.replace(
-                            /<span id="specFuel">--<\/span>/i,
-                            `<span id="specFuel">${escapeHtmlAttr(carData.fuel || 'N/D')}</span>`
-                        );
-                        html = html.replace(
-                            /<span id="specCV">--<\/span>/i,
-                            `<span id="specCV">${escapeHtmlAttr(carData.cv ? carData.cv + ' CV' : 'N/D')}</span>`
-                        );
-                        html = html.replace(
-                            /<span id="specTransmission">--<\/span>/i,
-                            `<span id="specTransmission">${escapeHtmlAttr(transmissionDisplay)}</span>`
-                        );
-
                         // Inject Pre-rendered Full SEO Gallery into #galleryContainer
                         const galleryMarker = /(<div\s+id=["']galleryContainer["']>)([\s\S]*?)(<\/div>)/i;
                         if (galleryMarker.test(html)) {
@@ -544,5 +494,5 @@ app.get('/sitemap.xml', async (req, res) => {
     }
 });
 
-// Export the Express app as a Firebase Cloud Function
-exports.renderSocialTags = functions.https.onRequest(app);
+// Export the Express app as a Firebase Cloud Function (2nd Gen)
+exports.renderSocialTags = onRequest({ region: 'us-central1', maxInstances: 10 }, app);
