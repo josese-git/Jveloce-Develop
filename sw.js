@@ -4,7 +4,7 @@
  * y assets locales, reduciendo consumo de ancho de banda.
  */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const IMAGE_CACHE_NAME = `jveloce-images-${CACHE_VERSION}`;
 const STATIC_CACHE_NAME = `jveloce-static-${CACHE_VERSION}`;
 
@@ -87,6 +87,13 @@ self.addEventListener('fetch', (event) => {
 
     // Solo manejar peticiones GET
     if (request.method !== 'GET') return;
+
+    // DIRECTIVA OBLIGATORIA PARA SEO & SSR:
+    // Nunca interceptar /Coches/detalle.html ni /img-coches/* en el Service Worker.
+    // Dejar que vayan directamente a la red para recibir siempre el HTML SSR pre-renderizado y las imágenes limpias.
+    if (url.includes('/Coches/detalle.html') || url.includes('/img-coches/')) {
+        return; // Pass-through directo a red (Network only / NetworkFirst)
+    }
 
     // NO interceptar peticiones que requieren CORS
     // (cuando JavaScript necesita leer la imagen, como en Cropper.js)

@@ -1,10 +1,15 @@
 node_modules/
+.firebase/
+firebase-debug.log*
+*.bak
 
 # Telegram Bot - Archivos sensibles y temporales
 telegram-bot/.env
 telegram-bot/firebase-service-account.json
 telegram-bot/__pycache__/
 telegram-bot/temp_images/
+telegram-bot/fb_dump.html
+telegram-bot/fb_profile_dump.html
 
 # Monitor de Facebook Marketplace - Estado de anuncios procesados
 telegram-bot/fb_processed_listings.json

@@ -193,26 +193,26 @@
     <section class="car-detail-hero">
         <div class="hero-split-container">
             <!-- Left Column: Visual -->
-            <div class="hero-visual">
+            <div class="hero-visual" data-nosnippet>
                 <div class="hero-image-container">
                     <!-- Loading Spinner -->
                     <div id="heroLoader" class="hero-loader">
                         <div class="spinner-ring"></div>
-                        <span class="loader-text" id="loaderText">Cargando...</span>
+                        <span class="loader-text" id="loaderText"></span>
                     </div>
-                    <img id="heroCarImg" src="" alt="" class="hero-car-img" style="display:none;">
+                    <img id="heroCarImg" src="" alt="" role="presentation" class="hero-car-img" style="display:none;" loading="lazy">
                 </div>
                 <div class="hero-price-tag" id="heroPrice">
-                    <span class="text-gold">€</span><span class="text-gold">Cargando...</span>
+                    <span class="text-gold">€</span><span class="text-gold"></span>
                 </div>
             </div>
 
             <!-- Right Column: Data -->
             <div class="hero-data">
-                <h1 class="car-title"><span id="carBrand">Vehículo</span><br><span class="text-gold"
+                <h1 class="car-title"><span id="carBrand"></span><br><span class="text-gold"
                         id="carModel"></span></h1>
                 <div class="car-description">
-                    <p id="carDescription">Cargando información del vehículo...</p>
+                    <p id="carDescription"></p>
                 </div>
 
                 <!-- Car Specs Grid (New) -->
@@ -260,15 +260,14 @@
     </section>
 
     <!-- Gallery Section (Dynamic) -->
-    <h1 id="galleryTitle" class="car-title" style="text-align: center;">
+    <h2 id="galleryTitle" class="car-title" style="text-align: center;">
         <span class="text-gold">Galería</span>
-    </h1>
+    </h2>
 
     <!-- Dynamic Gallery Container -->
     <div id="galleryContainer">
         <!-- Gallery images will be injected here by detalle.js -->
     </div>
-    </section>
 
     <!-- Footer -->
     <footer id="contact" class="glass-footer">
@@ -340,21 +339,6 @@
             navLinks.classList.toggle('active');
             body.classList.toggle('menu-open');
         });
-
-        // Set loader text uniquely based on URL for SEO text differentiation
-        (function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const vehicleId = urlParams.get('id');
-            const loaderTextEl = document.getElementById('loaderText');
-            const carBrandEl = document.getElementById('carBrand');
-
-            if (vehicleId) {
-                let carName = vehicleId.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-                carName = carName.replace(/\s\d{10,}$/, ''); // Remove long trailing numbers
-                if (loaderTextEl) loaderTextEl.textContent = `Cargando ${carName}...`;
-                if (carBrandEl) carBrandEl.textContent = carName;
-            }
-        })();
     </script>
 
     <!-- Service Worker Registration -->

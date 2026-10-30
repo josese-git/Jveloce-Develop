@@ -14,7 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const counter = document.querySelector('.lightbox-counter');
 
     // Select all images from the gallery blocks
-    const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+    let galleryItems = [];
+
+    function bindGalleryImages() {
+        galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+        galleryItems.forEach((img, index) => {
+            img.style.cursor = 'pointer';
+            if (img.dataset.lightboxBound) return;
+            img.dataset.lightboxBound = 'true';
+            img.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+    }
+
+    // Expose global initializer for dynamic hydration / SSR
+    window.initLightbox = bindGalleryImages;
 
     // State
     let currentIndex = 0;
@@ -33,12 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let tapStartX = 0;
     let tapStartY = 0;
 
-    // Open Lightbox
-    galleryItems.forEach((img, index) => {
-        img.addEventListener('click', () => {
-            openLightbox(index);
-        });
-    });
+    // Open Lightbox on initial DOM load
+    bindGalleryImages();
 
     function openLightbox(index) {
         currentIndex = index;

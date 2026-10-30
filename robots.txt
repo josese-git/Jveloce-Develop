@@ -3,9 +3,9 @@
 
 # Permitir acceso a todos los bots
 User-agent: *
-
-# Permitir rastreo de todo el sitio público
 Allow: /
+Allow: /Coches/
+Allow: /img-coches/
 
 # Bloquear páginas administrativas y de login (no deben indexarse)
 Disallow: /admin.html
@@ -14,6 +14,8 @@ Disallow: /login.html
 # Googlebot-Image: permitir acceso completo a imágenes y contenido
 User-agent: Googlebot-Image
 Allow: /
+Allow: /Coches/
+Allow: /img-coches/
 
 # Referencia al Sitemap
 Sitemap: https://autosjveloce.com/sitemap.xml

@@ -67,18 +67,33 @@ function populateVehicleData(car) {
     // Generate and inject JSON-LD Structured Data
     generateStructuredData(car);
 
-    // Hero Section
+    // Hero Section - Cero parpadeo si ya viene pre-renderizado por SSR
     const heroImg = document.getElementById('heroCarImg');
     const heroLoader = document.getElementById('heroLoader');
+    const existingHeroSrc = heroImg ? (heroImg.getAttribute('src') || '') : '';
 
-    if (heroImg && car.image) {
+    if (existingHeroSrc && existingHeroSrc !== '' && existingHeroSrc !== window.location.href && !existingHeroSrc.endsWith('.html')) {
+        // La imagen ya viene pre-renderizada por el SSR
+        if (heroLoader) {
+            heroLoader.classList.add('hidden');
+            heroLoader.style.display = 'none';
+        }
+        if (heroImg) {
+            heroImg.style.display = 'block';
+        }
+    } else if (heroImg && car.image) {
         heroImg.onload = () => {
             // Hide loader, show image
-            if (heroLoader) heroLoader.classList.add('hidden');
+            if (heroLoader) {
+                heroLoader.classList.add('hidden');
+                heroLoader.style.display = 'none';
+            }
             heroImg.style.display = 'block';
         };
         heroImg.src = car.image;
-        heroImg.alt = `${car.brand} ${car.model} ${car.year || ''} - Imagen principal`.trim();
+        heroImg.alt = '';
+        heroImg.setAttribute('role', 'presentation');
+        heroImg.setAttribute('loading', 'lazy');
     }
 
     // Price
@@ -126,6 +141,12 @@ function populateVehicleData(car) {
  * Update meta tags dynamically for SEO and social sharing
  */
 function updateMetaTags(car) {
+    // Si ya fueron inyectadas por SSR con la URL del proxy limpio, preservar meta tags de SSR
+    const existingOgImage = document.querySelector('meta[property="og:image"]');
+    if (existingOgImage && existingOgImage.getAttribute('content')?.includes('/img-coches/')) {
+        return;
+    }
+
     const carTitle = `${car.brand} ${car.model} ${car.year || ''}`.trim();
 
     let priceStr = 'N/D€';
@@ -184,16 +205,29 @@ function updateOrCreateMetaTag(attribute, attributeValue, content) {
  * Generate JSON-LD structured data for Google indexing
  */
 function generateStructuredData(car) {
-    // Collect all images (main + gallery)
-    const allImages = [];
+    // Si ya existe un script JSON-LD inyectado por el SSR en el <head>, NO sobrescribir ni inyectar duplicado
+    const existingScript = document.querySelector('script[type="application/ld+json"]');
+    if (existingScript) {
+        return;
+    }
 
-    if (car.image) allImages.push(car.image);
-    if (car.galleryExterior) {
-        car.galleryExterior.filter(img => img !== null).forEach(img => allImages.push(img));
-    }
-    if (car.galleryInterior) {
-        car.galleryInterior.filter(img => img !== null).forEach(img => allImages.push(img));
-    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const vehicleId = urlParams.get('id') || '';
+    const cleanImageUrl = vehicleId ? `https://autosjveloce.com/img-coches/${encodeURIComponent(vehicleId)}-principal.jpg` : (car.image || '');
+
+    const imageObject = {
+        "@type": "ImageObject",
+        "url": cleanImageUrl,
+        "contentUrl": cleanImageUrl,
+        "caption": `${car.brand} ${car.model} ${car.year || ''} en venta en Autos JVeloce Jaén`.trim(),
+        "width": 1200,
+        "height": 900
+    };
+
+    // Format numeric price without dots or symbols
+    let cleanPrice = car.price ? car.price.toString().replace(/[^\d]/g, '') : undefined;
+    let numericKm = car.km ? car.km.replace(/[^\d]/g, '') : undefined;
+    let numericCv = car.cv ? car.cv.toString().replace(/[^\d]/g, '') : undefined;
 
     // Create structured data object
     const structuredData = {
@@ -206,26 +240,28 @@ function generateStructuredData(car) {
         },
         "model": car.model,
         "vehicleModelDate": car.year ? car.year.toString() : undefined,
-        "mileageFromOdometer": car.km ? {
+        "mileageFromOdometer": numericKm ? {
             "@type": "QuantitativeValue",
-            "value": car.km.replace(/[^\d]/g, ''),
+            "value": numericKm,
             "unitCode": "KMT"
         } : undefined,
         "fuelType": car.fuel,
         "vehicleTransmission": car.transmission === 'Auto' ? 'Automático' : car.transmission,
-        "vehicleEngine": car.cv ? {
+        "vehicleEngine": numericCv ? {
             "@type": "EngineSpecification",
             "enginePower": {
                 "@type": "QuantitativeValue",
-                "value": car.cv.replace(/[^\d]/g, ''),
-                "unitCode": "BHP"
+                "value": numericCv,
+                "unitCode": "N12",
+                "unitText": "CV"
             }
         } : undefined,
-        "image": allImages.length > 0 ? allImages : undefined,
+        "image": imageObject,
+        "primaryImageOfPage": imageObject,
         "description": car.description || `${car.brand} ${car.model} ${car.year || ''} en excelente estado.`,
-        "offers": car.price ? {
+        "offers": cleanPrice ? {
             "@type": "Offer",
-            "price": car.price.toString().replace(/[€\s]/g, ''),
+            "price": cleanPrice,
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
             "seller": {
@@ -256,17 +292,7 @@ function generateStructuredData(car) {
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(structuredData, null, 2);
-
-    // If SSR-injected JSON-LD already exists (from server), keep it for Googlebot
-    // and add the client-side one alongside it (browsers benefit from fresh data)
-    const existingScript = document.querySelector('script[type="application/ld+json"]');
-    if (existingScript) {
-        // Update existing SSR script content instead of removing it
-        // This ensures Googlebot's cached version stays consistent
-        existingScript.textContent = JSON.stringify(structuredData, null, 2);
-    } else {
-        document.head.appendChild(script);
-    }
+    document.head.appendChild(script);
 }
 
 /**
@@ -288,6 +314,14 @@ function populateGallery(exteriorImages, interiorImages, car) {
     const container = document.getElementById('galleryContainer');
     if (!container) return;
 
+    // Hidratación no destructiva: Si el SSR ya inyectó imágenes válidas, NO borrarlas ni recrearlas
+    const existingImages = container.querySelectorAll('.gallery-item img');
+    if (existingImages && existingImages.length > 0) {
+        console.log('[SSR Hydration] Galería ya pre-renderizada por SSR. Conservando DOM y enlazando Lightbox.');
+        initLightbox();
+        return;
+    }
+
     // Filter out null values
     const exterior = (exteriorImages || []).filter(img => img !== null);
     const interior = interiorImages || [];
@@ -306,30 +340,56 @@ function populateGallery(exteriorImages, interiorImages, car) {
     // Clear existing content completely
     container.innerHTML = '';
 
-    // === BLOCK A: Exterior - 2 stacked left + 1 large right ===
+    const urlParams = new URLSearchParams(window.location.search);
+    const vehicleId = urlParams.get('id') || '';
+    const proxyImageUrl = vehicleId ? `https://autosjveloce.com/img-coches/${encodeURIComponent(vehicleId)}-principal.jpg` : (exterior[2] || exterior[0] || '');
+
+    // === BLOCK A: Exterior - 2 stacked left + 1 large right (DOM: main first, CSS: ordered) ===
     if (exterior.length >= 3) {
         const blockA = document.createElement('div');
         blockA.className = 'gallery-block block-a';
         blockA.innerHTML = `
-            <div class="col-left-stacked">
-                <div class="gallery-item"><img src="${exterior[0]}" alt="${carName} - Vista frontal"></div>
-                <div class="gallery-item"><img src="${exterior[1]}" alt="${carName} - Vista 3/4 frontal"></div>
-            </div>
             <div class="col-right-main">
-                <div class="gallery-item main-img"><img src="${exterior[2]}" alt="${carName} - Foto principal de la galería de segunda mano en Jaén"></div>
+                <div class="gallery-item main-img">
+                    <img src="${proxyImageUrl}" 
+                         fetchpriority="high" 
+                         loading="eager" 
+                         decoding="sync" 
+                         width="1200" 
+                         height="900" 
+                         itemprop="primaryImageOfPage" 
+                         alt="${carName} de segunda mano en Jaén - Autos JVeloce">
+                </div>
+            </div>
+            <div class="col-left-stacked" data-nosnippet>
+                <div class="gallery-item"><img src="${exterior[0]}" alt="${carName} - Vista frontal" loading="lazy" decoding="async"></div>
+                <div class="gallery-item"><img src="${exterior[1]}" alt="${carName} - Vista 3/4 frontal" loading="lazy" decoding="async"></div>
             </div>
         `;
         container.appendChild(blockA);
     } else if (exterior.length > 0) {
         // If less than 3, show in simple grid
         const blockA = document.createElement('div');
-        blockA.className = 'gallery-block block-b';
-        exterior.slice(0, Math.min(exterior.length, 2)).forEach((img, i) => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.innerHTML = `<img src="${img}" alt="${carName} - Exterior ${i + 1}">`;
-            blockA.appendChild(item);
-        });
+        blockA.className = 'gallery-block block-a';
+        blockA.innerHTML = `
+            <div class="col-right-main">
+                <div class="gallery-item main-img">
+                    <img src="${proxyImageUrl}" 
+                         fetchpriority="high" 
+                         loading="eager" 
+                         decoding="sync" 
+                         width="1200" 
+                         height="900" 
+                         itemprop="primaryImageOfPage" 
+                         alt="${carName} de segunda mano en Jaén - Autos JVeloce">
+                </div>
+            </div>`;
+        if (exterior.length > 1) {
+            blockA.innerHTML += `
+            <div class="col-left-stacked" data-nosnippet>
+                <div class="gallery-item"><img src="${exterior[1]}" alt="${carName} - Vista secundaria" loading="lazy" decoding="async"></div>
+            </div>`;
+        }
         container.appendChild(blockA);
     }
 
@@ -337,8 +397,9 @@ function populateGallery(exteriorImages, interiorImages, car) {
     if (exterior.length >= 4) {
         const blockB = document.createElement('div');
         blockB.className = 'gallery-block block-b';
-        const photo4 = exterior[3] ? `<div class="gallery-item"><img src="${exterior[3]}" alt="${carName} - Vista 3/4 trasera"></div>` : '';
-        const photo5 = exterior[4] ? `<div class="gallery-item"><img src="${exterior[4]}" alt="${carName} - Vista trasera"></div>` : '';
+        blockB.setAttribute('data-nosnippet', '');
+        const photo4 = exterior[3] ? `<div class="gallery-item"><img src="${exterior[3]}" alt="${carName} - Vista 3/4 trasera" loading="lazy" decoding="async"></div>` : '';
+        const photo5 = exterior[4] ? `<div class="gallery-item"><img src="${exterior[4]}" alt="${carName} - Vista trasera" loading="lazy" decoding="async"></div>` : '';
         blockB.innerHTML = photo4 + photo5;
         container.appendChild(blockB);
     }
@@ -347,12 +408,13 @@ function populateGallery(exteriorImages, interiorImages, car) {
     if (interior.length >= 1) {
         const blockC = document.createElement('div');
         blockC.className = 'gallery-block block-c';
+        blockC.setAttribute('data-nosnippet', '');
         const interiorViews = ['Salpicadero', 'Asientos delanteros', 'Consola central'];
         interior.slice(0, 3).forEach((img, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             const viewName = interiorViews[i] || `Interior ${i + 1}`;
-            item.innerHTML = `<img src="${img}" alt="${carName} - ${viewName}">`;
+            item.innerHTML = `<img src="${img}" alt="${carName} - ${viewName}" loading="lazy" decoding="async">`;
             blockC.appendChild(item);
         });
         container.appendChild(blockC);
@@ -362,12 +424,13 @@ function populateGallery(exteriorImages, interiorImages, car) {
     if (interior.length > 3) {
         const blockD = document.createElement('div');
         blockD.className = 'gallery-block block-d';
+        blockD.setAttribute('data-nosnippet', '');
         const detailViews = ['Asientos traseros', 'Maletero', 'Volante', 'Panel de control', 'Detalles', 'Acabados'];
         interior.slice(3).forEach((img, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             const viewName = detailViews[i] || `Detalle ${i + 1}`;
-            item.innerHTML = `<img src="${img}" alt="${carName} - ${viewName}">`;
+            item.innerHTML = `<img src="${img}" alt="${carName} - ${viewName}" loading="lazy" decoding="async">`;
             blockD.appendChild(item);
         });
         container.appendChild(blockD);
@@ -378,105 +441,12 @@ function populateGallery(exteriorImages, interiorImages, car) {
 }
 
 /**
- * Initialize lightbox for gallery images
+ * Initialize lightbox for gallery images (delegates to window.initLightbox from lightbox.js)
  */
 function initLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.querySelector('.lightbox-close');
-    const prevBtn = document.querySelector('.lightbox-prev');
-    const nextBtn = document.querySelector('.lightbox-next');
-    const counter = document.querySelector('.lightbox-counter');
-
-    if (!lightbox || !lightboxImg) return;
-
-    // Select all images from the gallery blocks
-    const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
-
-    if (galleryItems.length === 0) return;
-
-    let currentIndex = 0;
-    let isZoomed = false;
-
-    // Open Lightbox on image click
-    galleryItems.forEach((img, index) => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', () => {
-            currentIndex = index;
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            updateCounter();
-        });
-    });
-
-    function updateCounter() {
-        if (counter) {
-            counter.textContent = `${currentIndex + 1} de ${galleryItems.length}`;
-        }
+    if (window.initLightbox) {
+        window.initLightbox();
     }
-
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
-    }
-
-    function showNext() {
-        currentIndex = (currentIndex + 1) % galleryItems.length;
-        lightboxImg.src = galleryItems[currentIndex].src;
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
-        updateCounter();
-    }
-
-    function showPrev() {
-        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-        lightboxImg.src = galleryItems[currentIndex].src;
-        lightboxImg.classList.remove('zoomed');
-        isZoomed = false;
-        updateCounter();
-    }
-
-    // Event Listeners
-    closeBtn.addEventListener('click', closeLightbox);
-
-    if (prevBtn) prevBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showPrev();
-    });
-
-    if (nextBtn) nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showNext();
-    });
-
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
-            closeLightbox();
-        }
-    });
-
-    // Click image to zoom
-    lightboxImg.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (isZoomed) {
-            lightboxImg.classList.remove('zoomed');
-            isZoomed = false;
-        } else {
-            lightboxImg.classList.add('zoomed');
-            isZoomed = true;
-        }
-    });
-
-    // Keyboard Navigation
-    document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowRight') showNext();
-        if (e.key === 'ArrowLeft') showPrev();
-    });
 }
 
 /**
