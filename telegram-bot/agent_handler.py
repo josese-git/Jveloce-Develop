@@ -210,13 +210,9 @@ class AgentHandler:
         else:
             self.key_manager = key_manager
             
-        self.model_name = "gemini-3.5-flash"
+        self.model_name = "gemini-2.5-flash"
         self.fallback_models = [
-            "gemini-3.1-flash-lite",
-            "gemini-2.5-flash-lite",
-            "gemini-2.5-flash",
-            "gemini-2.0-flash",
-            "gemini-2.0-flash-lite"
+            "gemini-3.5-flash"
         ]
         self.firebase = firebase_client
         logger.info("✅ Agente IA inicializado con soporte de rotación de claves.")

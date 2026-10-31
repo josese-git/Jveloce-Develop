@@ -30,22 +30,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         canonicalTag.setAttribute('href', canonicalUrl);
     }
 
-    // Punto 1: Si la página ya viene pre-renderizada por el SSR, NO ejecutar ninguna consulta a Firestore en el arranque
-    const carBrandEl = document.getElementById('carBrand');
-    const galleryContainer = document.getElementById('galleryContainer');
-    const hasBrand = carBrandEl && carBrandEl.textContent.trim().length > 0 && carBrandEl.textContent.trim() !== 'Vehículo';
-    const hasGalleryImages = galleryContainer && galleryContainer.querySelectorAll('.gallery-item img').length > 0;
+    // Punto 1: Si la página ya viene pre-renderizada por el SSR con datos completos e imagen válida, omitir Firestore
+    const heroCarImgEl = document.getElementById('heroCarImg');
+    const galleryContainerEl = document.getElementById('galleryContainer');
+    const heroSrc = heroCarImgEl ? (heroCarImgEl.getAttribute('src') || '') : '';
+    const hasValidHeroImg = heroSrc.startsWith('http');
+    const hasGalleryImages = galleryContainerEl && galleryContainerEl.querySelectorAll('.gallery-item img').length > 0;
 
-    if (hasBrand && hasGalleryImages) {
+    if (hasValidHeroImg && hasGalleryImages) {
         console.log('[SSR Hydration] Contenido pre-renderizado por SSR detectado. Omitiendo consulta a Firestore.');
-        const heroImg = document.getElementById('heroCarImg');
         const heroLoader = document.getElementById('heroLoader');
         if (heroLoader) {
             heroLoader.classList.add('hidden');
             heroLoader.style.display = 'none';
         }
-        if (heroImg && heroImg.getAttribute('src')) {
-            heroImg.style.display = 'block';
+        if (heroCarImgEl) {
+            heroCarImgEl.style.display = 'block';
+            heroCarImgEl.style.opacity = '1';
         }
         initLightbox();
         return;
@@ -89,33 +90,51 @@ function populateVehicleData(car) {
     // Generate and inject JSON-LD Structured Data
     generateStructuredData(car);
 
-    // Hero Section - Cero parpadeo si ya viene pre-renderizado por SSR
-    const heroImg = document.getElementById('heroCarImg');
+    // Hero Section - Cargar imagen de presentación del Hero y ocultar loader garantizado
+    const heroCarImg = document.getElementById('heroCarImg');
     const heroLoader = document.getElementById('heroLoader');
-    const existingHeroSrc = heroImg ? (heroImg.getAttribute('src') || '') : '';
+    const existingHeroSrc = heroCarImg ? (heroCarImg.getAttribute('src') || '') : '';
 
-    if (existingHeroSrc && existingHeroSrc !== '' && existingHeroSrc !== window.location.href && !existingHeroSrc.endsWith('.html')) {
-        // La imagen ya viene pre-renderizada por el SSR
+    const hideLoaderAndShowImg = () => {
         if (heroLoader) {
             heroLoader.classList.add('hidden');
             heroLoader.style.display = 'none';
         }
-        if (heroImg) {
-            heroImg.style.display = 'block';
+        if (heroCarImg) {
+            heroCarImg.style.display = 'block';
+            heroCarImg.style.opacity = '1';
         }
-    } else if (heroImg && car.image) {
-        heroImg.onload = () => {
-            // Hide loader, show image
-            if (heroLoader) {
-                heroLoader.classList.add('hidden');
-                heroLoader.style.display = 'none';
+    };
+
+    if (existingHeroSrc && existingHeroSrc.startsWith('http') && !existingHeroSrc.endsWith('.html')) {
+        // La imagen ya viene pre-renderizada por el SSR
+        hideLoaderAndShowImg();
+    } else {
+        const mainImageUrl = car.image || (car.galleryExterior && car.galleryExterior[0]) || '';
+
+        if (heroCarImg && mainImageUrl) {
+            heroCarImg.style.display = 'block'; // Visible antes de asignar src para que el navegador la descargue inmediatamente
+            heroCarImg.alt = '';
+            heroCarImg.setAttribute('role', 'presentation');
+            heroCarImg.removeAttribute('loading'); // Jamás lazy en la imagen principal del Hero
+            heroCarImg.onload = hideLoaderAndShowImg;
+            heroCarImg.onerror = () => {
+                // Si falla la URL principal, probar fallback a la primera foto de exterior
+                if (car.galleryExterior && car.galleryExterior[0] && heroCarImg.src !== car.galleryExterior[0]) {
+                    heroCarImg.src = car.galleryExterior[0];
+                } else {
+                    hideLoaderAndShowImg();
+                }
+            };
+            heroCarImg.src = mainImageUrl;
+            if (heroCarImg.complete && heroCarImg.naturalWidth > 0) {
+                hideLoaderAndShowImg();
             }
-            heroImg.style.display = 'block';
-        };
-        heroImg.src = car.image;
-        heroImg.alt = '';
-        heroImg.setAttribute('role', 'presentation');
-        heroImg.setAttribute('loading', 'lazy');
+            // Fallback de seguridad por si onload no dispara
+            setTimeout(hideLoaderAndShowImg, 1200);
+        } else {
+            hideLoaderAndShowImg();
+        }
     }
 
     // Price - Estructura limpia y sin solapamiento
@@ -364,7 +383,10 @@ function populateGallery(exteriorImages, interiorImages, car) {
 
     const urlParams = new URLSearchParams(window.location.search);
     const vehicleId = urlParams.get('id') || '';
-    const proxyImageUrl = vehicleId ? `https://autosjveloce.com/img-coches/${encodeURIComponent(vehicleId)}-principal.jpg` : (exterior[2] || exterior[0] || '');
+    const isLocalServer = (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') && window.location.port !== '5000';
+    const directStorageImg = (exterior[2] || exterior[0] || car?.image || '');
+    // En entorno cliente local usar directamente la URL de Firebase Storage para no depender de la Cloud Function /img-coches/
+    const proxyImageUrl = isLocalServer ? directStorageImg : (vehicleId ? `https://autosjveloce.com/img-coches/${encodeURIComponent(vehicleId)}-principal.jpg` : directStorageImg);
 
     // === BLOCK A: Exterior - 2 stacked left + 1 large right (DOM: main first, CSS: ordered) ===
     if (exterior.length >= 3) {

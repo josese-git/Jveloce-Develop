@@ -196,12 +196,7 @@ class GeminiClient:
             self.key_manager = key_manager
         self.model_name = "gemini-2.5-flash"
         self.fallback_models = [
-            "gemini-2.0-flash",
-            "gemini-2.0-flash-lite",
-            "gemini-2.5-flash-lite",
-            "gemini-flash-latest",
-            "gemini-3.5-flash",
-            "gemini-3.1-flash-lite"
+            "gemini-3.5-flash"
         ]
 
     def parse_vehicle(self, caption: str, image_paths: list[Path]) -> dict | None:
@@ -440,7 +435,7 @@ class GeminiClient:
         logger.info(f"Subiendo audio para transcripción: {audio_path}")
         try:
             # Usar modelos más ligeros para transcripción para que sea casi instantáneo
-            models_to_try = ["gemini-3.1-flash-lite", "gemini-2.5-flash-lite", "gemini-2.5-flash"]
+            models_to_try = ["gemini-2.5-flash", "gemini-3.5-flash"]
             
             for current_model in models_to_try:
                 num_keys = len(self.key_manager.api_keys)

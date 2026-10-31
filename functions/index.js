@@ -521,7 +521,7 @@ ${jsonLdString}
         html = html.replace(/<div\s+class=["']hero-visual["'][^>]*>/i,
             `<div class="hero-visual" data-nosnippet>`);
         html = html.replace(/<img[^>]*id=["']heroCarImg["'][^>]*>/i,
-            `<img id="heroCarImg" src="${escapeHtmlAttr(heroImgSrc)}" alt="" role="presentation" class="hero-car-img" style="display:block;" loading="lazy">`);
+            `<img id="heroCarImg" src="${escapeHtmlAttr(heroImgSrc)}" alt="" role="presentation" class="hero-car-img" style="display:block;">`);
 
         // 4. Body SSR: Hero Price (formatted price, remove "Cargando...")
         html = html.replace(/<div[^>]*id=["']heroPrice["'][^>]*>[\s\S]*?<\/div>/i,

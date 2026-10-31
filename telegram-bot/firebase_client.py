@@ -3,6 +3,7 @@ firebase_client.py - Cliente Firebase Admin para JVeloce Bot
 Gestiona la subida de imágenes a Storage y la escritura de documentos en Firestore.
 """
 
+import logging
 import os
 import uuid
 import urllib.parse
@@ -11,6 +12,8 @@ from datetime import datetime
 
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
+
+logger = logging.getLogger("FirebaseClient")
 
 
 class FirebaseClient:
@@ -31,7 +34,7 @@ class FirebaseClient:
             firebase_admin.initialize_app(
                 cred, {"storageBucket": self.STORAGE_BUCKET}
             )
-            print("✅ Firebase inicializado con Service Account JSON.")
+            logger.info("Firebase inicializado con Service Account JSON.")
         else:
             # Opción 2: Application Default Credentials (gcloud CLI)
             # Funciona si el usuario ha ejecutado: gcloud auth application-default login
@@ -44,10 +47,9 @@ class FirebaseClient:
                         "projectId": "jveloce-cf602",
                     },
                 )
-                print(
-                    "✅ Firebase inicializado con Application Default Credentials.\n"
-                    "   (Si no has hecho login, ejecuta: "
-                    "gcloud auth application-default login)"
+                logger.info(
+                    "Firebase inicializado con Application Default Credentials. "
+                    "(Si no has hecho login, ejecuta: gcloud auth application-default login)"
                 )
             except Exception as e:
                 raise RuntimeError(

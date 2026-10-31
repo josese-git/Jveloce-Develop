@@ -25,6 +25,8 @@ from firebase_client import FirebaseClient
 from gemini_client import GeminiClient, GeminiKeyManager
 from image_processor import remove_background, BackgroundRemovalError
 from agent_handler import AgentHandler
+from facebook_scraper import FBListingStateManager
+from fb_monitor import check_facebook_marketplace_job, cmd_check_fb, CHECK_INTERVAL_SECONDS
 
 # ─── Configuración ───────────────────────────────────────────────────────────
 
@@ -73,11 +75,12 @@ user_photo_batches: dict[int, dict] = {}
 firebase: FirebaseClient | None = None
 gemini: GeminiClient | None = None
 agent: AgentHandler | None = None
+fb_state_manager: FBListingStateManager | None = None
 
 
 def init_clients():
-    """Inicializa los clientes de Firebase, Gemini (parser) y el Agente IA."""
-    global firebase, gemini, agent
+    """Inicializa los clientes de Firebase, Gemini (parser), el Agente IA y el monitor de FB."""
+    global firebase, gemini, agent, fb_state_manager
     try:
         firebase = FirebaseClient()
         logger.info("✅ Firebase inicializado correctamente.")
@@ -100,6 +103,10 @@ def init_clients():
         logger.info("✅ Agente IA inicializado con soporte de rotación de claves.")
     else:
         logger.warning("⚠️  Agente IA no inicializado (requiere Firebase).")
+
+    # Monitor de Facebook Marketplace
+    fb_state_manager = FBListingStateManager()
+    logger.info("✅ Monitor de Facebook Marketplace inicializado.")
 
 
 # ─── Utilidades ──────────────────────────────────────────────────────────────
@@ -536,10 +543,28 @@ async def handle_document_description(update: Update, context: ContextTypes.DEFA
 # ─── Lógica Principal de Procesamiento ────────────────────────────────────────
 
 
-async def _process_vehicle(bot, chat_id: int, user_id: int, context: ContextTypes.DEFAULT_TYPE, photos: list, caption: str):
+async def _process_vehicle(
+    bot,
+    chat_id: int,
+    user_id: int,
+    context: ContextTypes.DEFAULT_TYPE,
+    photos: list,
+    caption: str,
+    photo_paths: list[Path] | None = None,
+    fb_listing_id: str | None = None,
+    fb_listing_url: str | None = None,
+):
     """
-    Fase 1: Descarga imágenes, extrae datos con Gemini,
-    ordena las fotos, quita el fondo de la principal y presenta la vista previa.
+    Fase 1: Descarga imágenes (desde Telegram o desde rutas locales pre-descargadas),
+    extrae datos con Gemini, ordena las fotos, quita el fondo de la principal
+    y presenta la vista previa interactiva.
+
+    Args:
+        photos: Lista de objetos de foto de Telegram (con file_id).
+        photo_paths: Lista de Path locales ya descargadas (desde Facebook). Si se especifica,
+                     se omite la descarga desde Telegram.
+        fb_listing_id: ID del anuncio de Facebook (si el origen es Facebook Marketplace).
+        fb_listing_url: URL del anuncio de Facebook para incluir en la vista previa.
     """
     if not firebase:
         await bot.send_message(
@@ -563,18 +588,25 @@ async def _process_vehicle(bot, chat_id: int, user_id: int, context: ContextType
     image_paths: list[Path] = []
 
     try:
-        # ── Paso 1: Descargar imágenes ──
-        for i, photo in enumerate(photos):
-            file = await bot.get_file(photo.file_id)
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"{timestamp}_{i:02d}.jpg"
-            filepath = TEMP_DIR / filename
-            await file.download_to_drive(str(filepath))
-            image_paths.append(filepath)
+        # ── Paso 1: Obtener imágenes (desde Telegram o ya descargadas de Facebook) ──
+        if photo_paths:
+            # Caso Facebook: imágenes ya descargadas localmente
+            image_paths = [p for p in photo_paths if p and p.exists()]
+            logger.info(f"[FB] Usando {len(image_paths)} imágenes pre-descargadas de Facebook.")
+        else:
+            # Caso normal: descargar desde Telegram
+            for i, photo in enumerate(photos):
+                file = await bot.get_file(photo.file_id)
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                filename = f"{timestamp}_{i:02d}.jpg"
+                filepath = TEMP_DIR / filename
+                await file.download_to_drive(str(filepath))
+                image_paths.append(filepath)
 
         # ── Paso 2: Analizar descripción e imágenes con Gemini primero ──
+        fb_label = " [desde Facebook Marketplace]" if fb_listing_id else ""
         await bot.edit_message_text(
-            f"📸 {len(image_paths)} foto(s) descargadas.\n"
+            f"📸 {len(image_paths)} foto(s) descargadas{fb_label}.\n"
             "🤖 Analizando con Gemini y clasificando imágenes...",
             chat_id,
             status_msg.message_id,
@@ -659,7 +691,10 @@ async def _process_vehicle(bot, chat_id: int, user_id: int, context: ContextType
             "brand": brand,
             "model": model,
             "chat_id": chat_id,
-            "preview_message_id": None
+            "preview_message_id": None,
+            # Metadatos de Facebook (si procede)
+            "fb_listing_id": fb_listing_id,
+            "fb_listing_url": fb_listing_url,
         }
 
         # ── Paso 6: Generar vista previa con teclado en línea ──
@@ -695,7 +730,14 @@ async def _process_vehicle(bot, chat_id: int, user_id: int, context: ContextType
             cv_display = f"{cv} CV (guessed)"
 
         def build_preview_lines(include_description=True):
-            lines = [
+            lines = []
+            # Cabecera especial si viene de Facebook
+            if fb_listing_id:
+                lines.append("🔔 <b>NUEVO ANUNCIO DETECTADO EN FACEBOOK MARKETPLACE</b>")
+                if fb_listing_url:
+                    lines.append(f"🔗 <a href='{fb_listing_url}'>Ver anuncio original en Facebook</a>")
+                lines.append("")
+            lines += [
                 "👀 <b>VISTA PREVIA DEL ANUNCIO</b>\n",
                 f"🚗 <b>{get_preview_val('brand', brand)} {get_preview_val('model', model)}</b>",
                 f"💰 Precio: {get_preview_val('price', price)}",
@@ -1123,11 +1165,20 @@ def main():
     # Crear aplicación de Telegram
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
+    # ── Inyectar dependencias en bot_data para el monitor de Facebook ──
+    application.bot_data["firebase"] = firebase
+    application.bot_data["gemini"] = gemini
+    application.bot_data["admin_id"] = ADMIN_TELEGRAM_ID
+    application.bot_data["fb_state_manager"] = fb_state_manager
+    # Función de procesamiento de vehículos reutilizable por el monitor de FB
+    application.bot_data["process_vehicle_from_data_fn"] = _process_vehicle
+
     # Registrar handlers
     application.add_handler(CommandHandler("start", cmd_start))
     application.add_handler(CommandHandler("listar", cmd_listar))
     application.add_handler(CommandHandler("eliminar", cmd_eliminar))
     application.add_handler(CommandHandler("estado", cmd_estado))
+    application.add_handler(CommandHandler("check_fb", cmd_check_fb))
     application.add_handler(MessageHandler(filters.PHOTO, handle_photo))
     application.add_handler(MessageHandler(filters.VOICE | filters.AUDIO, handle_audio_message))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text_description))
@@ -1138,6 +1189,31 @@ def main():
         )
     )
     application.add_handler(CallbackQueryHandler(handle_callback))
+
+    # ── Registrar job periódico del monitor de Facebook Marketplace ──
+    if ADMIN_TELEGRAM_ID != 0:
+        # Primera comprobación a los 30s del inicio (para el primer arranque / marcado inicial)
+        application.job_queue.run_once(
+            check_facebook_marketplace_job,
+            when=30,
+            name="fb_marketplace_first_check",
+        )
+        # Comprobaciones periódicas cada CHECK_INTERVAL_SECONDS (15 min)
+        application.job_queue.run_repeating(
+            check_facebook_marketplace_job,
+            interval=CHECK_INTERVAL_SECONDS,
+            first=CHECK_INTERVAL_SECONDS,  # Primera ejecución periódica tras 15 min
+            name="fb_marketplace_monitor",
+        )
+        logger.info(
+            f"✅ Monitor de Facebook Marketplace activo "
+            f"(intervalo: {CHECK_INTERVAL_SECONDS // 60} min, primera comprobación en 30s)."
+        )
+    else:
+        logger.warning(
+            "⚠️  ADMIN_TELEGRAM_ID=0 → Monitor de Facebook Marketplace desactivado. "
+            "Configura tu ID en .env para activar las notificaciones automáticas."
+        )
 
     # Iniciar polling
     logger.info("🤖 Bot listo. Esperando mensajes...")

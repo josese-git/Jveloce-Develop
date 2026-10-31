@@ -161,6 +161,17 @@ function filterCars(query) {
     });
 }
 
+/**
+ * Helper para enrutamiento de detalle de coche en búsqueda:
+ * En local (Live Server u otros puertos != 5000) apunta a detalle-app.html
+ * En producción (autosjveloce.com) y Firebase Emulator (:5000) apunta a detalle.html para SSR
+ */
+const getCarDetailUrl = (carId) => {
+    const isLocalStaticServer = (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') && window.location.port !== '5000';
+    const baseFile = isLocalStaticServer ? 'detalle-app.html' : 'detalle.html';
+    return `${basePath}Coches/${baseFile}?id=${encodeURIComponent(carId)}`;
+};
+
 // Render search results
 function renderResults(cars, query) {
     if (!searchResults) return;
@@ -213,7 +224,7 @@ function renderResults(cars, query) {
             const carId = item.getAttribute('data-car-id');
             closeSearch();
             // Navigate to detail page with correct path
-            window.location.href = `${basePath}Coches/detalle.html?id=${encodeURIComponent(carId)}`;
+            window.location.href = getCarDetailUrl(carId);
         });
     });
 }

@@ -18,7 +18,7 @@ EnvironmentFile=/home/Josese/jveloce-bot/.env
 # Seguridad básica
 NoNewPrivileges=yes
 ProtectSystem=strict
-ReadWritePaths=/home/Josese/jveloce-bot/temp_images
+ReadWritePaths=/home/Josese/jveloce-bot
 
 # Logs
 StandardOutput=journal

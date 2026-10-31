@@ -153,7 +153,7 @@
                 <li><a href="../index.html#home">Inicio</a></li>
                 <li><a href="../index.html#inventory">Coches</a></li>
                 <li><a href="../resenas.html">Reseñas</a></li>
-                <li><a href="../index.html#contact">Contacto</a></li>
+                <li><a href="../contacto.html">Contacto</a></li>
                 <li><a href="#" class="search-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -200,7 +200,7 @@
                         <div class="spinner-ring"></div>
                         <span class="loader-text" id="loaderText"></span>
                     </div>
-                    <img id="heroCarImg" src="" alt="" role="presentation" class="hero-car-img" style="display:none;" loading="lazy">
+                    <img id="heroCarImg" src="" alt="" role="presentation" class="hero-car-img" style="display:none;">
                 </div>
                 <div class="hero-price-tag" id="heroPrice">
                     <span class="text-gold">€</span>
@@ -271,45 +271,79 @@
 
     <!-- Footer -->
     <footer id="contact" class="glass-footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="../assets/icons/contacto-jveloce.png" alt="" role="presentation" class="contact-glow-img">
+    <div class="footer-luxury-container">
+        <div class="footer-main-grid">
+            <!-- Columna 1: Marca + Redes -->
+            <div class="footer-col footer-brand-col">
+                <a href="../index.html" class="footer-brand-logo">
+                    <img src="../assets/logo sin fondo.png" alt="Autos JVeloce Logo">
+                </a>
+                <p class="footer-brand-desc">
+                    Concesionario referente en Jaén especializado en vehículos de ocasión seleccionados, revisados y con kilometraje certificado.
+                </p>
+                <div class="footer-social-row">
+                    <a href="https://www.instagram.com/jveloce_autos?igsh=MXJrYWhub3BpczhvMg==" class="footer-social-icon glass-panel" aria-label="Instagram" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="" role="presentation">
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61554233211583" class="footer-social-icon glass-panel" aria-label="Facebook" target="_blank" rel="noopener noreferrer" title="Facebook">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="" role="presentation">
+                    </a>
+                    <a href="https://www.milanuncios.com/anuncios-usuario/julio-90742085.htm?stc=oth-share_link-send_friend-profile" class="footer-social-icon glass-panel" aria-label="Milanuncios" target="_blank" rel="noopener noreferrer" title="Milanuncios">
+                        <img src="/assets/icons/milanuncios.png" alt="" role="presentation">
+                    </a>
+                    <a href="https://wa.me/34622948792" class="footer-social-icon glass-panel" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="" role="presentation">
+                    </a>
+                </div>
             </div>
 
-            <div class="social-links">
-                <a href="https://www.facebook.com/profile.php?id=61554233211583" class="social-btn glass-btn"
-                    aria-label="Facebook" target="_blank" rel="noopener noreferrer" title="Facebook">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
-                        alt="" role="presentation">
-                </a>
-
-                <a href="https://www.milanuncios.com/anuncios-usuario/julio-90742085.htm?stc=oth-share_link-send_friend-profile"
-                    class="social-btn glass-btn" aria-label="Milanuncios" target="_blank" rel="noopener noreferrer"
-                    title="Milanuncios">
-                    <img src="/assets/icons/milanuncios.png"
-                        alt="" role="presentation">
-                </a>
-
-                <a href="https://www.instagram.com/jveloce_autos?igsh=MXJrYWhub3BpczhvMg==" class="social-btn glass-btn"
-                    aria-label="Instagram" target="_blank" rel="noopener noreferrer" title="Instagram">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="" role="presentation">
-                </a>
-
-                <a href="https://wa.me/34622948792" class="social-btn glass-btn" aria-label="Whatsapp" target="_blank"
-                    rel="noopener noreferrer" title="WhatsApp">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="" role="presentation">
-                </a>
+            <!-- Columna 2: Navegación -->
+            <div class="footer-col footer-links-col">
+                <h3 class="footer-col-title">NAVEGACIÓN</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="../index.html#home">Inicio</a></li>
+                    <li><a href="../index.html#inventory">Vehículos en Stock</a></li>
+                    <li><a href="../index.html#whyUs">Por Qué Elegir JVeloce</a></li>
+                    <li><a href="../resenas.html">Opiniones de Clientes (5.0★)</a></li>
+                    <li><a href="../contacto.html">Contacto e Instalaciones</a></li>
+                </ul>
             </div>
 
-            <!-- Legal Links -->
+            <!-- Columna 3: Contacto Directo y Horario Real -->
+            <div class="footer-col footer-contact-col">
+                <h3 class="footer-col-title">CONTACTO Y HORARIO</h3>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <a href="https://www.google.com/maps/place/Autos+JVeloce/@37.78824,-3.7827528,17z" target="_blank" rel="noopener noreferrer">Carr. de Madrid, 37, 23009 Jaén</a>
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:+34603945181">603 94 51 81</a> · <a href="https://wa.me/34622948792" target="_blank" rel="noopener noreferrer">WhatsApp: 622 94 87 92</a>
+                    </li>
+                    <li class="footer-hours-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <div class="footer-hours-breakdown">
+                            <div class="hours-row"><strong>Lun:</strong> <span>9:00–13:45 · 16:15–20:30</span></div>
+                            <div class="hours-row"><strong>Mar:</strong> <span>9:30–13:45 · 16:15–20:00</span></div>
+                            <div class="hours-row"><strong>Mié–Vie:</strong> <span>9:15–13:45 · 16:15–20:00</span></div>
+                            <div class="hours-row"><strong>Sáb:</strong> <span>10:00–13:30</span> · <strong>Dom:</strong> <span>Cerrado</span></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <p class="copyright">© 2026 Autos JVeloce · Todos los derechos reservados.</p>
             <div class="legal-links">
-                <a href="../aviso-legal.html" class="legal-link">Aviso Legal</a> |
+                <a href="../aviso-legal.html" class="legal-link">Aviso Legal</a>
+                <span class="legal-sep">|</span>
                 <a href="../politica-privacidad.html" class="legal-link">Política de Privacidad</a>
             </div>
-
-            <p class="copyright">© 2026 Autos JVeloce. Future Ready.</p>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <!-- Lightbox Container -->
     <div id="lightbox" class="lightbox">
