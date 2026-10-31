@@ -52,7 +52,14 @@
         "opens": "09:00",
         "closes": "20:00"
       },
-      "priceRange": "€€"
+      "priceRange": "€€",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "16",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     }
     </script>
 
@@ -578,7 +585,7 @@
 
                 // Filtrar reseñas que tienen texto (Contenido de la Reseña no vacío ni null)
                 const resenasValidas = resenas.filter(review => {
-                    const texto = review["Contenido de la Reseña"];
+                    const texto = review.text || review["Contenido de la Reseña"];
                     return texto && texto.trim() !== '';
                 });
 
@@ -600,12 +607,16 @@
                 // Generar HTML para cada reseña
                 let html = '';
                 resenasValidas.forEach(review => {
-                    const nombre = review["Nombre del Reseñador"] || 'Cliente';
-                    const texto = review["Contenido de la Reseña"];
-                    const fecha = review["Fecha de la Reseña"] || '';
-                    const foto = review["Foto de perfil del reseñador"] || '';
-                    const rating = parseInt(review["Calificación (Max 5)"]) || 5;
-                    const respuesta = review["Respuesta del Propietario"] || '';
+                    const nombre = review.author || review["Nombre del Reseñador"] || 'Cliente';
+                    const texto = review.text || review["Contenido de la Reseña"] || '';
+                    const fecha = review.date || review["Fecha de la Reseña"] || '';
+                    let foto = review.avatar || review["Foto de perfil del reseñador"] || '';
+                    if (foto && foto.startsWith('[')) {
+                        const match = foto.match(/\((https?:\/\/[^)]+)\)/);
+                        if (match) foto = match[1];
+                    }
+                    const rating = parseInt(review.rating || review["Calificación (Max 5)"]) || 5;
+                    const respuesta = review.reply || review["Respuesta del Propietario"] || '';
 
                     // Obtener inicial para fallback del avatar
                     const inicial = nombre.charAt(0).toUpperCase();
