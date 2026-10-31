@@ -155,41 +155,7 @@ const handleImageProxy = async (req, res) => {
 app.get(['/img-coches/:slug', '/img-coches/:carId/:imageIndex'], handleImageProxy);
 app.head(['/img-coches/:slug', '/img-coches/:carId/:imageIndex'], handleImageProxy);
 
-/**
- * Clean short model for visual <h1>: extracts only the base short model name
- * Strips 4-digit years, engine displacement (1.2, 1.6, 2.0...), fuel types, and long trims.
- */
-function cleanShortModel(rawModel) {
-    if (!rawModel) return '';
-    let m = rawModel.trim();
 
-    // 1. Remove 4-digit years
-    m = m.replace(/\b(19|20)\d{2}\b/g, '').trim();
-
-    // 2. Mercedes "Clase X" / BMW "Serie X" / Mercedes SUVs
-    const claseMatch = m.match(/^(Clase\s+[A-Za-z]+)/i);
-    if (claseMatch) return claseMatch[1];
-
-    const serieMatch = m.match(/^(Serie\s+\d+)/i);
-    if (serieMatch) return serieMatch[1];
-
-    const mercSuvMatch = m.match(/^(GLA|GLC|GLE|GLS|CLA|CLS|SLK|CLK|GLB)\b/i);
-    if (mercSuvMatch) return mercSuvMatch[1].toUpperCase();
-
-    // 3. Cut at engine displacement: e.g. "208 1.2 Gasolina Style" -> "208"
-    m = m.replace(/\s+\d+\.\d+.*$/i, '').trim();
-
-    // 4. Cut at BMW engine codes: e.g. "320d", "118d", "520d"
-    m = m.replace(/\s+\d{3}[a-zA-Z]?\b.*$/i, '').trim();
-
-    // 5. Cut at fuel / engine types: e.g. TDI, HDI, CRDi, CDI, HEV, Gasolina, etc.
-    m = m.replace(/\s+(TDI|HDI|CRDI|CDI|TFSI|TSI|DCI|HEV|PHEV|MHEV|GASOLINA|DIESEL|DIÉSEL|HÍBRIDO|HIBRIDO|ELECTRIC|ELÉCTRICO)\b.*$/i, '').trim();
-
-    // 6. Clean trailing dashes or spaces
-    m = m.replace(/[\s\-_]+$/, '').trim();
-
-    return m || rawModel.trim();
-}
 
 
 /**
@@ -495,10 +461,10 @@ app.get('/Coches/detalle.html', async (req, res) => {
         }
 
         const carData = doc.data();
-        const carBrand = carData.brand || 'Vehículo';
-        const carModelYear = `${carData.model || ''} ${carData.year || ''}`.trim();
+        const carBrand = carData.brand || carData.marca || 'Vehículo';
+        const carModel = carData.model || carData.modelo || '';
+        const carModelYear = `${carModel} ${carData.year || ''}`.trim();
         const carName = `${carBrand} ${carModelYear}`.trim();
-        const shortModel = cleanShortModel(carData.model || '');
 
         let rawPrice = carData.price ? carData.price.toString().replace(/[^\d]/g, '') : '';
         let formattedPrice = rawPrice ? rawPrice.replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '';
@@ -566,7 +532,7 @@ ${jsonLdString}
             `<span id="carBrand">${escapeHtmlAttr(carBrand)}</span>`);
 
         html = html.replace(/<span[^>]*id=["']carModel["'][^>]*>[\s\S]*?<\/span>/i,
-            `<span class="text-gold" id="carModel">${escapeHtmlAttr(shortModel)}</span>`);
+            `<span class="text-gold" id="carModel">${escapeHtmlAttr(carModel)}</span>`);
 
         // 6. Body SSR: Car Description (real description, remove placeholder)
         let fullDescriptionHtml = '';
