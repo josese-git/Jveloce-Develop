@@ -28,9 +28,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         canonicalTag.setAttribute('href', canonicalUrl);
     }
 
+    // Punto 1: Si la página ya viene pre-renderizada por el SSR, NO ejecutar ninguna consulta a Firestore en el arranque
+    const carBrandEl = document.getElementById('carBrand');
+    const galleryContainer = document.getElementById('galleryContainer');
+    const hasBrand = carBrandEl && carBrandEl.textContent.trim().length > 0 && carBrandEl.textContent.trim() !== 'Vehículo';
+    const hasGalleryImages = galleryContainer && galleryContainer.querySelectorAll('.gallery-item img').length > 0;
+
+    if (hasBrand && hasGalleryImages) {
+        console.log('[SSR Hydration] Contenido pre-renderizado por SSR detectado. Omitiendo consulta a Firestore.');
+        const heroImg = document.getElementById('heroCarImg');
+        const heroLoader = document.getElementById('heroLoader');
+        if (heroLoader) {
+            heroLoader.classList.add('hidden');
+            heroLoader.style.display = 'none';
+        }
+        if (heroImg && heroImg.getAttribute('src')) {
+            heroImg.style.display = 'block';
+        }
+        initLightbox();
+        return;
+    }
 
     try {
-        // 2. Fetch vehicle data from Firebase
+        // 2. Fetch vehicle data from Firebase (fallback únicamente si no vino pre-renderizado por SSR)
         const docRef = doc(db, COLLECTION_NAME, vehicleId);
         const docSnap = await getDoc(docRef);
 
@@ -96,12 +116,12 @@ function populateVehicleData(car) {
         heroImg.setAttribute('loading', 'lazy');
     }
 
-    // Price
+    // Price - Estructura limpia y sin solapamiento
     const priceEl = document.getElementById('heroPrice');
     if (priceEl) {
         // Format price with euro symbol
         const formattedPrice = formatPrice(car.price);
-        priceEl.innerHTML = `<span class="text-gold">€</span><span class="text-gold">${formattedPrice}</span>`;
+        priceEl.innerHTML = `<span class="price-currency">€</span><span class="price-val">${formattedPrice}</span>`;
     }
 
     // Title (Brand + Model)

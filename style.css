@@ -948,20 +948,35 @@ html {
     color: var(--gold-primary);
     text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
     margin-top: 40px;
-    /* Increased margin */
     background: rgba(255, 255, 255, 0.05);
     padding: 10px 40px;
     border-radius: 50px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(212, 175, 55, 0.3);
     z-index: 10;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
 }
 
+.hero-price-tag .price-currency,
 .currency {
-    font-size: 0.6em;
-    vertical-align: top;
-    margin-right: 5px;
+    font-size: 0.8em;
+    font-weight: 700;
+    vertical-align: baseline;
+    color: var(--gold-primary);
+    display: inline-block;
 }
+
+.hero-price-tag .price-val {
+    color: var(--gold-primary);
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+
 
 @keyframes float-hero {
 

@@ -1,6 +1,6 @@
 /**
  * Search Module - Reusable search functionality for all pages
- * Uses window.store (exposed from store.js via app.js) to get vehicle data
+ * Uses window.store (exposed from store.js via app.js) to get vehicle data lazily
  */
 
 // Base path detection for correct navigation
@@ -9,19 +9,35 @@ const basePath = isInSubfolder ? '../' : '';
 
 // Store vehicles data for search
 let allCars = [];
+let isSearchCarsLoading = false;
 
-// Get cars from the store - wait for store to be available
-function initStore() {
-    if (window.store) {
-        window.store.subscribe((cars) => {
-            allCars = cars;
-        });
-    } else {
-        // Retry after a short delay if store not yet loaded
-        setTimeout(initStore, 100);
-    }
+/**
+ * Lazy load vehicles data from the store ONLY when search modal is opened
+ * Avoids any Firestore Listen/channel connections on initial page load (Googlebot friendly)
+ */
+function ensureSearchData() {
+    if (allCars.length > 0 || isSearchCarsLoading) return;
+    isSearchCarsLoading = true;
+
+    const connectStore = () => {
+        if (window.store) {
+            window.store.subscribe((cars) => {
+                allCars = cars;
+                isSearchCarsLoading = false;
+                // If user typed before data arrived, run filter now
+                if (searchInput && searchInput.value.trim().length > 0) {
+                    const results = filterCars(searchInput.value);
+                    renderResults(results, searchInput.value);
+                }
+            });
+        } else {
+            // Retry after short delay if store script is still executing
+            setTimeout(connectStore, 100);
+        }
+    };
+
+    connectStore();
 }
-initStore();
 
 // DOM Elements
 const searchModal = document.getElementById('searchModal');
@@ -36,6 +52,10 @@ function openSearch() {
     if (!searchModal) return;
     searchModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Lazy load vehicles data only when user explicitly opens search
+    ensureSearchData();
+
     setTimeout(() => {
         if (searchInput) searchInput.focus();
     }, 100);

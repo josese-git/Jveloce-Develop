@@ -58,10 +58,13 @@ const DEFAULT_CARS = [
 class Store {
     constructor() {
         this.subscribers = [];
-        this.init();
+        this.initialized = false;
     }
 
     init() {
+        if (this.initialized) return;
+        this.initialized = true;
+
         // Set up real-time listener with correct sorting
         const colRef = collection(db, COLLECTION_NAME);
         const q = query(colRef, orderBy('order', 'asc'));
@@ -91,6 +94,10 @@ class Store {
 
     subscribe(callback) {
         this.subscribers.push(callback);
+        // Lazy initialize the listener only when a subscriber actually registers
+        if (!this.initialized) {
+            this.init();
+        }
     }
 
     notifySubscribers(cars) {

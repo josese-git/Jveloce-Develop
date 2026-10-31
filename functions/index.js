@@ -521,7 +521,7 @@ ${jsonLdString}
 
         // 4. Body SSR: Hero Price (formatted price, remove "Cargando...")
         html = html.replace(/<div[^>]*id=["']heroPrice["'][^>]*>[\s\S]*?<\/div>/i,
-            `<div class="hero-price-tag" id="heroPrice"><span class="text-gold">€</span><span class="text-gold">${escapeHtmlAttr(formattedPrice)}</span></div>`);
+            `<div class="hero-price-tag" id="heroPrice"><span class="price-currency">€</span><span class="price-val">${escapeHtmlAttr(formattedPrice)}</span></div>`);
 
         // 5. Body SSR: Vehicle Title (Single H1 with real brand and model)
         html = html.replace(/<span[^>]*id=["']carBrand["'][^>]*>[\s\S]*?<\/span>/i,
