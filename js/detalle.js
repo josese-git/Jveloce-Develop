@@ -11,9 +11,6 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-
 const COLLECTION_NAME = 'anuncios';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Initialize lightbox immediately if gallery was pre-rendered by SSR
-    initLightbox();
-
     // 1. Get vehicle ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const vehicleId = urlParams.get('id');
@@ -500,7 +497,7 @@ function showError(message) {
     const heroData = document.querySelector('.hero-data');
     const heroVisual = document.querySelector('.hero-visual');
     const gallerySection = document.getElementById('gallery');
-    
+
     if (heroVisual) {
         heroVisual.style.display = 'none';
     }

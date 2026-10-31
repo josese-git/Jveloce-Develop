@@ -7,7 +7,7 @@
     /* Color Palette */
     --bg-deep-black: #050505;
     --gold-primary: #D4AF37;
-    --gold-gradient: linear-gradient(135deg, #FGD700 0%, #D4AF37 50%, #B8860B 100%);
+    --gold-gradient: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%);
     --gold-text-gradient: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
     --silver-accent: #E0E0E0;
     --red-neon: #FF3333;
@@ -278,7 +278,10 @@ body {
 }
 
 /* Car Grid Container - 3 Columns Desktop Original Distribution */
-#carGrid, .inventory-grid, .car-grid, .vehicles-container {
+#carGrid,
+.inventory-grid,
+.car-grid,
+.vehicles-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
@@ -288,6 +291,7 @@ body {
 }
 
 @media (min-width: 1025px) {
+
     #carGrid.grid-single-item,
     .inventory-grid.grid-single-item,
     .car-grid.grid-single-item {
@@ -333,6 +337,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -2082,10 +2087,10 @@ html {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.4s ease,
-                box-shadow 0.4s ease;
+        filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
     cursor: pointer;
     user-select: none;
 }
@@ -2216,6 +2221,7 @@ html {
 }
 
 @media (max-width: 680px) {
+
     .pillar-prev-btn,
     .facility-prev-btn {
         left: 6px !important;
@@ -2356,14 +2362,17 @@ html {
 .jv-dropdown-menu::-webkit-scrollbar {
     width: 6px;
 }
+
 .jv-dropdown-menu::-webkit-scrollbar-track {
     background: rgba(10, 10, 10, 0.5);
     border-radius: 6px;
 }
+
 .jv-dropdown-menu::-webkit-scrollbar-thumb {
     background: rgba(212, 175, 55, 0.4);
     border-radius: 6px;
 }
+
 .jv-dropdown-menu::-webkit-scrollbar-thumb:hover {
     background: #d4af37;
 }
@@ -2474,13 +2483,13 @@ html {
     transition: all 0.3s ease;
 }
 
-.sold-toggle-input:checked + .sold-toggle-slider {
+.sold-toggle-input:checked+.sold-toggle-slider {
     background: rgba(212, 175, 55, 0.28);
     border-color: #d4af37;
     box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
 }
 
-.sold-toggle-input:checked + .sold-toggle-slider::after {
+.sold-toggle-input:checked+.sold-toggle-slider::after {
     transform: translateX(20px);
     background: #d4af37;
     box-shadow: 0 0 8px #d4af37;
@@ -2532,9 +2541,11 @@ html {
     .filters-dropdowns-row {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .trust-pillar-card.is-prev {
         transform: translate3d(-42%, 0, -100px) scale(0.8);
     }
+
     .trust-pillar-card.is-next {
         transform: translate3d(42%, 0, -100px) scale(0.8);
     }
@@ -2544,16 +2555,20 @@ html {
     .filters-dropdowns-row {
         grid-template-columns: 1fr;
     }
+
     .pillars-stage {
         height: 215px;
     }
+
     .trust-pillar-card {
         padding: 20px;
         width: 82vw;
     }
+
     .trust-pillar-card.is-prev {
         transform: translate3d(-24%, 0, -110px) scale(0.78);
     }
+
     .trust-pillar-card.is-next {
         transform: translate3d(24%, 0, -110px) scale(0.78);
     }
@@ -2798,22 +2813,30 @@ html {
 
 /* === RESPONSIVE BREAKPOINTS === */
 @media (max-width: 1024px) {
+
     .why-us-grid,
     .home-reviews-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    #carGrid, .inventory-grid, .car-grid {
+
+    #carGrid,
+    .inventory-grid,
+    .car-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
 }
 
 @media (max-width: 768px) {
-    #carGrid, .inventory-grid, .car-grid {
+
+    #carGrid,
+    .inventory-grid,
+    .car-grid {
         grid-template-columns: 1fr;
         gap: 24px;
         padding: 0 10px;
     }
+
     .hero-trust-badge {
         font-size: 0.82rem;
         padding: 8px 16px;
@@ -2824,9 +2847,11 @@ html {
         flex-wrap: wrap;
         justify-content: center;
     }
+
     .hero-trust-badge .badge-divider {
         display: none;
     }
+
     .hero-cta-group,
     .final-cta-buttons {
         flex-direction: column;
@@ -2835,6 +2860,7 @@ html {
         margin-left: auto;
         margin-right: auto;
     }
+
     .hero-btn-primary,
     .hero-btn-secondary {
         width: 100%;
@@ -2842,20 +2868,25 @@ html {
         padding: 14px 20px;
         white-space: nowrap;
     }
+
     .why-us-grid,
     .home-reviews-grid {
         grid-template-columns: 1fr;
     }
+
     .inventory-controls {
         padding: 18px;
     }
+
     .final-cta-card {
         padding: 34px 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .car-grid, #carGrid {
+
+    .car-grid,
+    #carGrid {
         grid-template-columns: 1fr;
         padding: 0 10px;
     }
@@ -3101,10 +3132,10 @@ html {
     border: 1px solid rgba(212, 175, 55, 0.3);
     backdrop-filter: blur(16px);
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.4s ease,
-                box-shadow 0.4s ease;
+        filter 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
     cursor: pointer;
     user-select: none;
 }
@@ -3516,16 +3547,20 @@ html {
     .contact-bento-strip {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .contact-split-section {
         grid-template-columns: 1fr;
     }
+
     .facility-card {
         width: 540px;
     }
+
     .footer-main-grid {
         grid-template-columns: 1fr 1fr;
         gap: 36px;
     }
+
     .footer-brand-col {
         grid-column: 1 / -1;
     }
@@ -3607,22 +3642,97 @@ html {
     .contact-page-wrapper {
         padding-top: 115px;
     }
+
     .contact-bento-strip,
     .form-field-row {
         grid-template-columns: 1fr;
     }
+
     .contact-map-card,
     .contact-form-card,
     .schedule-card {
         padding: 22px 18px;
     }
+
     .facilities-stage {
         height: 360px;
     }
+
     .facility-card {
         width: 88vw;
     }
+
     .facility-img-wrapper {
         height: 220px;
+    }
+}
+
+/* === MOBILE GPU & COMPOSITING OPTIMIZATIONS (100% VISUAL PARITY) === */
+@media (hover: none) and (pointer: coarse) {
+
+    /* En pantallas táctiles no existe cursor de ratón: evitamos mezclar una capa fija de 400x400px */
+    .cursor-glow {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Promoción de capas a GPU para elementos con backdrop-filter sin perder el efecto Liquid Glass */
+    .glass-nav,
+    .card-details,
+    .trust-pillar-card,
+    .facility-card,
+    .inventory-controls,
+    .why-card,
+    .home-review-card,
+    .contact-bento-card,
+    .final-cta-card,
+    .schedule-card,
+    .contact-map-card,
+    .contact-form-card {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+    }
+
+    /* Aislamiento de layout por tarjeta para que el scroll por el inventario sea instantáneo */
+    .car-card {
+        contain: layout style;
+    }
+
+    /* Mejor respuesta táctil al deslizar en los carruseles 3D sin bloquear el scroll vertical */
+    .pillars-carousel-wrapper,
+    .facilities-carousel-wrapper {
+        touch-action: pan-y;
+    }
+
+    .trust-pillar-card,
+    .facility-card {
+        will-change: transform, opacity;
+    }
+
+    /* El degradado radial ya es difuso por naturaleza; quitar el filter:blur redundante sobre el degradado ahorra GPU manteniendo el mismo halo dorado */
+    .pillar-ambient-glow {
+        filter: none;
+        inset: -24px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.08) 45%, transparent 75%);
+    }
+
+    /* En detalle.html: mantener la flotación y el resplandor dorado respirando a 120 FPS usando composición de GPU (opacity + transform) en vez de recalcular drop-shadow por píxel en cada frame */
+    .hero-image-container {
+        animation: float-hero 6s ease-in-out infinite !important;
+        filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.65));
+    }
+
+    .hero-image-container::after {
+        content: '';
+        position: absolute;
+        inset: 10% 5%;
+        background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.42) 0%, rgba(212, 175, 55, 0.12) 45%, transparent 72%);
+        border-radius: 50%;
+        z-index: -1;
+        pointer-events: none;
+        animation: glow-breathe 6s ease-in-out infinite;
     }
 }
