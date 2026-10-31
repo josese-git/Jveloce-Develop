@@ -12,31 +12,81 @@ let allCars = [];
 let isSearchCarsLoading = false;
 
 /**
- * Lazy load vehicles data from the store ONLY when search modal is opened
- * Avoids any Firestore Listen/channel connections on initial page load (Googlebot friendly)
+ * Text normalizer for case-insensitive and accent-insensitive searching (tildes / diacritics)
  */
-function ensureSearchData() {
-    if (allCars.length > 0 || isSearchCarsLoading) return;
-    isSearchCarsLoading = true;
+function normalizeText(text) {
+    if (!text) return '';
+    return text.toString()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
 
-    const connectStore = () => {
-        if (window.store) {
-            window.store.subscribe((cars) => {
-                allCars = cars;
-                isSearchCarsLoading = false;
-                // If user typed before data arrived, run filter now
-                if (searchInput && searchInput.value.trim().length > 0) {
-                    const results = filterCars(searchInput.value);
-                    renderResults(results, searchInput.value);
-                }
-            });
-        } else {
-            // Retry after short delay if store script is still executing
-            setTimeout(connectStore, 100);
+/**
+ * Lazy load vehicles data from the store ONLY when search modal is opened or user searches
+ * Avoids any Firestore connections on initial page load (Googlebot friendly)
+ */
+async function loadSearchCars() {
+    if (allCars.length > 0) return allCars;
+    if (isSearchCarsLoading) {
+        while (isSearchCarsLoading) {
+            await new Promise(r => setTimeout(r, 50));
         }
-    };
+        return allCars;
+    }
 
-    connectStore();
+    isSearchCarsLoading = true;
+    try {
+        // Ensure window.store is available, dynamically importing store.js if needed
+        if (!window.store) {
+            try {
+                const storePath = isInSubfolder ? '../js/store.js' : './js/store.js';
+                const module = await import(storePath);
+                window.store = module.default || module.store || window.store;
+            } catch (e) {
+                try {
+                    const fallbackPath = isInSubfolder ? '../js/store.js' : './store.js';
+                    const module = await import(fallbackPath);
+                    window.store = module.default || module.store || window.store;
+                } catch (e2) {
+                    console.warn('[Search] Could not import store.js dynamically:', e2);
+                }
+            }
+        }
+
+        if (window.store && typeof window.store.ensureCarsLoaded === 'function') {
+            const cars = await window.store.ensureCarsLoaded();
+            if (cars && cars.length > 0) {
+                allCars = cars;
+            }
+        } else if (window.store && typeof window.store.subscribe === 'function') {
+            await new Promise((resolve) => {
+                let resolved = false;
+                window.store.subscribe((cars) => {
+                    if (cars && cars.length > 0) {
+                        allCars = cars;
+                        if (!resolved) {
+                            resolved = true;
+                            resolve(cars);
+                        }
+                    }
+                });
+                setTimeout(() => {
+                    if (!resolved) {
+                        resolved = true;
+                        resolve(allCars);
+                    }
+                }, 2500);
+            });
+        }
+    } catch (err) {
+        console.error('[Search] Error loading cars for search:', err);
+    } finally {
+        isSearchCarsLoading = false;
+    }
+
+    return allCars;
 }
 
 // DOM Elements
@@ -48,17 +98,30 @@ const desktopSearchIcon = document.querySelector('.nav-links .search-icon');
 const mobileSearchBtn = document.querySelector('.mobile-search-btn');
 
 // Open search modal
-function openSearch() {
+async function openSearch() {
     if (!searchModal) return;
     searchModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Lazy load vehicles data only when user explicitly opens search
-    ensureSearchData();
+    // Show loading state if vehicles haven't finished loading yet
+    if (allCars.length === 0 && searchResults) {
+        searchResults.innerHTML = '<p class="search-hint">Cargando vehículos...</p>';
+    }
 
     setTimeout(() => {
         if (searchInput) searchInput.focus();
     }, 100);
+
+    // Fetch vehicles in background / wait
+    await loadSearchCars();
+
+    if (searchResults && searchInput && !searchInput.value.trim()) {
+        searchResults.innerHTML = '<p class="search-hint">Escribe para buscar por marca, modelo, año...</p>';
+    } else if (searchInput && searchInput.value.trim()) {
+        const query = searchInput.value;
+        const results = filterCars(query);
+        renderResults(results, query);
+    }
 }
 
 // Close search modal
@@ -72,26 +135,29 @@ function closeSearch() {
     }
 }
 
-// Search filter function
+// Search filter function (case-insensitive & accent-insensitive)
 function filterCars(query) {
-    const searchTerm = query.toLowerCase().trim();
-
-    if (!searchTerm) {
+    const rawSearch = normalizeText(query);
+    if (!rawSearch) {
         return [];
     }
 
-    return allCars.filter(car => {
-        const searchableText = [
-            car.brand,
-            car.model,
-            car.year,
-            car.fuel,
-            car.transmission,
-            car.km || '',
-            car.price || ''
-        ].join(' ').toLowerCase();
+    // Split multi-word queries into individual terms (e.g. "bmw 320" -> ["bmw", "320"])
+    const terms = rawSearch.split(/\s+/).filter(t => t.length > 0);
 
-        return searchableText.includes(searchTerm);
+    return allCars.filter(car => {
+        const searchableText = normalizeText([
+            car.brand || '',
+            car.model || '',
+            car.year || '',
+            car.fuel || '',
+            car.transmission || '',
+            car.km || '',
+            car.price || '',
+            car.description || ''
+        ].join(' '));
+
+        return terms.every(term => searchableText.includes(term));
     });
 }
 
@@ -147,7 +213,7 @@ function renderResults(cars, query) {
             const carId = item.getAttribute('data-car-id');
             closeSearch();
             // Navigate to detail page with correct path
-            window.location.href = `${basePath}Coches/detalle.html?id=${carId}`;
+            window.location.href = `${basePath}Coches/detalle.html?id=${encodeURIComponent(carId)}`;
         });
     });
 }
@@ -188,13 +254,25 @@ function initSearchListeners() {
         }
     });
 
-    // Search input handler with debounce
+    // Search input handler with debounce and async loading if not ready
     let searchTimeout;
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
+            searchTimeout = setTimeout(async () => {
                 const query = e.target.value;
+                if (!query.trim()) {
+                    searchResults.innerHTML = '<p class="search-hint">Escribe para buscar por marca, modelo, año...</p>';
+                    return;
+                }
+
+                if (allCars.length === 0) {
+                    if (searchResults) {
+                        searchResults.innerHTML = '<p class="search-hint">Buscando vehículos...</p>';
+                    }
+                    await loadSearchCars();
+                }
+
                 const results = filterCars(query);
                 renderResults(results, query);
             }, 150);

@@ -1,3 +1,39 @@
+
+/**
+ * Clean short model for visual <h1>: extracts only the base short model name
+ */
+function cleanShortModel(rawModel) {
+    if (!rawModel) return '';
+    let m = rawModel.trim();
+
+    // 1. Remove 4-digit years
+    m = m.replace(/\b(19|20)\d{2}\b/g, '').trim();
+
+    // 2. Mercedes "Clase X" / BMW "Serie X" / Mercedes SUVs
+    const claseMatch = m.match(/^(Clase\s+[A-Za-z]+)/i);
+    if (claseMatch) return claseMatch[1];
+
+    const serieMatch = m.match(/^(Serie\s+\d+)/i);
+    if (serieMatch) return serieMatch[1];
+
+    const mercSuvMatch = m.match(/^(GLA|GLC|GLE|GLS|CLA|CLS|SLK|CLK|GLB)\b/i);
+    if (mercSuvMatch) return mercSuvMatch[1].toUpperCase();
+
+    // 3. Cut at engine displacement: e.g. "208 1.2 Gasolina Style" -> "208"
+    m = m.replace(/\s+\d+\.\d+.*$/i, '').trim();
+
+    // 4. Cut at BMW engine codes: e.g. "320d", "118d", "520d"
+    m = m.replace(/\s+\d{3}[a-zA-Z]?\b.*$/i, '').trim();
+
+    // 5. Cut at fuel / engine types: e.g. TDI, HDI, CRDi, CDI, HEV, Gasolina, etc.
+    m = m.replace(/\s+(TDI|HDI|CRDI|CDI|TFSI|TSI|DCI|HEV|PHEV|MHEV|GASOLINA|DIESEL|DIÉSEL|HÍBRIDO|HIBRIDO|ELECTRIC|ELÉCTRICO)\b.*$/i, '').trim();
+
+    // 6. Clean trailing dashes or spaces
+    m = m.replace(/[\s\-_]+$/, '').trim();
+
+    return m || rawModel.trim();
+}
+
 /**
  * Detalle.js - Dynamic Vehicle Detail Page
  * Loads vehicle data from Firebase based on URL parameter
@@ -121,14 +157,14 @@ function populateVehicleData(car) {
     if (priceEl) {
         // Format price with euro symbol
         const formattedPrice = formatPrice(car.price);
-        priceEl.innerHTML = `<span class="price-currency">€</span><span class="price-val">${formattedPrice}</span>`;
+        priceEl.innerHTML = `<span class="text-gold">€${formattedPrice}</span>`;
     }
 
     // Title (Brand + Model)
     const brandEl = document.getElementById('carBrand');
     const modelEl = document.getElementById('carModel');
     if (brandEl) brandEl.textContent = car.brand || '';
-    if (modelEl) modelEl.textContent = car.model || '';
+    if (modelEl) modelEl.textContent = cleanShortModel(car.model || "");
 
     // Description
     const descEl = document.getElementById('carDescription');

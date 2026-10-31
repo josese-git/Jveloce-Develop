@@ -1,6 +1,7 @@
 import { db } from './firebase-config.js';
 import {
     collection,
+    getDocs,
     onSnapshot,
     setDoc,
     deleteDoc,
@@ -59,6 +60,8 @@ class Store {
     constructor() {
         this.subscribers = [];
         this.initialized = false;
+        this.cars = [];
+        this._loadingPromise = null;
     }
 
     init() {
@@ -74,6 +77,7 @@ class Store {
             snapshot.forEach((doc) => {
                 cars.push({ id: doc.id, ...doc.data() });
             });
+            this.cars = cars;
             this.notifySubscribers(cars);
 
             // Optional: Seed default data if empty (only once)
@@ -82,6 +86,44 @@ class Store {
                 this.seedDefaults();
             }
         });
+    }
+
+    /**
+     * Async loader for cars: returns cached cars if loaded, or fetches from Firestore
+     * Essential for search functionality without premature startup connections
+     */
+    async ensureCarsLoaded() {
+        if (this.cars && this.cars.length > 0) {
+            return this.cars;
+        }
+        if (this._loadingPromise) {
+            return this._loadingPromise;
+        }
+        this._loadingPromise = (async () => {
+            try {
+                if (!this.initialized) {
+                    this.init();
+                }
+                const colRef = collection(db, COLLECTION_NAME);
+                const q = query(colRef, orderBy('order', 'asc'));
+                const snapshot = await getDocs(q);
+                const cars = [];
+                snapshot.forEach((doc) => {
+                    cars.push({ id: doc.id, ...doc.data() });
+                });
+                if (cars.length > 0) {
+                    this.cars = cars;
+                    this.notifySubscribers(cars);
+                }
+                return (this.cars && this.cars.length > 0) ? this.cars : cars;
+            } catch (err) {
+                console.error("Error loading cars in store:", err);
+                return this.cars || [];
+            } finally {
+                this._loadingPromise = null;
+            }
+        })();
+        return this._loadingPromise;
     }
 
     async seedDefaults() {
@@ -94,6 +136,10 @@ class Store {
 
     subscribe(callback) {
         this.subscribers.push(callback);
+        // If we already have cars in memory, notify immediately
+        if (this.cars && this.cars.length > 0) {
+            try { callback(this.cars); } catch (e) {}
+        }
         // Lazy initialize the listener only when a subscriber actually registers
         if (!this.initialized) {
             this.init();

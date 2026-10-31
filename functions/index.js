@@ -156,6 +156,43 @@ app.get(['/img-coches/:slug', '/img-coches/:carId/:imageIndex'], handleImageProx
 app.head(['/img-coches/:slug', '/img-coches/:carId/:imageIndex'], handleImageProxy);
 
 /**
+ * Clean short model for visual <h1>: extracts only the base short model name
+ * Strips 4-digit years, engine displacement (1.2, 1.6, 2.0...), fuel types, and long trims.
+ */
+function cleanShortModel(rawModel) {
+    if (!rawModel) return '';
+    let m = rawModel.trim();
+
+    // 1. Remove 4-digit years
+    m = m.replace(/\b(19|20)\d{2}\b/g, '').trim();
+
+    // 2. Mercedes "Clase X" / BMW "Serie X" / Mercedes SUVs
+    const claseMatch = m.match(/^(Clase\s+[A-Za-z]+)/i);
+    if (claseMatch) return claseMatch[1];
+
+    const serieMatch = m.match(/^(Serie\s+\d+)/i);
+    if (serieMatch) return serieMatch[1];
+
+    const mercSuvMatch = m.match(/^(GLA|GLC|GLE|GLS|CLA|CLS|SLK|CLK|GLB)\b/i);
+    if (mercSuvMatch) return mercSuvMatch[1].toUpperCase();
+
+    // 3. Cut at engine displacement: e.g. "208 1.2 Gasolina Style" -> "208"
+    m = m.replace(/\s+\d+\.\d+.*$/i, '').trim();
+
+    // 4. Cut at BMW engine codes: e.g. "320d", "118d", "520d"
+    m = m.replace(/\s+\d{3}[a-zA-Z]?\b.*$/i, '').trim();
+
+    // 5. Cut at fuel / engine types: e.g. TDI, HDI, CRDi, CDI, HEV, Gasolina, etc.
+    m = m.replace(/\s+(TDI|HDI|CRDI|CDI|TFSI|TSI|DCI|HEV|PHEV|MHEV|GASOLINA|DIESEL|DIÉSEL|HÍBRIDO|HIBRIDO|ELECTRIC|ELÉCTRICO)\b.*$/i, '').trim();
+
+    // 6. Clean trailing dashes or spaces
+    m = m.replace(/[\s\-_]+$/, '').trim();
+
+    return m || rawModel.trim();
+}
+
+
+/**
  * Helper to build the SEO Gallery HTML
  * Requirement 3: 3rd photo (or fallback) is placed FIRST in DOM with high priority
  * All secondary images are lazy and wrapped with data-nosnippet
@@ -461,6 +498,7 @@ app.get('/Coches/detalle.html', async (req, res) => {
         const carBrand = carData.brand || 'Vehículo';
         const carModelYear = `${carData.model || ''} ${carData.year || ''}`.trim();
         const carName = `${carBrand} ${carModelYear}`.trim();
+        const shortModel = cleanShortModel(carData.model || '');
 
         let rawPrice = carData.price ? carData.price.toString().replace(/[^\d]/g, '') : '';
         let formattedPrice = rawPrice ? rawPrice.replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '';
@@ -521,14 +559,14 @@ ${jsonLdString}
 
         // 4. Body SSR: Hero Price (formatted price, remove "Cargando...")
         html = html.replace(/<div[^>]*id=["']heroPrice["'][^>]*>[\s\S]*?<\/div>/i,
-            `<div class="hero-price-tag" id="heroPrice"><span class="price-currency">€</span><span class="price-val">${escapeHtmlAttr(formattedPrice)}</span></div>`);
+            `<div class="hero-price-tag" id="heroPrice"><span class="text-gold">€${escapeHtmlAttr(formattedPrice)}</span></div>`);
 
         // 5. Body SSR: Vehicle Title (Single H1 with real brand and model)
         html = html.replace(/<span[^>]*id=["']carBrand["'][^>]*>[\s\S]*?<\/span>/i,
             `<span id="carBrand">${escapeHtmlAttr(carBrand)}</span>`);
 
         html = html.replace(/<span[^>]*id=["']carModel["'][^>]*>[\s\S]*?<\/span>/i,
-            `<span class="text-gold" id="carModel">${escapeHtmlAttr(carModelYear)}</span>`);
+            `<span class="text-gold" id="carModel">${escapeHtmlAttr(shortModel)}</span>`);
 
         // 6. Body SSR: Car Description (real description, remove placeholder)
         let fullDescriptionHtml = '';
@@ -555,7 +593,7 @@ ${jsonLdString}
 
         // 8. Body SSR: Gallery Title (change H1 to H2 to guarantee single H1 on page)
         html = html.replace(/<h[12][^>]*id=["']galleryTitle["'][^>]*>[\s\S]*?<\/h[12]>/i,
-            `<h2 id="galleryTitle" class="car-title" style="text-align: center;"><span class="text-gold">Galería de fotos del ${escapeHtmlAttr(carName)}</span></h2>`);
+            `<h2 id="galleryTitle" class="car-title" style="text-align: center;"><span class="text-gold">Galería</span></h2>`);
 
         // 9. Clean any inline script that might reference "Cargando..."
         html = html.replace(/loaderTextEl\.textContent\s*=\s*`Cargando[^`]*`;?/gi, '');
