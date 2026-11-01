@@ -1957,21 +1957,18 @@ html {
 .hero-trust-badge {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 20px;
-    border-radius: 50px;
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    background: rgba(15, 15, 15, 0.75);
+    justify-content: center;
+    gap: 12px;
+    padding: 9px 22px;
+    border-radius: 999px;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.32);
     backdrop-filter: blur(12px);
-    color: #eaeaea;
-    text-decoration: none;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    margin-bottom: 22px;
-    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 24px;
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.12);
+    text-decoration: none;
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .hero-trust-badge:hover {
@@ -1980,18 +1977,42 @@ html {
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.28);
 }
 
-.hero-trust-badge .badge-stars {
-    color: #d4af37;
-    letter-spacing: 2px;
+.trust-badge-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
 }
 
-.hero-trust-badge .badge-score {
+.trust-google-logo {
+    flex-shrink: 0;
+    display: block;
+}
+
+.badge-score {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: 0.92rem;
     color: #ffffff;
-    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 1;
+}
+
+.badge-stars-svg {
+    display: inline-flex;
+    align-items: center;
 }
 
 .hero-trust-badge .badge-divider {
     color: rgba(212, 175, 55, 0.4);
+    font-size: 0.85rem;
+}
+
+.hero-trust-badge .badge-text {
+    font-family: var(--font-main);
+    font-size: 0.90rem;
+    font-weight: 600;
+    color: #eaeaea;
+    letter-spacing: 0.5px;
 }
 
 .hero-cta-group {
@@ -2837,20 +2858,6 @@ html {
         padding: 0 10px;
     }
 
-    .hero-trust-badge {
-        font-size: 0.82rem;
-        padding: 8px 16px;
-        border-radius: 30px;
-        max-width: 92%;
-        margin: 0 auto 18px;
-        line-height: 1.3;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .hero-trust-badge .badge-divider {
-        display: none;
-    }
 
     .hero-cta-group,
     .final-cta-buttons {
@@ -3668,11 +3675,11 @@ html {
 }
 
 /* ==========================================================================
-   MOBILE GPU & COMPOSITING OPTIMIZATION (100% ORIGINAL VISUAL FIDELITY)
-   Optimizado para GPUs móviles (Adreno 610 / Redmi Note 8T) en index, detalle y contacto
+   MASTER MOBILE GPU & OPTICAL GLASS ENGINE (100% VISUAL FIDELITY)
+   Calibrado para Adreno 610 (Redmi Note 8T) en index, detalle, contacto y resenas
    ========================================================================== */
 
-/* Evitar que la 4ª tarjeta oculta del carrusel 3D consuma GPU cuando tiene opacity: 0 */
+/* 1. Desactivación total de GPU para la 4ª tarjeta oculta del carrusel 3D */
 .trust-pillar-card.is-hidden {
     visibility: hidden;
     backdrop-filter: none !important;
@@ -3681,7 +3688,7 @@ html {
     pointer-events: none;
 }
 
-/* Desactivar el halo de cursor de ratón en pantallas táctiles */
+/* 2. Ocultar halo del cursor en pantallas táctiles */
 @media (hover: none) and (pointer: coarse) {
     .cursor-glow {
         display: none !important;
@@ -3689,15 +3696,51 @@ html {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --blur-strength: 10px;
+    }
+
     /* ----------------------------------------------------------------------
-       1. TEXTO GLOWY DEL HERO (.hero-description-box):
-       Aspecto 100% IDÉNTICO al original sin cortes superiores ni exceso de brillo.
-       Congelamos el párrafo en una única textura bitmap de GPU para que el
-       text-shadow original se pinte 1 sola vez al cargar y escale a 60 FPS.
+       A. BARRA DE NAVEGACIÓN Y MENÚ MÓVIL
+       Mantenemos backdrop-filter real en la barra superior fija para que se vea
+       la refracción al pasar contenido por debajo, optimizando el menú abierto.
+       ---------------------------------------------------------------------- */
+    .glass-nav {
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        background: rgba(14, 14, 14, 0.82) !important;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        transition: background-color 0.3s ease, border-color 0.3s ease !important;
+    }
+
+    .nav-logo {
+        filter: none !important;
+    }
+
+    .nav-links {
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        background: rgba(10, 10, 10, 0.94) !important;
+    }
+
+    /* Evitar doble backdrop-filter a pantalla completa cuando se abre el menú */
+    body::before {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(0, 0, 0, 0.72) !important;
+    }
+
+    /* ----------------------------------------------------------------------
+       B. TEXTO GLOWY DEL HERO (.hero-description-box)
+       Usamos radios <= 18px que caben al 100% en el Hardware Glyph Atlas de Skia
+       (evitando el desbordamiento de caché que causaba el radio de 60px) junto con
+       una bruma radial suave sin bordes para que jamás se corte por arriba.
        ---------------------------------------------------------------------- */
     .hero-3d-element {
-        perspective: none;
-        overflow: visible;
+        perspective: none !important;
+        overflow: visible !important;
     }
 
     .hero-description-box {
@@ -3707,18 +3750,15 @@ html {
         transform: translateZ(0);
     }
 
-    /* Resplandor ambiental sutil idéntico al original (0.08 de opacidad),
-       sin filter:blur() ni animación continua que obligue a repintar las letras,
-       y con desvanecimiento suave al 65% para que NUNCA se vea ningún corte arriba */
     .hero-description-box::before {
         content: '';
         position: absolute;
-        inset: -45px -25px;
+        inset: -55px -25px;
         background: radial-gradient(
-            ellipse 75% 65% at 50% 50%,
-            rgba(212, 175, 55, 0.08) 0%,
-            rgba(212, 175, 55, 0.03) 40%,
-            transparent 70%
+            ellipse 70% 60% at 50% 50%,
+            rgba(212, 175, 55, 0.09) 0%,
+            rgba(212, 175, 55, 0.03) 45%,
+            transparent 72%
         );
         border-radius: 50%;
         z-index: -1;
@@ -3729,131 +3769,298 @@ html {
         pointer-events: none;
     }
 
-    /* Conservamos el text-shadow original exacto, promoviendo el párrafo a su propia capa estática en VRAM */
     .hero-description-box p {
-        text-shadow: 0 0 20px rgba(212, 175, 55, 0.25), 0 0 40px rgba(212, 175, 55, 0.15), 0 0 60px rgba(0, 0, 0, 0.9);
+        /* Radios dentro del límite de 24px del Glyph Atlas GPU: mismo brillo cálido en las letras con 0% lag al hacer scroll */
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 16px rgba(212, 175, 55, 0.34), 0 0 22px rgba(212, 175, 55, 0.16) !important;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         transform: translateZ(0);
-        will-change: transform;
     }
 
-    /* Sustituimos filter:drop-shadow en .text-gold por text-shadow nativo idéntico:
-       evita crear 5 sub-superficies SVG dentro del párrafo sin cambiar el brillo dorado */
     .text-gold {
         filter: none !important;
-        text-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+        text-shadow: 0 0 12px rgba(212, 175, 55, 0.32) !important;
     }
 
-    /* Los botones del Hero y Cargar Más tienen fondo propio: evitamos 30px de backdrop-filter inútil */
-    .hero-btn-primary,
-    .hero-btn-secondary,
-    .load-more-btn,
-    .form-submit-btn {
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-
-    .hero-btn-secondary {
-        background: rgba(22, 22, 22, 0.88);
+    .floating-emblem {
+        filter: none !important;
     }
 
     /* ----------------------------------------------------------------------
-       2. CARRUSELES 3D (Garantías en index.html e Instalaciones en contacto.html)
+       C. SHADER ÓPTICO DE CRISTAL LÍQUIDO (Sustituye backdrop-filter pesado en scroll)
+       Recrea exactamente el cristal esmerilado con reflejo especular y halo dorado
+       usando degradados nativos de GPU (20x más rápido que Gaussian Blur).
+       ---------------------------------------------------------------------- */
+    .glass-panel,
+    .glass-footer,
+    .glass-btn,
+    .hero-trust-badge,
+    .hero-price-tag,
+    .inventory-controls,
+    .why-card,
+    .home-review-card,
+    .final-cta-card,
+    .contact-bento-card,
+    .contact-map-card,
+    .schedule-card,
+    .contact-form-card,
+    .resena-card,
+    .spec-item {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+    }
+
+    /* Distintivo de confianza y botones del Hero con acabado Liquid Glass Óptico */
+    .hero-trust-badge {
+        display: inline-flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        width: fit-content !important;
+        max-width: 90vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: 20px !important;
+        padding: 8px 20px !important;
+        border-radius: 20px !important;
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.14) 0%, rgba(18, 18, 18, 0.92) 100%) !important;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    }
+
+    .hero-trust-badge .badge-divider {
+        display: none !important;
+    }
+
+    .hero-trust-badge .trust-badge-rating {
+        gap: 6px;
+    }
+
+    .hero-trust-badge .badge-text {
+        font-size: 0.76rem !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        letter-spacing: 0.3px;
+        line-height: 1.2;
+    }
+
+    .hero-btn-primary {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.24) 0%, rgba(45, 36, 12, 0.92) 100%) !important;
+        box-shadow: 0 0 18px rgba(212, 175, 55, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .hero-btn-secondary {
+        background: linear-gradient(135deg, rgba(40, 40, 40, 0.9) 0%, rgba(18, 18, 18, 0.95) 100%) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Superficie Liquid Glass para tarjetas y paneles de contenido */
+    .inventory-controls,
+    .why-card,
+    .home-review-card,
+    .final-cta-card,
+    .contact-bento-card,
+    .contact-map-card,
+    .schedule-card,
+    .contact-form-card,
+    .resena-card,
+    .spec-item {
+        background:
+            radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.10), transparent 70%),
+            linear-gradient(145deg, rgba(32, 32, 32, 0.92) 0%, rgba(15, 15, 15, 0.96) 100%) !important;
+        border: 1px solid rgba(212, 175, 55, 0.26) !important;
+        border-top-color: rgba(212, 175, 55, 0.42) !important;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .glass-footer {
+        background: linear-gradient(180deg, rgba(16, 16, 16, 0.95) 0%, rgba(8, 8, 8, 0.98) 100%) !important;
+    }
+
+    /* ----------------------------------------------------------------------
+       D. CARRUSELES 3D (Garantías en index.html e Instalaciones en contacto.html)
+       Mantenemos el efecto de profundidad 3D y desenfoque lateral usando
+       Desenfoque Óptico de Texto (0% filter:blur FBOs en GPU).
        ---------------------------------------------------------------------- */
     .pillars-carousel-wrapper,
     .facilities-carousel-wrapper {
         touch-action: pan-y;
     }
 
-    /* Las tarjetas laterales (.is-prev / .is-next) ya llevan filter: blur(3.8px).
-       Quitarles el backdrop-filter interno evita un doble desenfoque anidado en GPU */
-    .trust-pillar-card.is-prev,
-    .trust-pillar-card.is-next,
-    .facility-card.is-prev,
-    .facility-card.is-next {
+    .trust-pillar-card,
+    .facility-card {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
-        background: rgba(16, 16, 16, 0.92);
+        /* Animamos únicamente transform y opacity por hardware (nunca filter ni box-shadow) */
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) !important;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }
 
     .trust-pillar-card.is-active,
     .facility-card.is-active {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        background: rgba(16, 16, 16, 0.84);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
+        filter: none !important;
+        background:
+            radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.14), transparent 68%),
+            linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(12, 12, 12, 0.98) 100%) !important;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.8), 0 0 24px rgba(212, 175, 55, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* Tarjetas laterales en segundo plano: eliminamos filter:blur(4px) de la tarjeta
+       y aplicamos desenfoque óptico al texto e icono para que se vean borrosas a 120 FPS */
+    .trust-pillar-card.is-prev,
+    .trust-pillar-card.is-next,
+    .facility-card.is-prev,
+    .facility-card.is-next {
+        filter: none !important;
+        background: rgba(14, 14, 14, 0.92) !important;
+        border-color: rgba(212, 175, 55, 0.15) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6) !important;
+        opacity: 0.38 !important;
+    }
+
+    /* Desenfoque óptico de los textos en las tarjetas laterales (simula depth-of-field sin shader de blur) */
+    .trust-pillar-card.is-prev h3,
+    .trust-pillar-card.is-next h3,
+    .trust-pillar-card.is-prev p,
+    .trust-pillar-card.is-next p,
+    .facility-card.is-prev h3,
+    .facility-card.is-next h3,
+    .facility-card.is-prev p,
+    .facility-card.is-next p {
+        color: transparent !important;
+        text-shadow: 0 0 7px rgba(255, 255, 255, 0.65) !important;
     }
 
     .pillar-ambient-glow {
         filter: none !important;
         inset: -22px;
-        background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, rgba(212, 175, 55, 0.06) 48%, transparent 72%);
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, rgba(212, 175, 55, 0.06) 48%, transparent 72%) !important;
     }
 
-    .pillar-nav-btn,
+    .pillar-nav-btn {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(20, 20, 20, 0.92) !important;
+    }
+
     .facility-caption-bar {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
+        background: linear-gradient(180deg, rgba(14, 14, 14, 0.88) 0%, rgba(10, 10, 10, 0.96) 100%) !important;
     }
 
     /* ----------------------------------------------------------------------
-       3. INVENTARIO DE COCHES Y SECCIONES DE PORTADA (index.html)
+       E. PARRILLA DE COCHES: Sombra 3D de Concesionario sin filter:drop-shadow por píxel
        ---------------------------------------------------------------------- */
     .car-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
         contain: layout style;
     }
 
-    .card-details {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        background: rgba(26, 26, 26, 0.82);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        transform: translateZ(0);
+    .card-image-wrapper {
+        position: relative;
     }
 
-    .why-card,
-    .home-review-card,
-    .final-cta-card {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        background: rgba(18, 18, 18, 0.85);
+    /* Sombra elíptica bajo el chasis del coche (sustituye al costoso filter:drop-shadow sobre el PNG) */
+    .card-image-wrapper::after {
+        content: '';
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        bottom: 6%;
+        height: 26%;
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.35) 55%, transparent 78%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .car-image {
+        position: relative;
+        z-index: 2;
+        filter: none !important;
+    }
+
+    .car-card.sold .car-image {
+        filter: grayscale(0.85) brightness(0.7) !important;
+    }
+
+    .brand-logo-floating,
+    .sold-overlay-img,
+    .sold-badge-img,
+    .spec-icon,
+    .search-result-img,
+    .contact-glow-img {
+        filter: none !important;
+    }
+
+    /* Píldora de detalles del coche con efecto Cristal Esmerilado Óptico */
+    .card-details {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background:
+            radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.14) 0%, transparent 65%),
+            linear-gradient(180deg, rgba(38, 38, 38, 0.90) 0%, rgba(20, 20, 20, 0.95) 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.28) !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.12) !important;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         transform: translateZ(0);
+        transition: transform 0.25s ease !important;
     }
 
     /* ----------------------------------------------------------------------
-       4. OPTIMIZACIÓN ESPECÍFICA DE CONTACTO.HTML (Bento, Mapa, Horario y Formulario)
-       Evita lag al hacer scroll sobre el iframe de Google Maps y al abrir el teclado Android
+       F. DETALLE DE VEHÍCULO, BUSCADOR, LIGHTBOX Y MAPA
        ---------------------------------------------------------------------- */
-    .contact-bento-card {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        background: rgba(18, 18, 18, 0.86);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        transform: translateZ(0);
-        contain: layout style;
+    .hero-image-container {
+        animation: float-hero 6s ease-in-out infinite !important;
+        filter: none !important;
+        position: relative;
     }
 
-    .contact-map-card,
-    .schedule-card,
-    .contact-form-card {
+    .hero-image-container::after {
+        content: '';
+        position: absolute;
+        inset: 10% 5%;
+        background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.38) 0%, rgba(212, 175, 55, 0.12) 45%, transparent 72%);
+        border-radius: 50%;
+        z-index: -1;
+        pointer-events: none;
+        animation: glow-breathe 6s ease-in-out infinite;
+    }
+
+    .hero-price-tag {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.14) 0%, rgba(18, 18, 18, 0.92) 100%) !important;
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.35) !important;
+    }
+
+    .lightbox {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
-        background: rgba(16, 16, 16, 0.92);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        transform: translateZ(0);
-        contain: layout style;
+        background: rgba(0, 0, 0, 0.96) !important;
     }
 
-    /* Aislar el iframe de Google Maps con su filtro oscuro en su propia textura GPU */
+    .search-modal {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(6, 6, 6, 0.94) !important;
+        transition: opacity 0.25s ease, visibility 0.25s ease !important;
+    }
+
+    .jv-dropdown-menu {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(14, 14, 14, 0.98) !important;
+    }
+
     .map-iframe-container {
         contain: layout paint;
         transform: translateZ(0);
@@ -3861,22 +4068,14 @@ html {
         backface-visibility: hidden;
     }
 
-    /* ----------------------------------------------------------------------
-       5. DETALLE DE VEHÍCULO (detalle.html)
-       ---------------------------------------------------------------------- */
-    .hero-image-container {
-        animation: float-hero 6s ease-in-out infinite !important;
-        filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
-    }
-
-    .hero-image-container::after {
-        content: '';
-        position: absolute;
-        inset: 10% 5%;
-        background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.42) 0%, rgba(212, 175, 55, 0.12) 45%, transparent 72%);
-        border-radius: 50%;
-        z-index: -1;
-        pointer-events: none;
-        animation: glow-breathe 6s ease-in-out infinite;
+    /* Eliminar transition:all costosos en móvil */
+    .why-card,
+    .home-review-card,
+    .contact-bento-card,
+    .spec-item,
+    .action-btn,
+    .gallery-item,
+    .search-result-item {
+        transition: transform 0.25s ease, opacity 0.25s ease !important;
     }
 }

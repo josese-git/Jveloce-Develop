@@ -244,9 +244,15 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
     }
 
+    let rafPending = false;
     function updateTransform() {
-        lightboxImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
-        lightboxImg.classList.remove('zoomed');
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+            lightboxImg.style.transform = `translate3d(${pointX}px, ${pointY}px, 0) scale(${scale})`;
+            lightboxImg.classList.remove('zoomed');
+            rafPending = false;
+        });
     }
 
     function getDistance(touches) {

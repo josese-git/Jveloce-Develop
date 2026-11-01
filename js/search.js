@@ -24,6 +24,28 @@ function normalizeText(text) {
 }
 
 /**
+ * Pre-computes search index for all cars in memory to eliminate string concatenation
+ * and normalization on every keystroke when typing on mobile.
+ */
+function prepareSearchIndex(cars) {
+    if (!cars || !Array.isArray(cars)) return;
+    cars.forEach(car => {
+        if (!car._searchIndex) {
+            car._searchIndex = normalizeText([
+                car.brand || '',
+                car.model || '',
+                car.year || '',
+                car.fuel || '',
+                car.transmission || '',
+                car.km || '',
+                car.price || '',
+                car.description || ''
+            ].join(' '));
+        }
+    });
+}
+
+/**
  * Lazy load vehicles data from the store ONLY when search modal is opened or user searches
  * Avoids any Firestore connections on initial page load (Googlebot friendly)
  */
@@ -59,6 +81,7 @@ async function loadSearchCars() {
             const cars = await window.store.ensureCarsLoaded();
             if (cars && cars.length > 0) {
                 allCars = cars;
+                prepareSearchIndex(allCars);
             }
         } else if (window.store && typeof window.store.subscribe === 'function') {
             await new Promise((resolve) => {
@@ -66,6 +89,7 @@ async function loadSearchCars() {
                 window.store.subscribe((cars) => {
                     if (cars && cars.length > 0) {
                         allCars = cars;
+                        prepareSearchIndex(allCars);
                         if (!resolved) {
                             resolved = true;
                             resolve(cars);
@@ -75,6 +99,7 @@ async function loadSearchCars() {
                 setTimeout(() => {
                     if (!resolved) {
                         resolved = true;
+                        prepareSearchIndex(allCars);
                         resolve(allCars);
                     }
                 }, 2500);
@@ -146,7 +171,7 @@ function filterCars(query) {
     const terms = rawSearch.split(/\s+/).filter(t => t.length > 0);
 
     return allCars.filter(car => {
-        const searchableText = normalizeText([
+        const searchableText = car._searchIndex || normalizeText([
             car.brand || '',
             car.model || '',
             car.year || '',
@@ -201,7 +226,7 @@ function renderResults(cars, query) {
         const imagePath = isInSubfolder ? `../${car.image}` : car.image;
         return `
             <div class="search-result-item" data-car-id="${car.id}">
-                <img src="${imagePath}" alt="${car.brand} ${car.model}" class="search-result-img">
+                <img src="${imagePath}" alt="${car.brand} ${car.model}" class="search-result-img" loading="lazy" decoding="async">
                 <div class="search-result-info">
                     <h4 class="search-result-title">${car.brand} ${car.model}</h4>
                     <div class="search-result-specs">

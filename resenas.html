@@ -473,11 +473,15 @@
 
             .resena-card {
                 padding: 25px;
+                contain: layout style;
             }
 
             .google-rating-badge {
                 flex-direction: column;
                 padding: 20px;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: linear-gradient(135deg, rgba(212, 175, 55, 0.16) 0%, rgba(20, 20, 20, 0.92) 100%) !important;
             }
 
             .resenas-header .section-title {
@@ -693,7 +697,7 @@
 
                     // Avatar: foto si existe, sino inicial
                     const avatarHtml = foto
-                        ? `<img src="${escapeHtml(foto)}" alt="${escapeHtml(nombre)}" class="resena-avatar-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        ? `<img src="${escapeHtml(foto)}" alt="${escapeHtml(nombre)}" class="resena-avatar-img" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                            <div class="resena-avatar" style="display:none;">${inicial}</div>`
                         : `<div class="resena-avatar">${inicial}</div>`;
 
@@ -701,7 +705,7 @@
                     const respuestaHtml = respuesta && respuesta.trim() !== ''
                         ? `<div class="respuesta-propietario">
                                <div class="respuesta-header">
-                                   <img src="assets/Jveloce logo.png" alt="Autos JVeloce" class="respuesta-avatar">
+                                   <img src="assets/Jveloce logo.png" alt="Autos JVeloce" class="respuesta-avatar" loading="lazy" decoding="async">
                                    <span class="respuesta-nombre">Autos JVeloce (propietario)</span>
                                </div>
                                <p class="respuesta-texto">"${escapeHtml(respuesta)}"</p>
@@ -731,7 +735,9 @@
                 container.innerHTML = html;
 
                 // Después de renderizar, detectar qué textos están realmente truncados
-                detectarTextosTruncados();
+                requestAnimationFrame(() => {
+                    detectarTextosTruncados();
+                });
 
             } catch (error) {
                 console.error('Error cargando reseñas:', error);
@@ -763,15 +769,18 @@
          */
         function detectarTextosTruncados() {
             const textos = document.querySelectorAll('.resena-texto');
-            textos.forEach(texto => {
+            // Fase de Lectura por lotes (evita layout thrashing)
+            const measurements = Array.from(textos).map(texto => {
                 const btn = texto.nextElementSibling;
-                // Comprobar si el texto está realmente truncado (scrollHeight > clientHeight)
-                // o si tiene respuesta del propietario
                 const card = texto.closest('.resena-card');
                 const tieneRespuesta = card.querySelector('.respuesta-propietario') !== null;
                 const estaTruncado = texto.scrollHeight > texto.clientHeight;
+                return { btn, shouldBeVisible: estaTruncado || tieneRespuesta };
+            });
 
-                if (estaTruncado || tieneRespuesta) {
+            // Fase de Escritura por lotes
+            measurements.forEach(({ btn, shouldBeVisible }) => {
+                if (btn && shouldBeVisible) {
                     btn.classList.add('visible');
                 }
             });

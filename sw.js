@@ -4,7 +4,7 @@
  * y assets locales, reduciendo consumo de ancho de banda.
  */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const IMAGE_CACHE_NAME = `jveloce-images-${CACHE_VERSION}`;
 const STATIC_CACHE_NAME = `jveloce-static-${CACHE_VERSION}`;
 
