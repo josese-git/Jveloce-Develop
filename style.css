@@ -3667,17 +3667,21 @@ html {
     }
 }
 
-/* === MOBILE HIGH-PERFORMANCE GPU OPTIMIZATION (REDMI NOTE 8T / ADRENO 610 TESTED) === */
-/* 100% Identical Visual Look - Eliminates Per-Glyph Blur & Stacked Backdrop Bottlenecks */
+/* ==========================================================================
+   MOBILE GPU & COMPOSITING OPTIMIZATION (100% ORIGINAL VISUAL FIDELITY)
+   Optimizado para GPUs móviles (Adreno 610 / Redmi Note 8T) en index, detalle y contacto
+   ========================================================================== */
 
-/* 1. Optimización global de la tarjeta oculta del carrusel 3D (evita gastar GPU en opacity: 0) */
+/* Evitar que la 4ª tarjeta oculta del carrusel 3D consuma GPU cuando tiene opacity: 0 */
 .trust-pillar-card.is-hidden {
     visibility: hidden;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     filter: none !important;
+    pointer-events: none;
 }
 
+/* Desactivar el halo de cursor de ratón en pantallas táctiles */
 @media (hover: none) and (pointer: coarse) {
     .cursor-glow {
         display: none !important;
@@ -3685,60 +3689,67 @@ html {
 }
 
 @media (max-width: 768px) {
-    /* 2. ELIMINACIÓN DEL LAG EN EL TEXTO GLOWY DEL HERO (.hero-description-box)
-       Mantiene exactamente el mismo halo dorado cálido detrás del texto y de las palabras clave,
-       pero en lugar de calcular un desenfoque de 40px por cada una de las 385 letras + 5 drop-shadows inline,
-       proyecta el mismo resplandor mediante el pseudo-elemento ::before acelerado por GPU y cachea el texto como bitmap. */
+    /* ----------------------------------------------------------------------
+       1. TEXTO GLOWY DEL HERO (.hero-description-box):
+       Aspecto 100% IDÉNTICO al original sin cortes superiores ni exceso de brillo.
+       Congelamos el párrafo en una única textura bitmap de GPU para que el
+       text-shadow original se pinte 1 sola vez al cargar y escale a 60 FPS.
+       ---------------------------------------------------------------------- */
     .hero-3d-element {
         perspective: none;
+        overflow: visible;
     }
 
     .hero-description-box {
         position: relative;
-        z-index: 2;
-        contain: layout style;
+        overflow: visible !important;
+        contain: none !important;
         transform: translateZ(0);
     }
 
-    /* Halo dorado ambiental idéntico a la suma de los text-shadows de 40px/60px */
+    /* Resplandor ambiental sutil idéntico al original (0.08 de opacidad),
+       sin filter:blur() ni animación continua que obligue a repintar las letras,
+       y con desvanecimiento suave al 65% para que NUNCA se vea ningún corte arriba */
     .hero-description-box::before {
         content: '';
         position: absolute;
-        top: -15px;
-        left: -10px;
-        right: -10px;
-        bottom: 45px;
+        inset: -45px -25px;
         background: radial-gradient(
-            ellipse 85% 70% at 50% 42%,
-            rgba(212, 175, 55, 0.34) 0%,
-            rgba(212, 175, 55, 0.18) 45%,
-            rgba(212, 175, 55, 0.05) 70%,
-            transparent 100%
+            ellipse 75% 65% at 50% 50%,
+            rgba(212, 175, 55, 0.08) 0%,
+            rgba(212, 175, 55, 0.03) 40%,
+            transparent 70%
         );
-        border-radius: 30px;
+        border-radius: 50%;
         z-index: -1;
+        filter: none !important;
         animation: none !important;
         opacity: 1 !important;
-        transform: none !important;
+        transform: translateZ(0) !important;
         pointer-events: none;
     }
 
-    /* Sombra corta de un solo paso por letra: nitidez idéntica con 10x menos coste de rasterizado */
+    /* Conservamos el text-shadow original exacto, promoviendo el párrafo a su propia capa estática en VRAM */
     .hero-description-box p {
-        text-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.25), 0 0 40px rgba(212, 175, 55, 0.15), 0 0 60px rgba(0, 0, 0, 0.9);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
         transform: translateZ(0);
+        will-change: transform;
     }
 
-    /* Sustituir filter: drop-shadow() en los spans .text-gold por text-shadow nativo (evita crear 5 sub-capas SVG dentro del párrafo) */
+    /* Sustituimos filter:drop-shadow en .text-gold por text-shadow nativo idéntico:
+       evita crear 5 sub-superficies SVG dentro del párrafo sin cambiar el brillo dorado */
     .text-gold {
         filter: none !important;
-        text-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
     }
 
-    /* Los botones del Hero están sobre fondo negro/dorado; quitarles el backdrop-filter de 30px ahorra 2 pasadas de blur sin ningún cambio visual */
+    /* Los botones del Hero y Cargar Más tienen fondo propio: evitamos 30px de backdrop-filter inútil */
     .hero-btn-primary,
     .hero-btn-secondary,
-    .load-more-btn {
+    .load-more-btn,
+    .form-submit-btn {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
     }
@@ -3747,9 +3758,16 @@ html {
         background: rgba(22, 22, 22, 0.88);
     }
 
-    /* 3. OPTIMIZACIÓN DEL CARRUSEL 3D (.trust-pillars-section y .facilities-showcase-section)
-       Las tarjetas laterales (.is-prev / .is-next) ya tienen filter: blur(3.8px) sobre toda la tarjeta.
-       Tener además backdrop-filter: blur(16px) debajo de un elemento ya desenfocado ahoga la GPU móvil sin aportar nada visual. */
+    /* ----------------------------------------------------------------------
+       2. CARRUSELES 3D (Garantías en index.html e Instalaciones en contacto.html)
+       ---------------------------------------------------------------------- */
+    .pillars-carousel-wrapper,
+    .facilities-carousel-wrapper {
+        touch-action: pan-y;
+    }
+
+    /* Las tarjetas laterales (.is-prev / .is-next) ya llevan filter: blur(3.8px).
+       Quitarles el backdrop-filter interno evita un doble desenfoque anidado en GPU */
     .trust-pillar-card.is-prev,
     .trust-pillar-card.is-next,
     .facility-card.is-prev,
@@ -3757,29 +3775,34 @@ html {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         background: rgba(16, 16, 16, 0.92);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 
-    /* La tarjeta central activa conserva su efecto cristal con un radio óptimo para GPU móvil */
     .trust-pillar-card.is-active,
     .facility-card.is-active {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         background: rgba(16, 16, 16, 0.84);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 
     .pillar-ambient-glow {
         filter: none !important;
         inset: -22px;
-        background: radial-gradient(circle, rgba(212, 175, 55, 0.24) 0%, rgba(212, 175, 55, 0.07) 48%, transparent 75%);
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, rgba(212, 175, 55, 0.06) 48%, transparent 72%);
     }
 
-    .pillar-nav-btn {
+    .pillar-nav-btn,
+    .facility-caption-bar {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
-        background: rgba(18, 18, 18, 0.92);
     }
 
-    /* 4. OPTIMIZACIÓN DE LAS TARJETAS DE COCHES Y SECCIONES INFERIORES EN SCROLL MÓVIL */
+    /* ----------------------------------------------------------------------
+       3. INVENTARIO DE COCHES Y SECCIONES DE PORTADA (index.html)
+       ---------------------------------------------------------------------- */
     .car-card {
         contain: layout style;
     }
@@ -3795,16 +3818,52 @@ html {
 
     .why-card,
     .home-review-card,
-    .contact-bento-card {
+    .final-cta-card {
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        background: rgba(18, 18, 18, 0.84);
+        background: rgba(18, 18, 18, 0.85);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         transform: translateZ(0);
     }
 
-    /* 5. DETALLE DE COCHE: Flotación y brillo dorado mediante composición GPU en lugar de recalcular drop-shadow por frame */
+    /* ----------------------------------------------------------------------
+       4. OPTIMIZACIÓN ESPECÍFICA DE CONTACTO.HTML (Bento, Mapa, Horario y Formulario)
+       Evita lag al hacer scroll sobre el iframe de Google Maps y al abrir el teclado Android
+       ---------------------------------------------------------------------- */
+    .contact-bento-card {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        background: rgba(18, 18, 18, 0.86);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        contain: layout style;
+    }
+
+    .contact-map-card,
+    .schedule-card,
+    .contact-form-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(16, 16, 16, 0.92);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        contain: layout style;
+    }
+
+    /* Aislar el iframe de Google Maps con su filtro oscuro en su propia textura GPU */
+    .map-iframe-container {
+        contain: layout paint;
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    /* ----------------------------------------------------------------------
+       5. DETALLE DE VEHÍCULO (detalle.html)
+       ---------------------------------------------------------------------- */
     .hero-image-container {
         animation: float-hero 6s ease-in-out infinite !important;
         filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));

@@ -258,7 +258,7 @@
                         <div class="pillar-ambient-glow"></div>
                         <div class="facility-img-wrapper">
                             <img src="assets/instalaciones/instalaciones-2.jpg"
-                                alt="Entrada principal Autos JVeloce en Carr. de Madrid 37 Jaén" loading="lazy">
+                                alt="Entrada principal Autos JVeloce en Carr. de Madrid 37 Jaén" loading="lazy" decoding="async">
                         </div>
                         <div class="facility-caption-bar">
                             <span class="facility-badge">RECINTO Y EXPOSICIÓN</span>
@@ -272,7 +272,7 @@
                         <div class="pillar-ambient-glow"></div>
                         <div class="facility-img-wrapper">
                             <img src="assets/instalaciones/instalaciones-1.jpg"
-                                alt="Exposición de vehículos Autos JVeloce en Jaén" loading="eager">
+                                alt="Exposición de vehículos Autos JVeloce en Jaén" loading="eager" fetchpriority="high" decoding="async">
                         </div>
                         <div class="facility-caption-bar">
                             <span class="facility-badge">VEHÍCULOS REVISADOS</span>
@@ -286,7 +286,7 @@
                         <div class="pillar-ambient-glow"></div>
                         <div class="facility-img-wrapper">
                             <img src="assets/instalaciones/instalaciones-3.jpg"
-                                alt="Fachada Autos JVeloce esquina Calle Concha Espina en Jaén" loading="lazy">
+                                alt="Fachada Autos JVeloce esquina Calle Concha Espina en Jaén" loading="lazy" decoding="async">
                         </div>
                         <div class="facility-caption-bar">
                             <span class="facility-badge">ACCESO DIRECTO</span>
@@ -327,7 +327,7 @@
                     </div>
                     <div class="map-iframe-container">
                         <iframe title="Ubicación exacta de Autos JVeloce en Carr. de Madrid, 37, 23009 Jaén"
-                            src="https://www.google.com/maps?q=Autos+JVeloce,+Carr.+de+Madrid,+37,+23009+Ja%C3%A9n&ll=37.78824,-3.7827528&hl=es&z=17&output=embed"
+                            src="about:blank" data-src="https://www.google.com/maps?q=Autos+JVeloce,+Carr.+de+Madrid,+37,+23009+Ja%C3%A9n&ll=37.78824,-3.7827528&hl=es&z=17&output=embed"
                             width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
@@ -453,23 +453,23 @@
                         <a href="https://www.instagram.com/jveloce_autos?igsh=MXJrYWhub3BpczhvMg=="
                             class="footer-social-icon glass-panel" aria-label="Instagram" target="_blank"
                             rel="noopener noreferrer" title="Instagram">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt=""
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="" loading="lazy" decoding="async"
                                 role="presentation">
                         </a>
                         <a href="https://www.facebook.com/profile.php?id=61554233211583"
                             class="footer-social-icon glass-panel" aria-label="Facebook" target="_blank"
                             rel="noopener noreferrer" title="Facebook">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" loading="lazy" decoding="async"
                                 alt="" role="presentation">
                         </a>
                         <a href="https://www.milanuncios.com/anuncios-usuario/julio-90742085.htm?stc=oth-share_link-send_friend-profile"
                             class="footer-social-icon glass-panel" aria-label="Milanuncios" target="_blank"
                             rel="noopener noreferrer" title="Milanuncios">
-                            <img src="/assets/icons/milanuncios.png" alt="" role="presentation">
+                            <img src="/assets/icons/milanuncios.png" alt="" role="presentation" loading="lazy" decoding="async">
                         </a>
                         <a href="https://wa.me/34622948792" class="footer-social-icon glass-panel" aria-label="WhatsApp"
                             target="_blank" rel="noopener noreferrer" title="WhatsApp">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt=""
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="" loading="lazy" decoding="async"
                                 role="presentation">
                         </a>
                     </div>
@@ -689,10 +689,53 @@
             carousel.addEventListener('mouseenter', stopTimer);
             carousel.addEventListener('mouseleave', startTimer);
 
-            // Initialize
+            // Initialize & only run 3D auto-rotation when visible on screen
             updateCarousel();
-            startTimer();
+
+            if ('IntersectionObserver' in window) {
+                const carouselObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            startTimer();
+                        } else {
+                            stopTimer();
+                        }
+                    });
+                }, { threshold: 0.15 });
+                carouselObserver.observe(carousel);
+            } else {
+                startTimer();
+            }
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopTimer();
+                } else {
+                    startTimer();
+                }
+            });
         })();
+
+        // Lazy-load Google Maps iframe when approaching #contactMapSection
+        const mapSection = document.getElementById('contactMapSection');
+        const mapIframe = document.querySelector('.map-iframe-container iframe');
+        if (mapSection && mapIframe) {
+            if ('IntersectionObserver' in window) {
+                const mapObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (mapIframe.dataset.src) {
+                                mapIframe.src = mapIframe.dataset.src;
+                            }
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '250px 0px' });
+                mapObserver.observe(mapSection);
+            } else if (mapIframe.dataset.src) {
+                mapIframe.src = mapIframe.dataset.src;
+            }
+        }
 
         // Direct WhatsApp Inquiry Form Handler
         const contactForm = document.getElementById('jvContactForm');
